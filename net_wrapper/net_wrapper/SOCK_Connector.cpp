@@ -9,7 +9,7 @@ SOCK_Connector::~SOCK_Connector(void)
 {
 }
 
-connect( SOCK_Stream stream, INET_Addr addr )
+void SOCK_Connector::connect( SOCK_Stream stream, INET_Addr addr )
 {
 
 }
