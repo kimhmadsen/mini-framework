@@ -8,5 +8,5 @@ class SOCK_Connector
 public:
 	SOCK_Connector(void);
 	~SOCK_Connector(void);
-	connect( SOCK_Stream stream, INET_Addr addr );
+	void connect( SOCK_Stream stream, INET_Addr addr );
 };
