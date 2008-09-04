@@ -187,7 +187,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\net_wrapper.cpp"
+				RelativePath=".\minifw.cpp"
 				>
 			</File>
 			<File
