@@ -183,11 +183,27 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\Event_Handler.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\INET_Addr.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\minifw.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Reactor.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Reactor_Implementation.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Select_Reactor_Implementation.cpp"
 				>
 			</File>
 			<File
@@ -222,6 +238,10 @@
 					/>
 				</FileConfiguration>
 			</File>
+			<File
+				RelativePath=".\SynchEventDemux.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -229,7 +249,23 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath=".\Event_Handler.h"
+				>
+			</File>
+			<File
 				RelativePath=".\INET_Addr.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Reactor.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Reactor_Implementation.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Select_Reactor_Implementation.h"
 				>
 			</File>
 			<File
@@ -246,6 +282,10 @@
 			</File>
 			<File
 				RelativePath=".\stdafx.h"
+				>
+			</File>
+			<File
+				RelativePath=".\SynchEventDemux.h"
 				>
 			</File>
 			<File
