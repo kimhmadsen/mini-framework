@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual C++ Express 2008
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "reactor_server", "reactor_server\reactor_server.vcproj", "{DB84F6EA-6340-4C25-9646-501AFA6E9D5C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "net_wrapper", "net_wrapper\net_wrapper.vcproj", "{19D6E5B9-3E11-4AC9-978C-516994212ED1}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "minifw", "minifw\minifw.vcproj", "{19D6E5B9-3E11-4AC9-978C-516994212ED1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
