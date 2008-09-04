@@ -167,7 +167,7 @@
 	<References>
 		<ProjectReference
 			ReferencedProjectIdentifier="{19D6E5B9-3E11-4AC9-978C-516994212ED1}"
-			RelativePathToProject=".\net_wrapper\net_wrapper.vcproj"
+			RelativePathToProject=".\minifw\minifw.vcproj"
 		/>
 	</References>
 	<Files>
@@ -176,6 +176,14 @@
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
+			<File
+				RelativePath=".\AlarmEventHandler.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\PatientValueEventHandler.cpp"
+				>
+			</File>
 			<File
 				RelativePath=".\reactor_server.cpp"
 				>
@@ -190,6 +198,14 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
+			<File
+				RelativePath=".\AlarmEventHandler.h"
+				>
+			</File>
+			<File
+				RelativePath=".\PatientValueEventHandler.h"
+				>
+			</File>
 			<File
 				RelativePath=".\stdafx.h"
 				>
