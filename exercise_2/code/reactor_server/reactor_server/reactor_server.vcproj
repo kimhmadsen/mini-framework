@@ -181,6 +181,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\ConnectionAcceptor.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\LogEventHandler.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\PatientValueEventHandler.cpp"
 				>
 			</File>
@@ -200,6 +208,14 @@
 			>
 			<File
 				RelativePath=".\AlarmEventHandler.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ConnectionAcceptor.h"
+				>
+			</File>
+			<File
+				RelativePath=".\LogEventHandler.h"
 				>
 			</File>
 			<File
