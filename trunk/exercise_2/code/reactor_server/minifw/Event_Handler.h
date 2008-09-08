@@ -16,7 +16,7 @@ public:
 	Event_Handler(void);
 	~Event_Handler(void);
 	virtual void handle_event(HANDLE handle, Event_Type et ) = 0;
-	virtual HANDLE get_handle(void) = 0;
+	virtual SOCKET get_handle(void) = 0;
 private:
 
 };

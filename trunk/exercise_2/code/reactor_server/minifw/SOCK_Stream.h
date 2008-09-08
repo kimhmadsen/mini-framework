@@ -1,8 +1,13 @@
 #pragma once
+#ifdef WIN32
 #include <windows.h>
 #include <winsock.h>
-
 typedef int ssize_t;
+#elif
+typedef int SOCKET;
+const int INVALID_HANDLE_VALUE = -1;
+#endif
+
 
 class SOCK_Stream
 {
