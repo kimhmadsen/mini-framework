@@ -32,8 +32,8 @@ int echo_server (u_short port_num)
 		ssize_t n = new_stream.recv (buf, sizeof buf, 0);
 		if( n > 0 )
 		{
-			std::cout << "Received " << n << " bytes";
-			std::cout << buf;
+			std::cout << "Received " << n << " bytes ";
+			std::cout << buf << "\n";
 			new_stream.send_n (buf, n, 0);
 		}
 	}
