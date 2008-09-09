@@ -4,6 +4,7 @@
 //SOCK_Stream::SOCK_Stream(void)
 //{
 //	//handle_ = INVALID_HANDLE_VALUE;	
+//	handle_ = socket(PF_INET, SOCK_STREAM, 0); // do some error checking!
 //}
 
 SOCK_Stream::~SOCK_Stream(void)

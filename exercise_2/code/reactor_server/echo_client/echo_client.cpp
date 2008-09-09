@@ -32,9 +32,9 @@ int _tmain(int argc, _TCHAR* argv[])
 			hostent* localHost = gethostbyname("localhost");
 			host = inet_ntoa(*(struct in_addr *)*localHost->h_addr_list);
 	}
-	u_short port_num =
-		htons (argc > 2 ? atoi ((char *)argv[2]) : PORT_NUM);
-	INET_Addr server_addr (port_num, inet_addr(host));
+	u_short port_num = argc > 2 ? atoi ((char *)argv[2]) : PORT_NUM;
+	
+	INET_Addr server_addr (port_num, host );
 	SOCK_Stream cli_stream;
 	SOCK_Connector connector;
 	// Establish the connection with server.
@@ -44,9 +44,10 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	
 	for (;;) {
-			std::cin.read(buf, sizeof buf);
-			int count = std::cin.gcount();
-			cli_stream.send_n (buf, count, 0);
+		std::cin.getline(buf, sizeof buf );//.read(buf, sizeof buf);
+		int count = std::cin.gcount();
+
+		cli_stream.send_n (buf, count, 0);
 	}
 	// Explicitly close the connection.
 	// it gets closed by the destructor
