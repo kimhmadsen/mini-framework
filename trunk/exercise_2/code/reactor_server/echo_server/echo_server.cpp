@@ -13,6 +13,14 @@ int echo_server (u_short port_num)
 {
 	// Error handling omitted.
 	printf( "Echo server listen on port %i\n", port_num );
+	WSADATA wsaData;   // if this doesn't work
+    //WSAData wsaData; // then try this instead
+
+    if (WSAStartup(MAKEWORD(1, 1), &wsaData) != 0) {
+        fprintf(stderr, "WSAStartup failed.\n");
+        exit(1);
+    }
+
 	INET_Addr my_addr (port_num);
 	SOCK_Acceptor acceptor (my_addr);
 	SOCK_Stream new_stream;

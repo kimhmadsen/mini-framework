@@ -3,6 +3,7 @@
 
 SOCK_Acceptor::SOCK_Acceptor( INET_Addr &sock_addr )
 {
+
 	SOCK_Acceptor::open( sock_addr );
 }
 
