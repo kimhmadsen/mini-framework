@@ -4,10 +4,11 @@
 //typedef unsigned int HANDLE;
 typedef unsigned int Event_Type;
 enum {
-	READ_EVENT = 01, // ACCEPT_EVENT alias READ_EVENT
-	ACCEPT_EVENT= 01,
-	WRITE_EVENT= 02,
-	TIMEOUT_EVENT= 04
+	READ_EVENT    = 01, // ACCEPT_EVENT alias READ_EVENT
+	ACCEPT_EVENT  = 01,
+	WRITE_EVENT   = 02,
+	TIMEOUT_EVENT = 04,
+	CLOSE_EVENT   =  8, 
 };
 
 class Event_Handler

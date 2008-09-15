@@ -23,6 +23,8 @@ public:
 	// 
 	ssize_t recv_n (void* buf, size_t len, int flags);
 	ssize_t send_n (const char* buf, size_t len,  int flags);
+
+	void close(void);
 private:
 	SOCKET handle_;
 };

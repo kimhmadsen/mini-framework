@@ -55,3 +55,8 @@ ssize_t SOCK_Stream::send_n (const char* buf, size_t len,  int flags )
 	}
 	return len;
 }
+
+void SOCK_Stream::close(void)
+{
+	::closesocket( handle_ );
+}
