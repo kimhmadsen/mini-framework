@@ -25,7 +25,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	// do the server loop
 	for(;;)
 	{
-		Reactor::instance()->handle_events( 100 );
+		TIMEVAL tv;
+		tv.tv_sec  = 0;
+		tv.tv_usec = 100000;
+		Reactor::instance()->handle_events( &tv );
 		// do timeout things 
 	}
 

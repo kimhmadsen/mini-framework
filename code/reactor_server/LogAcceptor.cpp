@@ -1,6 +1,6 @@
-#include "ConnectionAcceptor.h"
+#include "LogAcceptor.h"
 
 
-ConnectionAcceptor::~ConnectionAcceptor(void)
+LogAcceptor::~LogAcceptor(void)
 {
 }

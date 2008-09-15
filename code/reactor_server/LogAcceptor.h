@@ -2,17 +2,18 @@
 #include "Event_Handler.h"
 #include "Reactor.h"
 #include "SOCK_Acceptor.h"
+#include "LogEventHandler.h"
 
-class ConnectionAcceptor :
+class LogAcceptor :
 	public Event_Handler
 {
 public:
-	ConnectionAcceptor( INET_Addr &addr, Reactor *reactor ):
+	LogAcceptor( INET_Addr &addr, Reactor *reactor ):
 	  acceptor_ ( addr ), reactor_ ( reactor )
 	  {
 		  reactor_->register_handler( this, ACCEPT_EVENT );
 	  }
-	~ConnectionAcceptor(void);
+	~LogAcceptor(void);
 
 	virtual void handle_event(HANDLE handle, Event_Type et )
 	{
@@ -24,9 +25,10 @@ public:
 			acceptor_.accept( client_connection );
 
 			// create event handlers for the connection.
-
+			LogEventHandler* leh = new LogEventHandler( client_connection, Reactor::instance() );
 		}
 	}
+
 	virtual SOCKET get_handle(void)
 	{
 		return acceptor_.get_handle();
