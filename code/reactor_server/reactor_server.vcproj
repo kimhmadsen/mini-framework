@@ -181,7 +181,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\ConnectionAcceptor.cpp"
+				RelativePath=".\LogAcceptor.cpp"
 				>
 			</File>
 			<File
@@ -211,7 +211,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\ConnectionAcceptor.h"
+				RelativePath=".\LogAcceptor.h"
 				>
 			</File>
 			<File
