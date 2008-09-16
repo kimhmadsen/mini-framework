@@ -20,16 +20,16 @@ public:
 		// Can only be called for an ACCEPT event.
 		if( et == ACCEPT_EVENT )
 		{
-			SOCK_Stream client_connection;
+			SOCK_Stream client_connection( handle );
 
 			acceptor_.accept( client_connection );
 
 			// create event handlers for the connection.
-			LogEventHandler* leh = new LogEventHandler( client_connection, Reactor::instance() );
+			LogEventHandler* leh = new LogEventHandler( client_connection, reactor_ );
 		}
 	}
 
-	virtual SOCKET get_handle(void)
+	virtual HANDLE get_handle(void)
 	{
 		return acceptor_.get_handle();
 	}

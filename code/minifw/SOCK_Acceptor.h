@@ -11,7 +11,7 @@ public:
 
 	void open( INET_Addr &sock_addr );
 	void accept( SOCK_Stream &s);
-	SOCKET get_handle() const;
+	HANDLE get_handle() const;
 private:
-	SOCKET handle_;
+	HANDLE handle_;
 };
