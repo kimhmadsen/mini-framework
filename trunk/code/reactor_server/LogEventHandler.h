@@ -33,7 +33,7 @@ public:
 		}
 		
 	}
-	virtual SOCKET get_handle() 
+	virtual HANDLE get_handle() 
 	{
 		return peer_stream_.get_handle();
 	}

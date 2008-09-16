@@ -4,7 +4,9 @@
 #include "stdafx.h"
 #include "INET_Addr.h"
 #include "Reactor.h"
-
+#include "select_reactor.h"
+#include "logacceptor.h"
+//#include "alarmacceptor.h"
 const short LOG_PORT    = 10000;
 const short ALARM_PORT  = 10001;
 const short PATVAL_PORT = 10002;
@@ -17,7 +19,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	INET_Addr parient_addr( PATVAL_PORT );
 
 	// create connection acceptors
-
+	LogAcceptor la( log_addr, Select_Reactor::instance() );
 
 	// add the acceptors to the reactor
 
@@ -28,7 +30,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		TIMEVAL tv;
 		tv.tv_sec  = 0;
 		tv.tv_usec = 100000;
-		Reactor::instance()->handle_events( &tv );
+		Select_Reactor::instance()->handle_events( &tv );
 		// do timeout things 
 	}
 

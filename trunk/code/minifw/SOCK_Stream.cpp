@@ -9,27 +9,27 @@
 
 SOCK_Stream::~SOCK_Stream(void)
 {
-	closesocket(handle_);
+	closesocket( (SOCKET)handle_);
 }
 
-void SOCK_Stream::set_handle( SOCKET h )
+void SOCK_Stream::set_handle( HANDLE h )
 {
 	handle_ = h;
 }
 
-SOCKET SOCK_Stream::get_handle(void)
+HANDLE SOCK_Stream::get_handle(void)
 {
-	return handle_;
+	return (HANDLE)handle_;
 }
 
 ssize_t SOCK_Stream::recv ( void* buf, size_t len, int flags )
 {
-	return ::recv( handle_, (char*)buf, len, flags );
+	return ::recv( (SOCKET)handle_, (char*)buf, len, flags );
 }
 
 ssize_t SOCK_Stream::send ( const char* buf, size_t len,  int flags )
 {
-	return ::send(handle_, buf, len, flags );
+	return ::send((SOCKET)handle_, buf, len, flags );
 }
 
 ssize_t SOCK_Stream::recv_n (void* buf, size_t len, int flags )
@@ -38,7 +38,7 @@ ssize_t SOCK_Stream::recv_n (void* buf, size_t len, int flags )
 
 	for( size_t nread=0; nread < len; nread += n )
 	{
-		n = ::recv( handle_, (char*)buf + nread, len - nread, flags );
+		n = ::recv( (SOCKET)handle_, (char*)buf + nread, len - nread, flags );
 		if( n <= 0 ) return 0;
 	}
 	return len; 
@@ -50,7 +50,7 @@ ssize_t SOCK_Stream::send_n (const char* buf, size_t len,  int flags )
 
 	for( size_t nsent = 0; nsent < len; nsent += n )
 	{
-		n = ::send(handle_, buf, len, flags );
+		n = ::send( (SOCKET)handle_, buf, len, flags );
 		if( n <= 0 ) return 0;
 	}
 	return len;
@@ -58,5 +58,5 @@ ssize_t SOCK_Stream::send_n (const char* buf, size_t len,  int flags )
 
 void SOCK_Stream::close(void)
 {
-	::closesocket( handle_ );
+	::closesocket( (SOCKET)handle_ );
 }

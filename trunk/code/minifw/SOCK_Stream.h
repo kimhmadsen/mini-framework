@@ -3,6 +3,7 @@
 #include <windows.h>
 #include <winsock.h>
 typedef int ssize_t;
+//const int INVALID_HANDLE_VALUE = -1;
 #elif
 typedef int SOCKET;
 const int INVALID_HANDLE_VALUE = -1;
@@ -12,11 +13,11 @@ const int INVALID_HANDLE_VALUE = -1;
 class SOCK_Stream
 {
 public:
-	SOCK_Stream(void): handle_(INVALID_SOCKET){}
-	SOCK_Stream(SOCKET h): handle_( h ){}
+	SOCK_Stream(void): handle_(INVALID_HANDLE_VALUE){}
+	SOCK_Stream(HANDLE h): handle_( h ){}
 	~SOCK_Stream(void);
-	void    set_handle( SOCKET h );
-	SOCKET  get_handle(void);
+	void    set_handle( HANDLE h );
+	HANDLE  get_handle(void);
 	ssize_t recv (void* buf, size_t len, int flags);
 	ssize_t send (const char* buf, size_t len,  int flags);
 
@@ -26,5 +27,6 @@ public:
 
 	void close(void);
 private:
-	SOCKET handle_;
+	HANDLE handle_;
+	//SOCKET handle_;
 };

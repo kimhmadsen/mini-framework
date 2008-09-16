@@ -203,6 +203,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Select_Reactor.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Select_Reactor_Implementation.cpp"
 				>
 			</File>
@@ -257,11 +261,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\minifw.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Reactor.h"
 				>
 			</File>
 			<File
 				RelativePath=".\Reactor_Implementation.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Select_Reactor.h"
 				>
 			</File>
 			<File
