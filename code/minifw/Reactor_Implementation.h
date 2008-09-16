@@ -1,5 +1,6 @@
 #pragma once
 #include "event_handler.h"
+
 class Reactor_Implementation
 {
 public:
@@ -12,6 +13,8 @@ public:
 	virtual void remove_handler(HANDLE h, Event_Type et) const = 0;
 	
 	// Entry point into the reactive event loop
-	void handle_events(TIMEVAL *timeout =0);
+	void handle_events(TIMEVAL *timeout =0)
+	{
+	}
 
 };

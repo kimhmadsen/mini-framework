@@ -20,8 +20,8 @@ public:
 	// Define a GoF singleton access point
 	static Reactor* instance();
 protected:
-	Reactor(void);
-	~Reactor(void);
+	Reactor(void){}
+	~Reactor(void){}
 private:
 
 	// Use the Bridge pattern to hold a pointer to 
