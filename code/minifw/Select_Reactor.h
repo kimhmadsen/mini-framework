@@ -18,10 +18,7 @@ public:
 
 	static Reactor* instance(void);
 protected:
-	Select_Reactor(void)
-	{
-		reactor_impl_ = new Select_Reactor_Implementation();
-	}
+	Select_Reactor(void);
 	~Select_Reactor(void);
 
 private:
