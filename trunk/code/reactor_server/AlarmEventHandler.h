@@ -2,7 +2,7 @@
 #include "eventhandler.h"
 
 class AlarmEventHandler :
-	public Event_Handler
+	public EventHandler
 {
 public:
 	AlarmEventHandler(void);

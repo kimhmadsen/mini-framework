@@ -5,16 +5,16 @@
 #include "sockstream.h"
 
 class LogEventHandler :
-	public Event_Handler
+	public EventHandler
 {
 public:
-	LogEventHandler(const SOCK_Stream &stream, Reactor *reactor): peer_stream_( stream )
+	LogEventHandler(const SockStream &stream, Reactor *reactor): peer_stream_( stream )
 	{
-		reactor->register_handler( this, READ_EVENT );
+		reactor->RegisterHandler( this, READ_EVENT );
 	}
 	~LogEventHandler(void);
 
-	virtual void handle_event ( HANDLE handle, Event_Type event_type )
+	virtual void HandleEvent ( HANDLE handle, Event_Type event_type )
 	{
 		switch( event_type )
 		{
@@ -33,11 +33,11 @@ public:
 		}
 		
 	}
-	virtual HANDLE get_handle() 
+	virtual HANDLE GetHandle() 
 	{
-		return peer_stream_.get_handle();
+		return peer_stream_.GetHandle();
 	}
 private:
 	// Receives logging records from a connected client
-	SOCK_Stream peer_stream_;
+	SockStream peer_stream_;
 };

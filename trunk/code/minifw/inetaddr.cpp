@@ -3,62 +3,62 @@
 #include <winsock.h>
 #include "inetaddr.h"
 
-INET_Addr::INET_Addr(u_short port, u_long addr)
+InetAddr::InetAddr(u_short port, u_long address)
 {
-	memset( &addr_ , 0, sizeof( addr_ ) );
-	addr_.sin_family = AF_INET;
-	addr_.sin_port = htons( port );
-	addr_.sin_addr.s_addr = htonl( addr );
+	memset( &addr , 0, sizeof( addr ) );
+	addr.sin_family = AF_INET;
+	addr.sin_port = htons( port );
+	addr.sin_addr.s_addr = htonl( address );
 }
 
-INET_Addr::INET_Addr(u_short port, char* host)
+InetAddr::InetAddr(u_short port, char* host)
 {
 	//int status;
 
-	memset( &addr_ , 0, sizeof( addr_ ) );
-	addr_.sin_family = AF_INET;
-	addr_.sin_port = htons( port );
-	//status = ::inet_aton( host, &addr_ );
-	addr_.sin_addr.s_addr =  inet_addr( host );;
+	memset( &addr , 0, sizeof( addr ) );
+	addr.sin_family = AF_INET;
+	addr.sin_port = htons( port );
+	//status = ::inet_aton( host, &addr );
+	addr.sin_addr.s_addr =  inet_addr( host );;
 }
 
-INET_Addr::INET_Addr(u_short port)
+InetAddr::InetAddr(u_short port)
 {
-	memset( &addr_ , 0, sizeof( addr_ ) );
-	addr_.sin_family = AF_INET;
-	addr_.sin_port = htons( port );
-	addr_.sin_addr.s_addr = htonl( 0 );
+	memset( &addr , 0, sizeof( addr ) );
+	addr.sin_family = AF_INET;
+	addr.sin_port = htons( port );
+	addr.sin_addr.s_addr = htonl( 0 );
 
 }
 
-INET_Addr::~INET_Addr(void)
+InetAddr::~InetAddr(void)
 {
 
 }
 
-void INET_Addr::set_port( u_short port )
+void InetAddr::SetPort( u_short port )
 {
-	addr_.sin_port = htons( port );
+	addr.sin_port = htons( port );
 }
 
-u_short INET_Addr::get_port()
-{
-	// convert to host endianess before returning it.
-	return ntohs( addr_.sin_port );
-}
-
-u_long INET_Addr::get_ip_addr()
+u_short InetAddr::GetPort()
 {
 	// convert to host endianess before returning it.
-	return ntohl( addr_.sin_addr.s_addr );
+	return ntohs( addr.sin_port );
 }
 
-sockaddr* INET_Addr::addr(void)
+u_long InetAddr::GetIpAddr()
 {
-	return reinterpret_cast <sockaddr *> (&addr_);
+	// convert to host endianess before returning it.
+	return ntohl( addr.sin_addr.s_addr );
 }
 
-size_t INET_Addr::size(void)
+sockaddr* InetAddr::Addr(void)
 {
-	return sizeof( addr_ );
+	return reinterpret_cast <sockaddr *> (&addr);
+}
+
+size_t InetAddr::Size(void)
+{
+	return sizeof( addr );
 }

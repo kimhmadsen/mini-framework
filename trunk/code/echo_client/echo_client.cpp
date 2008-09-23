@@ -4,9 +4,9 @@
 #include <stdlib.h>
 #include <iostream>
 #include "stdafx.h"
-#include "INET_Addr.h"
-#include "SOCK_Stream.h"
-#include "SOCK_Connector.h"
+#include "InetAddr.h"
+#include "SockStream.h"
+#include "SockConnector.h"
 
 
 const u_short PORT_NUM = 10000;
@@ -34,8 +34,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 	u_short port_num = argc > 2 ? atoi ((char *)argv[2]) : PORT_NUM;
 	
-	INET_Addr server_addr (port_num, host );
-	SOCK_Stream cli_stream;
+	InetAddr server_addr (port_num, host );
+	SockStream cli_stream;
 	SOCK_Connector connector;
 	// Establish the connection with server.
 	connector.connect (cli_stream, server_addr);

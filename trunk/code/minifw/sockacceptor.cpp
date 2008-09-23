@@ -1,35 +1,35 @@
 #include "StdAfx.h"
 #include "sockacceptor.h"
 
-SOCK_Acceptor::SOCK_Acceptor( INET_Addr &sock_addr )
+SockAcceptor::SockAcceptor( InetAddr &sock_addr )
 {
 
-	SOCK_Acceptor::open( sock_addr );
+	SockAcceptor::open( sock_addr );
 }
 
-SOCK_Acceptor::~SOCK_Acceptor(void)
+SockAcceptor::~SockAcceptor(void)
 {
 
 }
 
 // A second method to initialize a  passive-mode
 // acceptor socket, analogously to the contructor
-void SOCK_Acceptor::open( INET_Addr &sock_addr )
+void SockAcceptor::open( InetAddr &sock_addr )
 {
 	// create a local endpoint of communication
-	handle_ = (HANDLE)socket( PF_INET, SOCK_STREAM, 0 );
+	handle = (HANDLE)socket( PF_INET, SOCK_STREAM, 0 );
 	// Associate address with endpoint
-	bind( (SOCKET)handle_, sock_addr.addr(), sock_addr.size() );
+	bind( (SOCKET)handle, sock_addr.Addr(), sock_addr.Size() );
 	// Make endpoint listen for connections.
-	listen( (SOCKET)handle_, 5 );
+	listen( (SOCKET)handle, 5 );
 }
 
-void SOCK_Acceptor::accept( SOCK_Stream &s)
+void SockAcceptor::accept( SockStream &s)
 {
-	s.set_handle( (HANDLE)::accept( (SOCKET)handle_, 0, 0 ) );
+	s.SetHandle( (HANDLE)::accept( (SOCKET)handle, 0, 0 ) );
 }
 
-HANDLE SOCK_Acceptor::get_handle() const
+HANDLE SockAcceptor::GetHandle() const
 {
-	return handle_;
+	return handle;
 }

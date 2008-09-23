@@ -2,22 +2,22 @@
 #include "reactor.h"
 
 
-class Select_Reactor :
+class SelectReactor :
 	public Reactor
 {
 public:
-	virtual void register_handler(Event_Handler *eh, Event_Type et);
-	virtual void register_handler(HANDLE h, Event_Handler *eh, Event_Type et);
-	virtual void remove_handler(Event_Handler *eh, Event_Type et);
-	virtual void remove_handler(HANDLE h, Event_Type et) const;
-	void handle_events(TIMEVAL *timeout =0);
+	virtual void RegisterHandler(EventHandler *eh, Event_Type et);
+	virtual void RegisterHandler(HANDLE h, EventHandler *eh, Event_Type et);
+	virtual void RemoveHandler(EventHandler *eh, Event_Type et);
+	virtual void RemoveHandler(HANDLE h, Event_Type et) const;
+	void HandleEvents(TIMEVAL *timeout =0);
 
 	static Reactor* instance(void);
 protected:
-	Select_Reactor(void);
-	~Select_Reactor(void);
+	SelectReactor(void);
+	~SelectReactor(void);
 
 private:
 
-	static Select_Reactor* instance_;
+	static SelectReactor* instance_;
 };

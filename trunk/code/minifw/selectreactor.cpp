@@ -2,44 +2,44 @@
 #include "selectreactor.h"
 
 
-Select_Reactor* Select_Reactor::instance_ = 0;
+SelectReactor* SelectReactor::instance_ = 0;
 
-Select_Reactor::Select_Reactor(void)
+SelectReactor::SelectReactor(void)
 {
 }
 
-Select_Reactor::~Select_Reactor(void)
+SelectReactor::~SelectReactor(void)
 {
 }
 
 
-Reactor* Select_Reactor::instance(void)
+Reactor* SelectReactor::instance(void)
 {
 	if( instance_ == 0 )
 	{
-		instance_ = new Select_Reactor();
+		instance_ = new SelectReactor();
 	}
 	return instance_;
 }
 
 
-void Select_Reactor::register_handler(Event_Handler *eh, Event_Type et)
+void SelectReactor::RegisterHandler(EventHandler *eh, Event_Type et)
 {
 }
 
-void Select_Reactor::register_handler(HANDLE h, Event_Handler *eh, Event_Type et)
+void SelectReactor::RegisterHandler(HANDLE h, EventHandler *eh, Event_Type et)
 {
 }
 
-void Select_Reactor::remove_handler(Event_Handler *eh, Event_Type et)
+void SelectReactor::RemoveHandler(EventHandler *eh, Event_Type et)
 {
 }
 
-void Select_Reactor::remove_handler(HANDLE h, Event_Type et) const
+void SelectReactor::RemoveHandler(HANDLE h, Event_Type et) const
 {
 }
 
-void Select_Reactor::handle_events(TIMEVAL *timeout)
+void SelectReactor::HandleEvents(TIMEVAL *timeout)
 {
 
 }

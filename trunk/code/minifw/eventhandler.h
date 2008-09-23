@@ -11,13 +11,13 @@ enum {
 	CLOSE_EVENT   =  8, 
 };
 
-class Event_Handler
+class EventHandler
 {
 public:
-	Event_Handler(void);
-	~Event_Handler(void);
-	virtual void handle_event(HANDLE handle, Event_Type et ) = 0;
-	virtual HANDLE get_handle(void) = 0;
+	EventHandler(void);
+	~EventHandler(void);
+	virtual void HandleEvent(HANDLE handle, Event_Type et ) = 0;
+	virtual HANDLE GetHandle(void) = 0;
 private:
 
 };
