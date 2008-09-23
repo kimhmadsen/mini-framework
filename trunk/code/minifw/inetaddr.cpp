@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 #include <windows.h>
 #include <winsock.h>
-#include "INET_Addr.h"
+#include "inetaddr.h"
 
 INET_Addr::INET_Addr(u_short port, u_long addr)
 {

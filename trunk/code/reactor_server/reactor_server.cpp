@@ -2,11 +2,11 @@
 //
 
 #include "stdafx.h"
-#include "INET_Addr.h"
-#include "Reactor.h"
-#include "select_reactor.h"
+#include "inetaddr.h"
+#include "reactor.h"
+#include "selectreactor.h"
 #include "logacceptor.h"
-//#include "alarmacceptor.h"
+
 const short LOG_PORT    = 10000;
 const short ALARM_PORT  = 10001;
 const short PATVAL_PORT = 10002;

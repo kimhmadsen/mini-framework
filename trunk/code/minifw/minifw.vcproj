@@ -183,11 +183,11 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\Event_Handler.cpp"
+				RelativePath=".\eventhandler.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\INET_Addr.cpp"
+				RelativePath=".\inetaddr.cpp"
 				>
 			</File>
 			<File
@@ -195,23 +195,19 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Reactor.cpp"
+				RelativePath=".\selectreactor.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\Select_Reactor.cpp"
+				RelativePath=".\sockacceptor.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\SOCK_Acceptor.cpp"
+				RelativePath=".\sockconnector.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\SOCK_Connector.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\SOCK_Stream.cpp"
+				RelativePath=".\sockstream.cpp"
 				>
 			</File>
 			<File
@@ -235,7 +231,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\SynchEventDemux.cpp"
+				RelativePath=".\syncheventdemux.cpp"
 				>
 			</File>
 		</Filter>
@@ -245,27 +241,35 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath=".\eventhandler.h"
+				>
+			</File>
+			<File
+				RelativePath=".\inetaddr.h"
+				>
+			</File>
+			<File
 				RelativePath=".\minifw.h"
 				>
 			</File>
 			<File
-				RelativePath=".\Reactor.h"
+				RelativePath=".\reactor.h"
 				>
 			</File>
 			<File
-				RelativePath=".\Select_Reactor.h"
+				RelativePath=".\selectreactor.h"
 				>
 			</File>
 			<File
-				RelativePath=".\SOCK_Acceptor.h"
+				RelativePath=".\sockacceptor.h"
 				>
 			</File>
 			<File
-				RelativePath=".\SOCK_Connector.h"
+				RelativePath=".\sockconnector.h"
 				>
 			</File>
 			<File
-				RelativePath=".\SOCK_Stream.h"
+				RelativePath=".\sockstream.h"
 				>
 			</File>
 			<File
@@ -273,7 +277,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\SynchEventDemux.h"
+				RelativePath=".\syncheventdemux.h"
 				>
 			</File>
 			<File

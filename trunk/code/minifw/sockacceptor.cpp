@@ -1,5 +1,5 @@
 #include "StdAfx.h"
-#include "SOCK_Acceptor.h"
+#include "sockacceptor.h"
 
 SOCK_Acceptor::SOCK_Acceptor( INET_Addr &sock_addr )
 {
