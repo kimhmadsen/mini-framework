@@ -1,8 +1,8 @@
 #pragma once
-#include "event_handler.h"
+#include "EventHandler.h"
 
 class PatientValueEventHandler :
-	public Event_Handler
+	public EventHandler
 {
 public:
 	PatientValueEventHandler(void);

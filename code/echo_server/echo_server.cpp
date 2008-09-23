@@ -3,9 +3,9 @@
 
 #include "stdafx.h"
 #include "iostream"
-#include "SOCK_Acceptor.h"
-#include "SOCK_Stream.h"
-#include "INET_Addr.h"
+#include "SockAcceptor.h"
+#include "SockStream.h"
+#include "InetAddr.h"
 
 const u_short PORT_NUM = 10000;
 
@@ -21,9 +21,9 @@ int echo_server (u_short port_num)
         exit(1);
     }
 
-	INET_Addr my_addr (port_num);
-	SOCK_Acceptor acceptor (my_addr);
-	SOCK_Stream new_stream;
+	InetAddr my_addr (port_num);
+	SockAcceptor acceptor (my_addr);
+	SockStream new_stream;
 	acceptor.accept (new_stream);
 	for (;;)
 	{

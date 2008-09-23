@@ -10,14 +10,14 @@ const int INVALID_HANDLE_VALUE = -1;
 #endif
 
 
-class SOCK_Stream
+class SockStream
 {
 public:
-	SOCK_Stream(void): handle_(INVALID_HANDLE_VALUE){}
-	SOCK_Stream(HANDLE h): handle_( h ){}
-	~SOCK_Stream(void);
-	void    set_handle( HANDLE h );
-	HANDLE  get_handle(void);
+	SockStream(void): handle(INVALID_HANDLE_VALUE){}
+	SockStream(HANDLE h): handle( h ){}
+	~SockStream(void);
+	void    SetHandle( HANDLE h );
+	HANDLE  GetHandle(void);
 	ssize_t recv (void* buf, size_t len, int flags);
 	ssize_t send (const char* buf, size_t len,  int flags);
 
@@ -27,6 +27,6 @@ public:
 
 	void close(void);
 private:
-	HANDLE handle_;
-	//SOCKET handle_;
+	HANDLE handle;
+	//SOCKET handle;
 };

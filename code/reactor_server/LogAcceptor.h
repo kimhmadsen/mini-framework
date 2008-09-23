@@ -5,22 +5,22 @@
 #include "logeventhandler.h"
 
 class LogAcceptor :
-	public Event_Handler
+	public EventHandler
 {
 public:
-	LogAcceptor( INET_Addr &addr, Reactor *reactor ):
+	LogAcceptor( InetAddr &addr, Reactor *reactor ):
 	  acceptor_ ( addr ), reactor_ ( reactor )
 	  {
-		  reactor_->register_handler( this, ACCEPT_EVENT );
+		  reactor_->RegisterHandler( this, ACCEPT_EVENT );
 	  }
 	~LogAcceptor(void);
 
-	virtual void handle_event(HANDLE handle, Event_Type et )
+	virtual void HandleEvent(HANDLE handle, Event_Type et )
 	{
 		// Can only be called for an ACCEPT event.
 		if( et == ACCEPT_EVENT )
 		{
-			SOCK_Stream client_connection( handle );
+			SockStream client_connection( handle );
 
 			acceptor_.accept( client_connection );
 
@@ -29,13 +29,13 @@ public:
 		}
 	}
 
-	virtual HANDLE get_handle(void)
+	virtual HANDLE GetHandle(void)
 	{
-		return acceptor_.get_handle();
+		return acceptor_.GetHandle();
 	}
 private:
 	// Socket factory that accepts client connections
-	SOCK_Acceptor acceptor_;
+	SockAcceptor acceptor_;
 
 	// Cached <Reactor>.
 	Reactor *reactor_;

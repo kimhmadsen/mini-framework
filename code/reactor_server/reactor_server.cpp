@@ -14,12 +14,12 @@ const short PATVAL_PORT = 10002;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	INET_Addr log_addr( LOG_PORT );
-	INET_Addr alarm_addr( ALARM_PORT );
-	INET_Addr parient_addr( PATVAL_PORT );
+	InetAddr log_addr( LOG_PORT );
+	InetAddr alarm_addr( ALARM_PORT );
+	InetAddr parient_addr( PATVAL_PORT );
 
 	// create connection acceptors
-	LogAcceptor la( log_addr, Select_Reactor::instance() );
+	LogAcceptor la( log_addr, SelectReactor::instance() );
 
 	// add the acceptors to the reactor
 
@@ -30,7 +30,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		TIMEVAL tv;
 		tv.tv_sec  = 0;
 		tv.tv_usec = 100000;
-		Select_Reactor::instance()->handle_events( &tv );
+		SelectReactor::instance()->HandleEvents( &tv );
 		// do timeout things 
 	}
 

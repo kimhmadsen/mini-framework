@@ -1,62 +1,62 @@
 #include "StdAfx.h"
 #include "sockstream.h"
 
-//SOCK_Stream::SOCK_Stream(void)
+//SockStream::SockStream(void)
 //{
-//	//handle_ = INVALID_HANDLE_VALUE;	
-//	handle_ = socket(PF_INET, SOCK_STREAM, 0); // do some error checking!
+//	//handle = INVALID_HANDLE_VALUE;	
+//	handle = socket(PF_INET, SockStream, 0); // do some error checking!
 //}
 
-SOCK_Stream::~SOCK_Stream(void)
+SockStream::~SockStream(void)
 {
-	closesocket( (SOCKET)handle_);
+	closesocket( (SOCKET)handle);
 }
 
-void SOCK_Stream::set_handle( HANDLE h )
+void SockStream::SetHandle( HANDLE h )
 {
-	handle_ = h;
+	handle = h;
 }
 
-HANDLE SOCK_Stream::get_handle(void)
+HANDLE SockStream::GetHandle(void)
 {
-	return (HANDLE)handle_;
+	return (HANDLE)handle;
 }
 
-ssize_t SOCK_Stream::recv ( void* buf, size_t len, int flags )
+ssize_t SockStream::recv ( void* buf, size_t len, int flags )
 {
-	return ::recv( (SOCKET)handle_, (char*)buf, len, flags );
+	return ::recv( (SOCKET)handle, (char*)buf, len, flags );
 }
 
-ssize_t SOCK_Stream::send ( const char* buf, size_t len,  int flags )
+ssize_t SockStream::send ( const char* buf, size_t len,  int flags )
 {
-	return ::send((SOCKET)handle_, buf, len, flags );
+	return ::send((SOCKET)handle, buf, len, flags );
 }
 
-ssize_t SOCK_Stream::recv_n (void* buf, size_t len, int flags )
+ssize_t SockStream::recv_n (void* buf, size_t len, int flags )
 {
 	ssize_t n = 0;
 
 	for( size_t nread=0; nread < len; nread += n )
 	{
-		n = ::recv( (SOCKET)handle_, (char*)buf + nread, len - nread, flags );
+		n = ::recv( (SOCKET)handle, (char*)buf + nread, len - nread, flags );
 		if( n <= 0 ) return 0;
 	}
 	return len; 
 }
 
-ssize_t SOCK_Stream::send_n (const char* buf, size_t len,  int flags )
+ssize_t SockStream::send_n (const char* buf, size_t len,  int flags )
 {
 	ssize_t n = 0;
 
 	for( size_t nsent = 0; nsent < len; nsent += n )
 	{
-		n = ::send( (SOCKET)handle_, buf, len, flags );
+		n = ::send( (SOCKET)handle, buf, len, flags );
 		if( n <= 0 ) return 0;
 	}
 	return len;
 }
 
-void SOCK_Stream::close(void)
+void SockStream::close(void)
 {
-	::closesocket( (SOCKET)handle_ );
+	::closesocket( (SOCKET)handle );
 }

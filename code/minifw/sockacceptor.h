@@ -3,15 +3,15 @@
 #include "inetaddr.h"
 #include "sockstream.h"
 
-class SOCK_Acceptor
+class SockAcceptor
 {
 public:
-	SOCK_Acceptor( INET_Addr &sock_addr );
-	~SOCK_Acceptor(void);
+	SockAcceptor( InetAddr &sock_addr );
+	~SockAcceptor(void);
 
-	void open( INET_Addr &sock_addr );
-	void accept( SOCK_Stream &s);
-	HANDLE get_handle() const;
+	void open( InetAddr &sock_addr );
+	void accept( SockStream &s);
+	HANDLE GetHandle() const;
 private:
-	HANDLE handle_;
+	HANDLE handle;
 };
