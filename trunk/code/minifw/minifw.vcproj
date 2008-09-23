@@ -199,15 +199,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Reactor_Implementation.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\Select_Reactor.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\Select_Reactor_Implementation.cpp"
 				>
 			</File>
 			<File
@@ -253,14 +245,6 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\Event_Handler.h"
-				>
-			</File>
-			<File
-				RelativePath=".\INET_Addr.h"
-				>
-			</File>
-			<File
 				RelativePath=".\minifw.h"
 				>
 			</File>
@@ -269,15 +253,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Reactor_Implementation.h"
-				>
-			</File>
-			<File
 				RelativePath=".\Select_Reactor.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Select_Reactor_Implementation.h"
 				>
 			</File>
 			<File
