@@ -9,7 +9,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "echo_server", "echo_server\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "echo_client", "echo_client\echo_client.vcproj", "{2F1E4431-7E48-4C15-A86D-CEC5103E439E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "reactor_client", "reactor_client\reactor_client.vcproj", "{D28E4464-EAB1-4E9A-972A-D11CAE2D288A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "reactor_client", "reactor_client\reactorclient.vcproj", "{D28E4464-EAB1-4E9A-972A-D11CAE2D288A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

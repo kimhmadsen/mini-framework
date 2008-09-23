@@ -1,5 +1,5 @@
 #include "StdAfx.h"
-#include "SOCK_Stream.h"
+#include "sockstream.h"
 
 //SOCK_Stream::SOCK_Stream(void)
 //{

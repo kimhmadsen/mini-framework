@@ -1,8 +1,8 @@
 #pragma once
 #include "iostream"
-#include "event_handler.h"
-#include "Reactor.h"
-#include "SOCK_Stream.h"
+#include "eventhandler.h"
+#include "reactor.h"
+#include "sockstream.h"
 
 class LogEventHandler :
 	public Event_Handler

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "INET_Addr.h"
-#include "SOCK_Stream.h"
+#include "inetaddr.h"
+#include "sockstream.h"
 
 class SOCK_Acceptor
 {

@@ -1,5 +1,5 @@
 #include "StdAfx.h"
-#include "SOCK_Connector.h"
+#include "sockconnector.h"
 
 SOCK_Connector::SOCK_Connector(void)
 {
