@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include "stdafx.h"
-#include "InetAddr.h"
+#include "inetaddr.h"
 #include "SockStream.h"
 #include "SockConnector.h"
 
