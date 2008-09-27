@@ -1,11 +1,19 @@
 #include "StdAfx.h"
 #include "sockstream.h"
 
-//SockStream::SockStream(void)
-//{
-//	//handle = INVALID_HANDLE_VALUE;	
-//	handle = socket(PF_INET, SockStream, 0); // do some error checking!
-//}
+SockStream::SockStream(void): handle(INVALID_HANDLE_VALUE)
+{
+}
+
+SockStream::SockStream(HANDLE h): handle( h )
+{
+}
+
+SockStream::SockStream(const SockStream& ss )
+{
+	this->handle = ss.handle;
+}
+
 
 SockStream::~SockStream(void)
 {

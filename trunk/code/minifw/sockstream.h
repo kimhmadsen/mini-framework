@@ -13,8 +13,9 @@ const int INVALID_HANDLE_VALUE = -1;
 class SockStream
 {
 public:
-	SockStream(void): handle(INVALID_HANDLE_VALUE){}
-	SockStream(HANDLE h): handle( h ){}
+	SockStream(void);
+	SockStream(HANDLE h);
+	SockStream(const SockStream& ss );
 	~SockStream(void);
 	void    SetHandle( HANDLE h );
 	HANDLE  GetHandle(void);
