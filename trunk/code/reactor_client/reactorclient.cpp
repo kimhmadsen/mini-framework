@@ -8,6 +8,7 @@
 #include <iostream>
 #include "SockStream.h"
 #include "SockConnector.h"
+#include <windows.h>
 
 const short LOG_PORT    = 10000;
 const short ALARM_PORT  = 10001;
@@ -31,8 +32,6 @@ int _tmain(int argc, _TCHAR* argv[])
 	SockStream logStream;
 	SOCK_Connector logConnector;
 	logConnector.connect (logStream, logAddr);
-	char buf[] = "I'm sending a log event";
-	logStream.send_n (buf, sizeof(buf), 0);
 
 	InetAddr alarmAddr( ALARM_PORT );
 	SockStream alarmStream;
@@ -44,21 +43,27 @@ int _tmain(int argc, _TCHAR* argv[])
 	SOCK_Connector patientConnector;
 	patientConnector.connect (patientStream, patientAddr);
 
+	while(true)
+	{
+		int i = 0;
+		char* bufLog = "I'm sending a log event: " + i;
+		//logStream.send_n (bufLog, sizeof(bufLog), 0);
+		
+		Sleep(2000);
 
-	// send some events
-	// Log events ( a string )
-	// Patient value events ( type and value field )
-	// Alarm events ( priorit field and value field )	
-	//for (;;) {
-	//	std::cin.getline(buf, sizeof buf );//.read(buf, sizeof buf);
-	//	int count = std::cin.gcount();
+		char* bufAlarm = "alarm, " + i;
+		//alarmStream.send_n(bufAlarm, sizeof(bufAlarm), 0);
 
-	//	cli_stream.send_n (buf, count, 0);
-	//}
+		Sleep(2000);
+
+		char* bufPat = "1, " + i;
+		//patientStream.send_n(bufPat, sizeof(bufPat), 0);
+
+		Sleep(6000);
+		i++;
+		if(i>20) i = 0;
+	}
 	
-	// Explicitly close the connection.
-	// it gets closed by the destructor
-	//cli_stream.close ();
 	return 0;
 }
 
