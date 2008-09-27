@@ -23,6 +23,8 @@ void LogAcceptor::HandleEvent(HANDLE handle, Event_Type et )
 
 		// create event handlers for the connection.
 		LogEventHandler* leh = new LogEventHandler( clientConnection, reactor );
+
+		reactor->RegisterHandler( leh, READ_EVENT );
 	}
 }
 

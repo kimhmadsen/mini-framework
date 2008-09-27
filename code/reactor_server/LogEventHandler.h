@@ -8,7 +8,7 @@ class LogEventHandler :
 	public EventHandler
 {
 public:
-	LogEventHandler(const SockStream &stream, Reactor *reactor);
+	LogEventHandler( const SockStream &stream, Reactor *reactor);
 	~LogEventHandler(void);
 
 	virtual void HandleEvent ( HANDLE handle, Event_Type event_type );

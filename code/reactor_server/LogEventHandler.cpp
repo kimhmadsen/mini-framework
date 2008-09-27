@@ -2,7 +2,7 @@
 
 using namespace std;
 
-LogEventHandler::LogEventHandler(const SockStream &stream, Reactor *reactor): peerStream( stream )
+LogEventHandler::LogEventHandler( const SockStream &stream, Reactor *reactor): peerStream( stream )
 {
 	this->reactor = reactor;
 	reactor->RegisterHandler( this, READ_EVENT );
@@ -23,7 +23,7 @@ void LogEventHandler::HandleEvent ( HANDLE handle, Event_Type event_type )
 		peerStream.recv( buf, sizeof(buf), 0 );
 
 		// Write logging record to standard output
-		cout << buf;
+		std::cout << buf;
 		break;
 
 	case CLOSE_EVENT:
