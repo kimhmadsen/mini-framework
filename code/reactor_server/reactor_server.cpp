@@ -6,6 +6,9 @@
 #include "reactor.h"
 #include "selectreactor.h"
 #include "logacceptor.h"
+#include "acceptortemplate.h"
+#include "alarmeventhandler.h"
+#include "patientvalueeventhandler.h"
 
 #define TRACE(x) 
 
@@ -21,16 +24,20 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	InetAddr log_addr( LOG_PORT );
 	InetAddr alarm_addr( ALARM_PORT );
-	InetAddr parient_addr( PATVAL_PORT );
+	InetAddr patient_addr( PATVAL_PORT );
 
 	// initialize the frame work 
 	MiniFwInit(); 
 
 	// create connection acceptors
-	LogAcceptor la( log_addr, SelectReactor::instance() );
+	LogAcceptor logAcceptor( log_addr, SelectReactor::instance() );
+//	AcceptorTemplate<AlarmEventHandler> alarmAcceptor( alarm_addr, SelectReactor::instance() );
+//	AcceptorTemplate<PatientValueEventHandler> patientValueAcceptor( patient_addr, SelectReactor::instance() );
 
 	// add the acceptors to the reactor
-	SelectReactor::instance()->RegisterHandler( &la, ACCEPT_EVENT );
+	SelectReactor::instance()->RegisterHandler( &logAcceptor,          ACCEPT_EVENT );
+//	SelectReactor::instance()->RegisterHandler( &alarmAcceptor,        ACCEPT_EVENT );
+//	SelectReactor::instance()->RegisterHandler( &patientValueAcceptor, ACCEPT_EVENT );
 
 
 	// do the server loop
