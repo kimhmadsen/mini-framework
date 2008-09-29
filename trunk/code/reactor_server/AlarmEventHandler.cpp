@@ -15,8 +15,10 @@ struct AlarmEvent
 
 
 
-AlarmEventHandler::AlarmEventHandler(const SockStream &stream, Reactor *reactor)
+AlarmEventHandler::AlarmEventHandler(const SockStream &stream, Reactor *reactor): peerStream( stream )
 {
+	this->reactor = reactor;
+	reactor->RegisterHandler( this, READ_EVENT );
 }
 
 AlarmEventHandler::~AlarmEventHandler(void)

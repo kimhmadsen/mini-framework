@@ -1,8 +1,10 @@
 #include <iostream>
 #include "PatientValueEventHandler.h"
 
-PatientValueEventHandler::PatientValueEventHandler(const SockStream &stream, Reactor *reactor)
+PatientValueEventHandler::PatientValueEventHandler(const SockStream &stream, Reactor *reactor): peerStream( stream )
 {
+	this->reactor = reactor;
+	reactor->RegisterHandler( this, READ_EVENT );
 }
 
 PatientValueEventHandler::~PatientValueEventHandler(void)
