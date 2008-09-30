@@ -1,3 +1,6 @@
+/**
+ *
+ */
 #include <iostream>
 #include "PatientValueEventHandler.h"
 
@@ -21,7 +24,7 @@ void PatientValueEventHandler::HandleEvent ( HANDLE handle, Event_Type event_typ
 		peerStream.recv( buf, sizeof(buf), 0 );
 
 		// Write logging record to standard output
-		std::cout << buf;
+		std::cout << "PatientValueEvent: " << buf << "\n";
 		break;
 
 	case CLOSE_EVENT:

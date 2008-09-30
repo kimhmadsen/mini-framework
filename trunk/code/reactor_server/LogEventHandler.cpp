@@ -23,7 +23,7 @@ void LogEventHandler::HandleEvent ( HANDLE handle, Event_Type event_type )
 		peerStream.recv( buf, sizeof(buf), 0 );
 
 		// Write logging record to standard output
-		std::cout << buf;
+		std::cout << "LogEvent: " << buf  << "\n";
 		break;
 
 	case CLOSE_EVENT:
