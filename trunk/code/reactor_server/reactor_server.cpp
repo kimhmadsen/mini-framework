@@ -31,7 +31,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	// create connection acceptors
 	LogAcceptor logAcceptor( log_addr, SelectReactor::instance() );
-//	AcceptorTemplate<AlarmEventHandler> alarmAcceptor( alarm_addr, SelectReactor::instance() );
+	AcceptorTemplate<AlarmEventHandler> alarmAcceptor( alarm_addr, SelectReactor::instance() );
 //	AcceptorTemplate<PatientValueEventHandler> patientValueAcceptor( patient_addr, SelectReactor::instance() );
 
 	// add the acceptors to the reactor
