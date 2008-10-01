@@ -31,8 +31,6 @@ public:
 
 			// create event handlers for the connection.
 			EVENT_HANDLER* leh = new EVENT_HANDLER( clientConnection, reactor );
-
-			reactor->RegisterHandler( leh, READ_EVENT );
 		}
 	};
 	virtual HANDLE GetHandle(void)
