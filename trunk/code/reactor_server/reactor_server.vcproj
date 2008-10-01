@@ -246,11 +246,11 @@
 			>
 		</Filter>
 		<File
-			RelativePath=".\ReadMe.txt"
+			RelativePath="..\reactor_client\ReadMe.txt"
 			>
 		</File>
 		<File
-			RelativePath="..\reactor_client\ReadMe.txt"
+			RelativePath=".\ReadMe.txt"
 			>
 		</File>
 	</Files>

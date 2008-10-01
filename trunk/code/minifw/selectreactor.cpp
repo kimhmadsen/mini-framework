@@ -67,7 +67,7 @@ void SelectReactor::HandleEvents(TIMEVAL *timeout)
 		printf("No result\n"); // Timeout errors perhaps?
 	else 
 	{	
-		std::vector<EventTuple*> *tempEventTupleVector;
+		std::vector<EventTuple*> *tempEventTupleVector = new std::vector<EventTuple*>;
 		std::vector<EventTuple*>::iterator iteration = listOfEvents.begin();
 		while(iteration != listOfEvents.end()) 
 		{
