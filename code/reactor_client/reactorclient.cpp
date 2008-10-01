@@ -31,19 +31,19 @@ int _tmain(int argc, _TCHAR* argv[])
 	char *host;
 	hostent* localHost = gethostbyname("localhost");
 	host = inet_ntoa(*(struct in_addr *)*localHost->h_addr_list);
-	u_short port_num = argc > 2 ? atoi ((char *)argv[2]) : LOG_PORT;
+	//u_short port_num = argc > 2 ? atoi ((char *)argv[2]) : LOG_PORT;
 
-	InetAddr logAddr(port_num, host );//( LOG_PORT );
+	InetAddr logAddr(LOG_PORT, host );//( LOG_PORT );
 	SockStream logStream;
 	SOCK_Connector logConnector;
 	logConnector.connect (logStream, logAddr);
 
-	InetAddr alarmAddr( ALARM_PORT );
+	InetAddr alarmAddr( ALARM_PORT,host );
 	SockStream alarmStream;
 	SOCK_Connector alarmConnector;
 	alarmConnector.connect (alarmStream, alarmAddr);
 
-	InetAddr patientAddr( PATVAL_PORT );
+	InetAddr patientAddr( PATVAL_PORT,host );
 	SockStream patientStream;
 	SOCK_Connector patientConnector;
 	patientConnector.connect (patientStream, patientAddr);
