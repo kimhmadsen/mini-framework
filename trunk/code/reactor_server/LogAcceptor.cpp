@@ -17,14 +17,14 @@ void LogAcceptor::HandleEvent(HANDLE handle, Event_Type et )
 	// Can only be called for an ACCEPT event.
 	if( et == ACCEPT_EVENT )
 	{
-		SockStream clientConnection( handle );
+		SockStream clientConnection ( handle );
 
 		acceptor.accept( clientConnection );
 
 		// create event handlers for the connection.
 		LogEventHandler* leh = new LogEventHandler( clientConnection, reactor );
 
-		reactor->RegisterHandler( leh, READ_EVENT );
+//		reactor->RegisterHandler( leh, READ_EVENT );
 	}
 }
 
