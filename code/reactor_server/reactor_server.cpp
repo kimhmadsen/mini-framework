@@ -32,7 +32,7 @@ const short PATVAL_PORT = 10002;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-
+	std::cout << "Reactor server starting\n";
 
 	InetAddr log_addr( LOG_PORT );
 	InetAddr alarm_addr( ALARM_PORT );
@@ -44,12 +44,12 @@ int _tmain(int argc, _TCHAR* argv[])
 	// create connection acceptors
 	LogAcceptor logAcceptor( log_addr, SelectReactor::instance() );
 	AcceptorTemplate<AlarmEventHandler> alarmAcceptor( alarm_addr, SelectReactor::instance() );
-//	AcceptorTemplate<PatientValueEventHandler> patientValueAcceptor( patient_addr, SelectReactor::instance() );
+	AcceptorTemplate<PatientValueEventHandler> patientValueAcceptor( patient_addr, SelectReactor::instance() );
 
 	// add the acceptors to the reactor
-	SelectReactor::instance()->RegisterHandler( &logAcceptor,          ACCEPT_EVENT );
-//	SelectReactor::instance()->RegisterHandler( &alarmAcceptor,        ACCEPT_EVENT );
-//	SelectReactor::instance()->RegisterHandler( &patientValueAcceptor, ACCEPT_EVENT );
+	//SelectReactor::instance()->RegisterHandler( &logAcceptor,          ACCEPT_EVENT );
+	//SelectReactor::instance()->RegisterHandler( &alarmAcceptor,        ACCEPT_EVENT );
+	//SelectReactor::instance()->RegisterHandler( &patientValueAcceptor, ACCEPT_EVENT );
 
 
 	// do the server loop
