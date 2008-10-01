@@ -17,6 +17,7 @@ const short PATVAL_PORT = 10002;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	std::cout << "Reactor client starting\n";
 	// connect to the server
 
 	//why is that??????? -maria
@@ -51,17 +52,17 @@ int _tmain(int argc, _TCHAR* argv[])
 	{
 		int i = 0;
 		char* bufLog = "I'm sending a log event: " + i;
-		//logStream.send_n (bufLog, sizeof(bufLog), 0);
+		logStream.send_n (bufLog, sizeof(bufLog), 0);
 		
 		Sleep(2000);
 
 		char* bufAlarm = "alarm, " + i;
-		//alarmStream.send_n(bufAlarm, sizeof(bufAlarm), 0);
+		alarmStream.send_n(bufAlarm, sizeof(bufAlarm), 0);
 
 		Sleep(2000);
 
 		char* bufPat = "1, " + i;
-		//patientStream.send_n(bufPat, sizeof(bufPat), 0);
+		patientStream.send_n(bufPat, sizeof(bufPat), 0);
 
 		Sleep(6000);
 		i++;
