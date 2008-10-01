@@ -27,8 +27,12 @@ int _tmain(int argc, _TCHAR* argv[])
         fprintf(stderr, "WSAStartup failed.\n");
         exit(1);
     }
+	char *host;
+	hostent* localHost = gethostbyname("localhost");
+	host = inet_ntoa(*(struct in_addr *)*localHost->h_addr_list);
+	u_short port_num = argc > 2 ? atoi ((char *)argv[2]) : LOG_PORT;
 
-	InetAddr logAddr( LOG_PORT );
+	InetAddr logAddr(port_num, host );//( LOG_PORT );
 	SockStream logStream;
 	SOCK_Connector logConnector;
 	logConnector.connect (logStream, logAddr);
