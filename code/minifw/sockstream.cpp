@@ -27,7 +27,7 @@ void SockStream::SetHandle( HANDLE h )
 
 HANDLE SockStream::GetHandle(void)
 {
-	return (HANDLE)handle;
+	return handle;
 }
 
 ssize_t SockStream::recv ( void* buf, size_t len, int flags )

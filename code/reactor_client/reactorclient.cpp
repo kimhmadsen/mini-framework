@@ -37,17 +37,19 @@ int _tmain(int argc, _TCHAR* argv[])
 	SockStream logStream;
 	SOCK_Connector logConnector;
 	logConnector.connect (logStream, logAddr);
+	std::cout << "Log stream connected on port " << LOG_PORT << " \n";
 
 	InetAddr alarmAddr( ALARM_PORT,host );
 	SockStream alarmStream;
 	SOCK_Connector alarmConnector;
 	alarmConnector.connect (alarmStream, alarmAddr);
+	std::cout << "Alarm stream connected on port " << ALARM_PORT << " \n";
 
 	InetAddr patientAddr( PATVAL_PORT,host );
 	SockStream patientStream;
 	SOCK_Connector patientConnector;
 	patientConnector.connect (patientStream, patientAddr);
-
+	std::cout << "Patient value stream connected on port " << PATVAL_PORT << " \n";
 	while(true)
 	{
 		int i = 0;

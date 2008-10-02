@@ -42,10 +42,13 @@ int _tmain(int argc, _TCHAR* argv[])
 	MiniFwInit(); 
 
 	// create connection acceptors
-	LogAcceptor logAcceptor( log_addr, SelectReactor::instance() );
+	//LogAcceptor logAcceptor( log_addr, SelectReactor::instance() );
+	AcceptorTemplate<LogEventHandler> logAcceptor( log_addr, SelectReactor::instance() );
+	std::cout << "Log acceptor listen on port " << log_addr.GetPort() << "\n";
 	AcceptorTemplate<AlarmEventHandler> alarmAcceptor( alarm_addr, SelectReactor::instance() );
+	std::cout << "Alarm acceptor listen on port " << alarm_addr.GetPort() << "\n";
 	AcceptorTemplate<PatientValueEventHandler> patientValueAcceptor( patient_addr, SelectReactor::instance() );
-
+	std::cout << "Patient value acceptor listen on port " << patient_addr.GetPort() << "\n";
 	// add the acceptors to the reactor
 	//SelectReactor::instance()->RegisterHandler( &logAcceptor,          ACCEPT_EVENT );
 	//SelectReactor::instance()->RegisterHandler( &alarmAcceptor,        ACCEPT_EVENT );
