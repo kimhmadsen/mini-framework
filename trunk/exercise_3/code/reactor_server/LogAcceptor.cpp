@@ -1,7 +1,7 @@
 
 #include "LogAcceptor.h"
 
-LogAcceptor::LogAcceptor( InetAddr &addr, Reactor *reactor ):acceptor ( addr ), reactor ( reactor )
+LogAcceptor::LogAcceptor( InetAddr &addr, Reactor *reactor ):acceptor ( addr )
 {
 	this->reactor = reactor;
 	reactor->RegisterHandler( this, ACCEPT_EVENT );
