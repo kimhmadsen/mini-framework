@@ -46,14 +46,25 @@ void AlarmEventHandler::HandleEvent(HANDLE handle, Event_Type et )
 	{
 	case READ_EVENT:
 		
-		char buf[1024];
+		char buf[256];
+		int result;
+		int i;
 		// code handle short "short-reads" omitted.
-		peerStream.recv( buf, sizeof(buf), 0 );
-		std::cout << "AlarmEvent: " << buf << "\n";
+		result = peerStream.recv( buf, sizeof(buf), 0 );
+		if( result > 0 )
+		{
+			buf[result] = '\0';
 
+			std::cout << "New AlarmEvent: " << buf << "\n";
+		}
 		// save the alarm event in a struct
 		time( &ae.timestamp );
-		ae.prio = atoi( buf );
+		for( i = 0; i<result; i++ )
+		{
+			if( buf[i] == ',' )
+				break;
+		}
+		ae.prio = atoi( &buf[i+1] );
 		strncpy_s(ae.text, sizeof(ae.text), buf, sizeof(buf) );		 
 		
 		// put the event in a list.
@@ -62,7 +73,7 @@ void AlarmEventHandler::HandleEvent(HANDLE handle, Event_Type et )
 		if( alarmList.size() > 10 ) // make sure that only 10 alarms are saved in the list.
 		{
 			alarmList.sort( CompareTime );
-			alarmList.pop_back();
+			alarmList.pop_front();
 		}
 
 		// display the list.

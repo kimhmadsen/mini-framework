@@ -5,6 +5,7 @@
 #include "inetaddr.h"
 #include "sockacceptor.h"
 #include <stdlib.h>
+#include <time.h>
 #include <iostream>
 #include "SockStream.h"
 #include "SockConnector.h"
@@ -17,6 +18,7 @@ const short PATVAL_PORT = 10002;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	int i = 0;
 	std::cout << "Reactor client starting\n";
 	// connect to the server
 
@@ -28,6 +30,11 @@ int _tmain(int argc, _TCHAR* argv[])
         fprintf(stderr, "WSAStartup failed.\n");
         exit(1);
     }
+
+	/* initialize random seed: */
+	srand ( time(NULL) );
+
+
 	char *host;
 	hostent* localHost = gethostbyname("localhost");
 	host = inet_ntoa(*(struct in_addr *)*localHost->h_addr_list);
@@ -52,19 +59,23 @@ int _tmain(int argc, _TCHAR* argv[])
 	std::cout << "Patient value stream connected on port " << PATVAL_PORT << " \n";
 	while(true)
 	{
-		int i = 0;
-		char* bufLog = "I'm sending a log event: " + i;
-		logStream.send_n (bufLog, sizeof(bufLog), 0);
-		
-		Sleep(2000);
-
-		char* bufAlarm = "alarm, " + i;
-		alarmStream.send_n(bufAlarm, sizeof(bufAlarm), 0);
+		int ran;
+		char buf[256];
+		sprintf(buf, "I'm sending a log event: %d", i);
+		logStream.send_n (buf, strlen(buf), 0);
 
 		Sleep(2000);
 
-		char* bufPat = "1, " + i;
-		patientStream.send_n(bufPat, sizeof(bufPat), 0);
+		//char bufAlarm[] = "alarm, " + i;
+		ran = rand() % 10; // random numer from 0 to 9,
+		sprintf(buf, "alarm, %d", ran);
+		alarmStream.send_n(buf, strlen(buf), 0);
+
+		Sleep(2000);
+
+		//char bufPat[] = "1, " + i;
+		sprintf(buf, "1,  %d", i);
+		patientStream.send_n(buf, strlen(buf), 0);
 
 		Sleep(6000);
 		i++;
