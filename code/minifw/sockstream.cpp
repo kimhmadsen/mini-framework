@@ -17,7 +17,7 @@ SockStream::SockStream(const SockStream& ss )
 
 SockStream::~SockStream(void)
 {
-	closesocket( (SOCKET)handle);
+	//closesocket( (SOCKET)handle);
 }
 
 void SockStream::SetHandle( HANDLE h )

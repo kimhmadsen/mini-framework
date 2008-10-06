@@ -46,7 +46,7 @@ void AlarmEventHandler::HandleEvent(HANDLE handle, Event_Type et )
 	{
 	case READ_EVENT:
 		
-		char buf[256];
+		char buf[1024];
 		// code handle short "short-reads" omitted.
 		peerStream.recv( buf, sizeof(buf), 0 );
 		std::cout << "AlarmEvent: " << buf << "\n";

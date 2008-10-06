@@ -26,7 +26,8 @@ void SockAcceptor::open( InetAddr &sock_addr )
 
 void SockAcceptor::accept( SockStream &s)
 {
-	HANDLE streamHandle = (HANDLE)::accept( (SOCKET)handle, 0, 0 );
+	SOCKET soc = ::accept( (SOCKET)handle, 0, 0 );
+	HANDLE streamHandle = (HANDLE)soc;
 	s.SetHandle( streamHandle );
 }
 

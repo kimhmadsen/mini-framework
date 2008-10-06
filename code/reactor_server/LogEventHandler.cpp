@@ -18,7 +18,7 @@ void LogEventHandler::HandleEvent ( HANDLE handle, Event_Type event_type )
 	switch( event_type )
 	{
 	case READ_EVENT:
-		char buf[256];
+		char buf[1024];
 		// code handle short "short-reads" omitted.
 		peerStream.recv( buf, sizeof(buf), 0 );
 
