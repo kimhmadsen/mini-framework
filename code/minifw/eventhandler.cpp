@@ -9,3 +9,8 @@ EventHandler::EventHandler(void)
 EventHandler::~EventHandler(void)
 {
 }
+
+HANDLE EventHandler::GetHandle(void)
+{
+	return handle;
+}
