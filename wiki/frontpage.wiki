@@ -8,17 +8,17 @@ Mini framework is a small framework implemented in the course destributed real-t
 2008-10-07
 Tasks for exercise 4 and 5.
 4 Acceptor / Connector
-	PatientInfoClient
-	PatientInfoServer
-	UML
+ * PatientInfoClient
+ * PatientInfoServer
+ * UML
 	
-5:	Concurrency ( leaders and followers )
-	UML
-	Mutex
-	Guard
-	Condition
-	Thread
-	ThreadManager
+5	Concurrency ( leaders and followers )
+ * UML
+ * Mutex
+ * Guard
+ * Condition
+ * Thread
+ * ThreadManager
 	
 	
 
