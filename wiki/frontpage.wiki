@@ -5,8 +5,8 @@ Mini framework is a small framework implemented in the course destributed real-t
 
 
 = Minutes of meeting =
-2008-10-07
-Tasks for exercise 4 and 5.
+2008-10-07 Tasks for exercise 4 and 5.
+
 4 Acceptor / Connector
  * PatientInfoClient
  * PatientInfoServer
