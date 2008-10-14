@@ -207,6 +207,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sockservicehandler.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\sockstream.cpp"
 				>
 			</File>
@@ -266,6 +270,10 @@
 			</File>
 			<File
 				RelativePath=".\sockconnector.h"
+				>
+			</File>
+			<File
+				RelativePath=".\sockservicehandler.h"
 				>
 			</File>
 			<File
