@@ -6,6 +6,7 @@
 #include "eventhandler.h"
 #include "reactor.h"
 #include "sockacceptor.h"
+#include "PatientDBReader.h"
 
 class PatientInfoEventHandler :
 	public EventHandler
@@ -21,6 +22,7 @@ private:
 	SockStream peerStream;
 		// Cached <Reactor>.
 	Reactor *reactor;
+	PatientDBReader *dbReader;
 
 };
 

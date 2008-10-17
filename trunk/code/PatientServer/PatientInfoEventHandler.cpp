@@ -1,11 +1,13 @@
 #include "PatientInfoEventHandler.h"
 
+
 using namespace std;
 
 PatientInfoEventHandler::PatientInfoEventHandler( const SockStream &stream, Reactor *reactor): peerStream( stream )
 {
 	this->reactor = reactor;
 	reactor->RegisterHandler( this, READ_EVENT );
+	dbReader->setDBFile( "PatientDB.txt");
 }
 
 
@@ -15,7 +17,7 @@ PatientInfoEventHandler::~PatientInfoEventHandler(void)
 
 void PatientInfoEventHandler::HandleEvent ( HANDLE handle, Event_Type event_type )
 {
-/*	switch( event_type )
+	switch( event_type )
 	{
 	case READ_EVENT:
 		char buf[256];
@@ -27,7 +29,8 @@ void PatientInfoEventHandler::HandleEvent ( HANDLE handle, Event_Type event_type
 		{
 			buf[result] = '\0';
 			// Write logging record to standard output
-			std::cout << "LogEvent: " << buf  << "\n";
+			string info = dbReader->getPatient(buf);
+			std::cout << "Patient info: " << info  << "\n";
 		}
 		break;
 
@@ -36,7 +39,7 @@ void PatientInfoEventHandler::HandleEvent ( HANDLE handle, Event_Type event_type
 		reactor->RemoveHandler( this, CLOSE_EVENT );
 		break;
 	}
-*/
+
 
 	//TODO: do something... read file and return info
 }
