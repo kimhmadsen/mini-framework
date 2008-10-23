@@ -33,8 +33,8 @@ string PatientDBReader::getPatient(char* cpr)
 			string stringLine(line, 1, sizeof(line));
 			if (stringLine.compare(stringCpr) == 0)
 			{
-				string info = getPatientInfo(&fileStream, stringCpr);
-				cout<<info<<endl;
+				return getPatientInfo(&fileStream, stringCpr);
+				//cout<<info<<endl;
 			}
 		}
 	}while(!fileStream.eof());

@@ -7,7 +7,8 @@ PatientInfoEventHandler::PatientInfoEventHandler( const SockStream &stream, Reac
 {
 	this->reactor = reactor;
 	reactor->RegisterHandler( this, READ_EVENT );
-	dbReader->setDBFile( "PatientDB.txt");
+	dbReader = new PatientDBReader("PatientDB.txt");
+	//dbReader->setDBFile( "PatientDB.txt");
 }
 
 
@@ -30,7 +31,10 @@ void PatientInfoEventHandler::HandleEvent ( HANDLE handle, Event_Type event_type
 			buf[result] = '\0';
 			// Write logging record to standard output
 			string info = dbReader->getPatient(buf);
-			std::cout << "Patient info: " << info  << "\n";
+			info[info.length()] = '\0';
+			std::cout << "Patient info: " << info.data()  << "\n";
+			int count = peerStream.send(info.data(), info.length(), 0);
+
 		}
 		break;
 
