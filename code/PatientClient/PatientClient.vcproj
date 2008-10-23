@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="reactor_client"
-	ProjectGUID="{D28E4464-EAB1-4E9A-972A-D11CAE2D288A}"
-	RootNamespace="reactor_client"
+	Name="PatientClient"
+	ProjectGUID="{4223C3B1-1122-46F2-9746-1E25E259C579}"
+	RootNamespace="PatientClient"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -165,10 +165,6 @@
 		</Configuration>
 	</Configurations>
 	<References>
-		<ProjectReference
-			ReferencedProjectIdentifier="{19D6E5B9-3E11-4AC9-978C-516994212ED1}"
-			RelativePathToProject=".\minifw\minifw.vcproj"
-		/>
 	</References>
 	<Files>
 		<Filter
@@ -177,7 +173,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\reactorclient.cpp"
+				RelativePath=".\PatientClient.cpp"
 				>
 			</File>
 			<File
@@ -205,6 +201,10 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 		</Filter>
+		<File
+			RelativePath=".\ReadMe.txt"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
