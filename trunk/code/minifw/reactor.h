@@ -2,7 +2,13 @@
 #include "winsock.h"
 #include "eventhandler.h"
 
-
+/**
+The Reactor class.
+Responsibility:
+- Registers and removes event handlers and their associated handles
+- Manages a handle set
+- Runs the application's event loop
+*/
 class Reactor
 {
 public:

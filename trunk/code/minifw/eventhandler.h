@@ -11,14 +11,19 @@ typedef unsigned int Event_Type;
  */
 enum {
 	READ_EVENT    =  1, ///< ACCEPT_EVENT alias READ_EVENT
-	ACCEPT_EVENT  =  1,
-	WRITE_EVENT   =  2,
-	TIMEOUT_EVENT =  4,
-	CLOSE_EVENT   =  8, 
+	ACCEPT_EVENT  =  1, ///< Accept event
+	WRITE_EVENT   =  2, ///< Write event
+	TIMEOUT_EVENT =  4, ///< Timeout event 
+	CLOSE_EVENT   =  8, ///< Close event
 };
 
 /**
- * Event handler interface.
+Event handler used as an abstract class.
+Responsibility:
+- Defines an interface for processing indication event tht occur on a handle.
+
+Collaborator:
+- Handle
  */
 class EventHandler
 {

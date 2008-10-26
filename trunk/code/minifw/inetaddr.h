@@ -4,6 +4,15 @@
 #include <winsock.h>
 #include <stdlib.h>
 
+/**
+Implement a Wrapper Facade for sockaddr_in data structure.
+
+Responsibility:
+- Emcapsulates non-object-oriented functions and data-structures with a cohesive object-oriented abstraction.
+
+Collaborator:
+- sockaddr_in
+*/
 class InetAddr
 {
 public:

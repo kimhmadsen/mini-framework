@@ -9,7 +9,15 @@ typedef int SOCKET;
 const int INVALID_HANDLE_VALUE = -1;
 #endif
 
+/**
+Implement a Wrapper Facade for the socket data structure.
+Responsibility:
+- Encapsulates socket structures with a cohesive objectoriented abstraction.
 
+Collaborator:
+- HANDLE
+
+*/
 class SockStream
 {
 public:
