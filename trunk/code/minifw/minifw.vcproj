@@ -161,6 +161,14 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\acceptor.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\connector.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\dllmain.cpp"
 				>
 				<FileConfiguration
@@ -199,15 +207,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\servicehandler.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\sockacceptor.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\sockconnector.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\sockservicehandler.cpp"
 				>
 			</File>
 			<File
@@ -245,6 +253,14 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath=".\acceptor.h"
+				>
+			</File>
+			<File
+				RelativePath=".\connector.h"
+				>
+			</File>
+			<File
 				RelativePath=".\eventhandler.h"
 				>
 			</File>
@@ -265,15 +281,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\servicehandler.h"
+				>
+			</File>
+			<File
 				RelativePath=".\sockacceptor.h"
 				>
 			</File>
 			<File
 				RelativePath=".\sockconnector.h"
-				>
-			</File>
-			<File
-				RelativePath=".\sockservicehandler.h"
 				>
 			</File>
 			<File
