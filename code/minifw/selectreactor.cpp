@@ -77,7 +77,7 @@ void SelectReactor::HandleEvents(TIMEVAL *timeout)
 			tempEventTupleVector->push_back(tuple);
 			iteration++;
 		}
-		for (int i = 0; i <= handleMaximum-1 && result > 0 && i < tempEventTupleVector->size(); i++) 
+		for (int i = 0; i <= handleMaximum-1 && result > 0 && i < (int)tempEventTupleVector->size(); i++) 
 		{
 			EventHandler *handlerUpcoming = tempEventTupleVector->at(i)->eventhandler;
 			HANDLE handle = handlerUpcoming->GetHandle();

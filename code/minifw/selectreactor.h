@@ -5,6 +5,9 @@
 #include <iterator>
 #include <stdlib.h>
 
+/**
+Implements the Reactor interface using the function select.
+*/
 class SelectReactor :
 	public Reactor
 {
