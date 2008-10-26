@@ -11,12 +11,12 @@ Collaborator
 - Dispatcher eg. Reactor
 - Transport Endpoint
 */
-class SockServiceHandler :
+class ServiceHandler :
 	public EventHandler
 {
 public:
-	SockServiceHandler(void);
-	~SockServiceHandler(void);
+	ServiceHandler(void);
+	~ServiceHandler(void);
 	virtual void open() = 0;
 	SockStream &peer();
 
