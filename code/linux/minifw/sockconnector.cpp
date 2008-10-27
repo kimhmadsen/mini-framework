@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "sockconnector.h"
 
 SOCK_Connector::SOCK_Connector(void)
@@ -18,7 +18,7 @@ void SOCK_Connector::connect( SockStream &stream, InetAddr addr )
 	status = ::connect( (SOCKET)stream.GetHandle(), addr.Addr(), addr.Size() );
     if (status != 0) 
 	{
-		printf("connect failed with error %d\n", WSAGetLastError());
+		//printf("connect failed with error %d\n", WSAGetLastError());
         fprintf(stderr, "Connect failed.\n");
     }
 }

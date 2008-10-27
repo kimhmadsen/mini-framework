@@ -1,7 +1,7 @@
 
 #pragma once
 #include "stdafx.h"
-#include "winsock.h"
+#include <sys/socket.h>
 #include "eventhandler.h"
 
 /**

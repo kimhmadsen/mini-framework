@@ -1,7 +1,6 @@
 #pragma once
-#include "winsock.h"
 #include "eventhandler.h"
-
+#include <sys/socket.h>
 /**
 The Reactor class.
 Responsibility:
@@ -18,7 +17,7 @@ public:
 	virtual void RemoveHandler(HANDLE h, Event_Type et) const = 0;
 	
 	// Entry point into the reactive event loop
-	virtual void HandleEvents(TIMEVAL *timeout =0) = 0;
+	virtual void HandleEvents(struct timeval *timeout =0) = 0;
 	
 	// Define a GoF singleton access point
 	static Reactor* instance();

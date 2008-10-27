@@ -1,13 +1,11 @@
 #pragma once
-#ifdef WIN32
-#include <windows.h>
-#include <winsock.h>
-typedef int ssize_t;
-//const int INVALID_HANDLE_VALUE = -1;
-#elif
+#include <sys/socket.h>
+#include <unistd.h>
 typedef int SOCKET;
+typedef int HANDLE;
+typedef int ssize_t;
 const int INVALID_HANDLE_VALUE = -1;
-#endif
+
 
 /**
 Implement a Wrapper Facade for the socket data structure.

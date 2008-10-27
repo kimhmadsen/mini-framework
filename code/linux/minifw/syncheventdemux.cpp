@@ -1,5 +1,5 @@
-#include "StdAfx.h"
-#include "SynchEventDemux.h"
+#include "stdafx.h"
+#include "syncheventdemux.h"
 
 SynchEventDemux::SynchEventDemux(void)
 {

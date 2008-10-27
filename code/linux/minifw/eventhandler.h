@@ -1,10 +1,7 @@
 #pragma once
-
-#ifdef WIN32
-#include "winsock.h"
-#endif
-
+#include <sys/socket.h>
 typedef unsigned int Event_Type;
+typedef int HANDLE;
 
 /**
  * Enum definning events for a the event handlers.

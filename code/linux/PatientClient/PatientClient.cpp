@@ -2,43 +2,38 @@
 //
 
 #include "stdafx.h"
-#include "inetaddr.h"
-#include "sockacceptor.h"
+#include "../minifw/inetaddr.h"
+#include "../minifw/sockacceptor.h"
 #include <stdlib.h>
 #include <time.h>
 #include <iostream>
-#include "SockStream.h"
-#include "SockConnector.h"
-#include <windows.h>
+#include "../minifw/sockstream.h"
+#include "../minifw/sockconnector.h"
+#include <sys/socket.h>
+#include <netdb.h>
+#include <arpa/inet.h>
+
+
 
 const short PATIENT_PORT = 10000;
 
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char* argv[])
 {
-	int i = 0;
+	char *host;
+
 	std::cout << "Reactor client starting\n";
-	// connect to the server
-
-	//why is that??????? -maria
-	WSADATA wsaData;   // if this doesn't work
-    //WSAData wsaData; // then try this instead
-
-    if (WSAStartup(MAKEWORD(1, 1), &wsaData) != 0) {
-        fprintf(stderr, "WSAStartup failed.\n");
-        exit(1);
-    }
 
 	/* initialize random seed: */
 	srand ( time(NULL) );
 
 
-	char *host;
+
 	hostent* localHost = gethostbyname("localhost");
 	host = inet_ntoa(*(struct in_addr *)*localHost->h_addr_list);
 	//u_short port_num = argc > 2 ? atoi ((char *)argv[2]) : LOG_PORT;
 
-
 	InetAddr patientAddr( PATIENT_PORT,host );
+	InetAddr* address = new InetAddr(PATIENT_PORT,host );
 	SockStream patientStream;
 	SOCK_Connector patientConnector;
 	patientConnector.connect (patientStream, patientAddr);

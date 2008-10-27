@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "sockstream.h"
 
 SockStream::SockStream(void): handle(INVALID_HANDLE_VALUE)
@@ -29,12 +29,12 @@ HANDLE SockStream::GetHandle(void)
 {
 	return handle;
 }
-
+/*
 ssize_t SockStream::recv ( void* buf, size_t len, int flags )
 {
 	return ::recv( (SOCKET)handle, (char*)buf, len, flags );
 }
-
+*/
 ssize_t SockStream::send ( const char* buf, size_t len,  int flags )
 {
 	return ::send((SOCKET)handle, buf, len, flags );
@@ -66,5 +66,5 @@ ssize_t SockStream::send_n (const char* buf, size_t len,  int flags )
 
 void SockStream::close(void)
 {
-	::closesocket( (SOCKET)handle );
+	::close( (SOCKET)handle);
 }

@@ -1,9 +1,9 @@
-#include "StdAfx.h"
-#include <windows.h>
-#include <winsock.h>
+#include "stdafx.h"
 #include "inetaddr.h"
+#include <string.h>
+#include <arpa/inet.h>
 
-InetAddr::InetAddr(u_short port, u_long address)
+InetAddr::InetAddr(unsigned short port, u_long address)
 {
 	memset( &addr , 0, sizeof( addr ) );
 	addr.sin_family = AF_INET;
@@ -11,7 +11,7 @@ InetAddr::InetAddr(u_short port, u_long address)
 	addr.sin_addr.s_addr = htonl( address );
 }
 
-InetAddr::InetAddr(u_short port, char* host)
+InetAddr::InetAddr(unsigned short port, char* host)
 {
 	//int status;
 
@@ -19,10 +19,10 @@ InetAddr::InetAddr(u_short port, char* host)
 	addr.sin_family = AF_INET;
 	addr.sin_port = htons( port );
 	//status = ::inet_aton( host, &addr );
-	addr.sin_addr.s_addr =  inet_addr( host );;
+	addr.sin_addr.s_addr =  inet_addr( host );
 }
 
-InetAddr::InetAddr(u_short port)
+InetAddr::InetAddr(unsigned short port)
 {
 	memset( &addr , 0, sizeof( addr ) );
 	addr.sin_family = AF_INET;

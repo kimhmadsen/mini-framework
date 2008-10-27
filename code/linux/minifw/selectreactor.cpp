@@ -1,5 +1,6 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "selectreactor.h"
+
 
 
 SelectReactor* SelectReactor::instance_ = 0;
@@ -56,13 +57,15 @@ void SelectReactor::RemoveHandler(HANDLE h, Event_Type et) const
 {
 }
 
-void SelectReactor::HandleEvents(TIMEVAL *timeout)
+void SelectReactor::HandleEvents(struct timeval *timeout)
 {
 	ConvertFDsToSets(readFDs,writeFDs, exceptFDs);
 	int handleMaximum = FD_SETSIZE;
 	int result = sed->select( handleMaximum, &readFDs, &writeFDs, &exceptFDs, timeout);
 	if(result == SOCKET_ERROR)
-		printf("ERROR: %d\n", WSAGetLastError()); // comment out if porting, WSAGetLastError is winsock.h
+		printf("ERROR");
+		//printf("ERROR: %d\n", WSAGetLastError()); // comment out if porting, WSAGetLastError is winsock.h
+		
 	else if (result == 0) 
 		printf("No result\n"); // Timeout errors perhaps?
 	else 

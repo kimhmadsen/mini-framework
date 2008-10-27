@@ -1,8 +1,8 @@
 #pragma once
 
-#include <windows.h>
-#include <winsock.h>
+#include <sys/socket.h>
 #include <stdlib.h>
+#include <netinet/in.h>
 
 /**
 Implement a Wrapper Facade for sockaddr_in data structure.
@@ -16,9 +16,9 @@ Collaborator:
 class InetAddr
 {
 public:
-	InetAddr(u_short port, u_long addr);
-	InetAddr(u_short port, char* host);
-	InetAddr(u_short port);
+	InetAddr(unsigned short port, u_long addr);
+	InetAddr(unsigned short port, char* host);
+	InetAddr(unsigned short port);
 	~InetAddr(void);
 	void SetPort( u_short port );
 	u_short GetPort(void);

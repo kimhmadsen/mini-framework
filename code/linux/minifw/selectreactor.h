@@ -4,6 +4,10 @@
 #include <vector>
 #include <iterator>
 #include <stdlib.h>
+#include <sys/socket.h>
+
+#define SOCKET_ERROR -1
+typedef int SOCKET;
 
 /**
 Implements the Reactor interface using the function select.
@@ -24,7 +28,7 @@ public:
 	virtual void RemoveHandler(HANDLE h, Event_Type et) const;
 	void ConvertFDsToSets(fd_set &readFDs, fd_set &writeFDs, fd_set &exceptFDs);
 	bool IsEventHandle(EventTuple *);
-	void HandleEvents(TIMEVAL *timeout =0);
+	void HandleEvents(struct timeval *timeout =0);
 	static Reactor* instance(void);
 protected:
 	SelectReactor(void);
