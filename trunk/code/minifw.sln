@@ -1,26 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "reactor_server", "reactor_server\reactor_server.vcproj", "{DB84F6EA-6340-4C25-9646-501AFA6E9D5C}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "minifw", "minifw\minifw.vcproj", "{19D6E5B9-3E11-4AC9-978C-516994212ED1}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "echo_server", "echo_server\echo_server.vcproj", "{159BB585-2B6A-440C-BE16-3C1F52AC8CFD}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "echo_client", "echo_client\echo_client.vcproj", "{2F1E4431-7E48-4C15-A86D-CEC5103E439E}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "reactor_client", "reactor_client\reactorclient.vcproj", "{D28E4464-EAB1-4E9A-972A-D11CAE2D288A}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PatientServer", "PatientServer\PatientServer.vcproj", "{DB27731D-22EA-4A21-8674-E14D4E85C6EB}"
-	ProjectSection(ProjectDependencies) = postProject
-		{DB84F6EA-6340-4C25-9646-501AFA6E9D5C} = {DB84F6EA-6340-4C25-9646-501AFA6E9D5C}
-	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PatientClient", "PatientClient\PatientClient.vcproj", "{4223C3B1-1122-46F2-9746-1E25E259C579}"
-	ProjectSection(ProjectDependencies) = postProject
-		{19D6E5B9-3E11-4AC9-978C-516994212ED1} = {19D6E5B9-3E11-4AC9-978C-516994212ED1}
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -55,6 +35,8 @@ Global
 		{4223C3B1-1122-46F2-9746-1E25E259C579}.Debug|Win32.Build.0 = Debug|Win32
 		{4223C3B1-1122-46F2-9746-1E25E259C579}.Release|Win32.ActiveCfg = Release|Win32
 		{4223C3B1-1122-46F2-9746-1E25E259C579}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
