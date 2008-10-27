@@ -29,12 +29,12 @@ HANDLE SockStream::GetHandle(void)
 {
 	return handle;
 }
-/*
+
 ssize_t SockStream::recv ( void* buf, size_t len, int flags )
 {
 	return ::recv( (SOCKET)handle, (char*)buf, len, flags );
 }
-*/
+
 ssize_t SockStream::send ( const char* buf, size_t len,  int flags )
 {
 	return ::send((SOCKET)handle, buf, len, flags );
