@@ -1,4 +1,8 @@
 #pragma once
+#include <unistd.h>
+#include <sys/socket.h>
+
+typedef int HANDLE;
 
 class SynchEventDemux
 {

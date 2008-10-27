@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include "sockacceptor.h"
 
 SockAcceptor::SockAcceptor( InetAddr &sock_addr )

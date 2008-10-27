@@ -1,4 +1,4 @@
-#include "StdAfx.h"
-#include "Reactor.h"
+#include "stdafx.h"
+#include "reactor.h"
 
 
