@@ -41,6 +41,7 @@ void InetAddr::SetPort( u_short port )
 	addr.sin_port = htons( port );
 }
 
+
 u_short InetAddr::GetPort()
 {
 	// convert to host endianess before returning it.

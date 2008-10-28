@@ -11,6 +11,7 @@ SOCK_Connector::~SOCK_Connector(void)
 
 void SOCK_Connector::connect( SockStream &stream, InetAddr addr )
 {
+
 	int status;
 	
 	stream.SetHandle( (HANDLE)::socket(PF_INET, SOCK_STREAM, 0) ); // do some error checking!
