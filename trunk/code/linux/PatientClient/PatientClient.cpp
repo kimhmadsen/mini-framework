@@ -2,17 +2,20 @@
 //
 
 #include "stdafx.h"
-#include "../minifw/inetaddr.h"
-#include "../minifw/sockacceptor.h"
+#include "inetaddr.h"
+//#include "inetaddr.cpp"
+#include "sockacceptor.h"
+//#include "sockacceptor.cpp"
 #include <stdlib.h>
 #include <time.h>
 #include <iostream>
-#include "../minifw/sockstream.h"
-#include "../minifw/sockconnector.h"
+#include "sockstream.h"
+//#include "sockstream.cpp"
+#include "sockconnector.h"
+//#include "sockconnector.cpp"
 #include <sys/socket.h>
 #include <netdb.h>
 #include <arpa/inet.h>
-
 
 
 const short PATIENT_PORT = 10000;
@@ -33,7 +36,7 @@ int main(int argc, char* argv[])
 	//u_short port_num = argc > 2 ? atoi ((char *)argv[2]) : LOG_PORT;
 
 	InetAddr patientAddr( PATIENT_PORT,host );
-	InetAddr* address = new InetAddr(PATIENT_PORT,host );
+	//InetAddr* address = new InetAddr(PATIENT_PORT,host );
 	SockStream patientStream;
 	SOCK_Connector patientConnector;
 	patientConnector.connect (patientStream, patientAddr);
@@ -45,13 +48,14 @@ int main(int argc, char* argv[])
 		std::cin.getline(buf, sizeof buf );
 		int count = std::cin.gcount();
 
+
 		patientStream.send_n (buf, count, 0);
 		char buf_in[256];
-		
+
 		count = patientStream.recv(buf_in, sizeof buf_in, 0);
 		std::cout << "\n" << buf_in << std::endl;
 	}
-	
+
 	return 0;
 }
 
