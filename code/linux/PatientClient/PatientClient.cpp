@@ -2,13 +2,13 @@
 //
 
 #include "stdafx.h"
-#include "inetaddr.h"
-#include "sockacceptor.h"
+#include "../minifw/inetaddr.h"
+#include "../minifw/sockacceptor.h"
 #include <stdlib.h>
 #include <time.h>
 #include <iostream>
-#include "sockstream.h"
-#include "sockconnector.h"
+#include "../minifw/sockstream.h"
+#include "../minifw/sockconnector.h"
 #include <sys/socket.h>
 #include <netdb.h>
 #include <arpa/inet.h>
@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
 	//u_short port_num = argc > 2 ? atoi ((char *)argv[2]) : LOG_PORT;
 
 	InetAddr patientAddr( PATIENT_PORT,host );
-	//InetAddr* patientAddr = new InetAddr(PATIENT_PORT,host );
+	InetAddr* address = new InetAddr(PATIENT_PORT,host );
 	SockStream patientStream;
 	SOCK_Connector patientConnector;
 	patientConnector.connect (patientStream, patientAddr);
