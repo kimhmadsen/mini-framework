@@ -3,16 +3,12 @@
 
 #include "stdafx.h"
 #include "inetaddr.h"
-//#include "inetaddr.cpp"
 #include "sockacceptor.h"
-//#include "sockacceptor.cpp"
 #include <stdlib.h>
 #include <time.h>
 #include <iostream>
 #include "sockstream.h"
-//#include "sockstream.cpp"
 #include "sockconnector.h"
-//#include "sockconnector.cpp"
 #include <sys/socket.h>
 #include <netdb.h>
 #include <arpa/inet.h>
@@ -29,14 +25,22 @@ int main(int argc, char* argv[])
 	/* initialize random seed: */
 	srand ( time(NULL) );
 
+	if(argc > 1)
+	{
+			host = (char *)argv[1];
+	}
+	else
+	{
+			hostent* localHost = gethostbyname("localhost");
+			host = inet_ntoa(*(struct in_addr *)*localHost->h_addr_list);
+	}
 
 
-	hostent* localHost = gethostbyname("localhost");
-	host = inet_ntoa(*(struct in_addr *)*localHost->h_addr_list);
+	//hostent* localHost = gethostbyname("localhost");
+	//host = inet_ntoa(*(struct in_addr *)*localHost->h_addr_list);
 	//u_short port_num = argc > 2 ? atoi ((char *)argv[2]) : LOG_PORT;
 
 	InetAddr patientAddr( PATIENT_PORT,host );
-	//InetAddr* address = new InetAddr(PATIENT_PORT,host );
 	SockStream patientStream;
 	SOCK_Connector patientConnector;
 	patientConnector.connect (patientStream, patientAddr);
