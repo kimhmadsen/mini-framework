@@ -246,6 +246,14 @@
 				RelativePath=".\syncheventdemux.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\thread.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\threadmanager.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -306,6 +314,14 @@
 			</File>
 			<File
 				RelativePath=".\targetver.h"
+				>
+			</File>
+			<File
+				RelativePath=".\thread.h"
+				>
+			</File>
+			<File
+				RelativePath=".\threadmanager.h"
 				>
 			</File>
 		</Filter>

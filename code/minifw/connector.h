@@ -3,7 +3,10 @@
 #include "reactor.h"
 #include "sockconnector.h"
 
+
 template <class SERVICE_HANDLER>
+// The <SERVICE_HANDLER> is the type of concrete
+// service handler activated when a connection.
 class Connector : public EventHandler
 {
 public:
