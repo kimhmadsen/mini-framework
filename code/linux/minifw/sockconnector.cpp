@@ -22,3 +22,9 @@ void SOCK_Connector::connect( SockStream &stream, InetAddr addr )
         fprintf(stderr, "Connect failed.\n");
     }
 }
+void SOCK_Connector::close( SockStream &stream)
+{
+	int status;
+	
+	stream.close();
+}

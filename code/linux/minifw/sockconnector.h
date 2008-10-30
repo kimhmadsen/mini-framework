@@ -11,7 +11,7 @@ Responsibility:
 Collaborator:
 - Service Handler
 - Dispatcher
-- Transport Endpoint 
+- Transport Endpoint
  */
 class SOCK_Connector
 {
@@ -19,4 +19,5 @@ public:
 	SOCK_Connector(void);
 	~SOCK_Connector(void);
 	void connect( SockStream &stream, InetAddr addr );
+	void close(SockStream &stream);
 };
