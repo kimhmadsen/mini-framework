@@ -224,7 +224,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Guard.h"
+				>
+			</File>
+			<File
 				RelativePath=".\LFThreadPool.h"
+				>
+			</File>
+			<File
+				RelativePath=".\lock.h"
 				>
 			</File>
 			<File

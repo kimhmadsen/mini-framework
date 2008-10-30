@@ -7,7 +7,7 @@ public:
 
 	ThreadCondition(const ThreadMutex &m) : mutex(m)
 	{
-		
+		cond = InitializeCondition(
 	}
 
 	~ThreadCondition(void)
@@ -31,5 +31,6 @@ public:
 	}
 
 private:
-	const ThreadMutex mutex;
+	HANDLE cond; 
+	const ThreadMutex &mutex;
 };
