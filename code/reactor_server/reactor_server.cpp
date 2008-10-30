@@ -50,9 +50,9 @@ int _tmain(int argc, _TCHAR* argv[])
 	AcceptorTemplate<PatientValueEventHandler> patientValueAcceptor( patient_addr, SelectReactor::instance() );
 	std::cout << "Patient value acceptor listen on port " << patient_addr.GetPort() << "\n";
 	// add the acceptors to the reactor
-	//SelectReactor::instance()->RegisterHandler( &logAcceptor,          ACCEPT_EVENT );
-	//SelectReactor::instance()->RegisterHandler( &alarmAcceptor,        ACCEPT_EVENT );
-	//SelectReactor::instance()->RegisterHandler( &patientValueAcceptor, ACCEPT_EVENT );
+	SelectReactor::instance()->RegisterHandler( &logAcceptor, ACCEPT_EVENT );
+	SelectReactor::instance()->RegisterHandler( &alarmAcceptor, ACCEPT_EVENT );
+	SelectReactor::instance()->RegisterHandler( &patientValueAcceptor, ACCEPT_EVENT );
 
 
 	// do the server loop
