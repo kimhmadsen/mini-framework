@@ -61,6 +61,7 @@ int main(int argc, char* argv[])
 		char buf[256];
 		memset(buf, 0, sizeof buf );
 		int count;
+		cout<< "request " << i << endl;
 		if(run.compare("run") == 0)
 		{
 			std::cout << "Type the cpr number of a patient to get the information: \n";
@@ -78,6 +79,7 @@ int main(int argc, char* argv[])
 		memset(buf_in, 0, sizeof buf_in );
 		count = patientStream.recv(buf_in, sizeof buf_in, 0);
 		std::cout << "\n" << buf_in << std::endl;
+
 		i++;
 
 		if(run.compare("run")!= 0 && i == numberOfRequests) //run == "test1" or run == "test2"
