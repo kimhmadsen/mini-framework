@@ -22,6 +22,8 @@ public:
 	virtual void RegisterHandler(HANDLE h, EventHandler *eh, Event_Type et);
 	virtual void RemoveHandler(EventHandler *eh, Event_Type et);
 	virtual void RemoveHandler(HANDLE h, Event_Type et) const;
+	virtual void DeactivateHandle(HANDLE h, Event_Type et);
+	virtual void ReactivateHandle(HANDLE h, Event_Type et);
 	void ConvertFDsToSets(fd_set &readFDs, fd_set &writeFDs, fd_set &exceptFDs);
 	bool IsEventHandle(EventTuple *);
 	void HandleEvents(TIMEVAL *timeout =0);

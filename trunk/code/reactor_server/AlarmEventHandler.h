@@ -30,6 +30,5 @@ private:
 	SockStream peerStream;
 	// Cached <Reactor>.
 	Reactor *reactor;
-
 	std::list<AlarmEvent> alarmList;
 };

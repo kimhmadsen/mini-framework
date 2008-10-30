@@ -37,6 +37,15 @@ void SelectReactor::RegisterHandler(HANDLE h, EventHandler *eh, Event_Type et)
 {
 }
 
+void SelectReactor::DeactivateHandle(HANDLE h, Event_Type et)
+{
+	
+}
+
+void SelectReactor::ReactivateHandle(HANDLE h, Event_Type et)
+{
+	
+}
 void SelectReactor::RemoveHandler(EventHandler *eh, Event_Type et)
 {
 	EventTuple *tempEventTupleVector = new EventTuple();
@@ -58,6 +67,7 @@ void SelectReactor::RemoveHandler(HANDLE h, Event_Type et) const
 
 void SelectReactor::HandleEvents(TIMEVAL *timeout)
 {
+
 	ConvertFDsToSets(readFDs,writeFDs, exceptFDs);
 	int handleMaximum = FD_SETSIZE;
 	int result = sed->select( handleMaximum, &readFDs, &writeFDs, &exceptFDs, timeout);

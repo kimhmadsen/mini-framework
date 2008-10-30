@@ -186,6 +186,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\LFThreadPool.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\LogAcceptor.cpp"
 				>
 			</File>
@@ -220,6 +224,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\LFThreadPool.h"
+				>
+			</File>
+			<File
 				RelativePath=".\LogAcceptor.h"
 				>
 			</File>
@@ -239,6 +247,14 @@
 				RelativePath=".\targetver.h"
 				>
 			</File>
+			<File
+				RelativePath=".\ThreadCondition.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ThreadMutex.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
@@ -247,11 +263,11 @@
 			>
 		</Filter>
 		<File
-			RelativePath="..\reactor_client\ReadMe.txt"
+			RelativePath=".\ReadMe.txt"
 			>
 		</File>
 		<File
-			RelativePath=".\ReadMe.txt"
+			RelativePath="..\reactor_client\ReadMe.txt"
 			>
 		</File>
 	</Files>
