@@ -17,7 +17,7 @@ SockStream::SockStream(const SockStream& ss )
 
 SockStream::~SockStream(void)
 {
-	//closesocket( (SOCKET)handle);
+	close();
 }
 
 void SockStream::SetHandle( HANDLE h )
@@ -49,7 +49,7 @@ ssize_t SockStream::recv_n (void* buf, size_t len, int flags )
 		n = ::recv( (SOCKET)handle, (char*)buf + nread, len - nread, flags );
 		if( n <= 0 ) return 0;
 	}
-	return len; 
+	return len;
 }
 
 ssize_t SockStream::send_n (const char* buf, size_t len,  int flags )
