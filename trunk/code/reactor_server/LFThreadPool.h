@@ -1,6 +1,7 @@
 #pragma once
 #include "reactor.h"
 #include "threadmutex.h"
+#include "guard.h"
 #define NO_CURRENT_LEADER 0 
 class LFThreadPool
 {
@@ -15,7 +16,7 @@ public:
 private:
 	Reactor *reactor;
 	int leaderThread;
-	//ThreadCondition followersConditions;
+	ThreadMutex followersCondition;
 	ThreadMutex mutex;
 
 };
