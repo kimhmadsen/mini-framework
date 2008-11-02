@@ -32,7 +32,7 @@ int _tmain(int argc, _TCHAR* argv[])
     }
 
 	/* initialize random seed: */
-	srand ( time(NULL) );
+	srand ( (unsigned int) time(NULL) );
 
 
 	char *host;
