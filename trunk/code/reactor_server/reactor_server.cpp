@@ -21,6 +21,8 @@
 #include "acceptortemplate.h"
 #include "alarmeventhandler.h"
 #include "patientvalueeventhandler.h"
+#include "LFThreadPool.h"
+#include "threadmanager.h"
 
 #define TRACE(x) 
 
@@ -29,6 +31,7 @@ const short ALARM_PORT  = 10001;
 const short PATVAL_PORT = 10002;
 
 
+void *worker_thread(void *);
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -54,8 +57,20 @@ int _tmain(int argc, _TCHAR* argv[])
 	SelectReactor::instance()->RegisterHandler( &alarmAcceptor, ACCEPT_EVENT );
 	SelectReactor::instance()->RegisterHandler( &patientValueAcceptor, ACCEPT_EVENT );
 
+	LFThreadPool lftp(SelectReactor::instance());
+
+	for(int i = 0; i < 31; ++i)
+		ThreadManager::Instance()->Spawn(worker_thread, &lftp);
+
+	lftp.JoinPool();
+
+	
+	//ThreadManager::Instance()->Spawn(Thread, &lftp);
+
+	
 
 	// do the server loop
+	/*
 	for(;;)
 	{
 		TIMEVAL tv;
@@ -67,5 +82,14 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 
 	return 0;
+	*/
 }
 
+void *worker_thread(void *arg)
+{
+
+	LFThreadPool *threadpool = static_cast<LFThreadPool *> (arg);
+	threadpool->JoinPool();
+
+	return 0;
+}

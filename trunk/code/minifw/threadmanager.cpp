@@ -3,6 +3,7 @@
 #include <windows.h>
 #include <strsafe.h>
 
+ThreadManager* ThreadManager::instance = 0;
 
 ThreadManager::ThreadManager(void)
 {

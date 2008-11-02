@@ -2,7 +2,9 @@
 #include "reactor.h"
 #include "threadmutex.h"
 #include "guard.h"
+#include "thread.h"
 #define NO_CURRENT_LEADER 0 
+
 class LFThreadPool
 {
 public:

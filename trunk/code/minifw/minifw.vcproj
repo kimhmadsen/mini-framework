@@ -199,7 +199,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\LFEventHandler.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\LFThreadPool.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\minifw.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\reactor.cpp"
 				>
 			</File>
 			<File
@@ -273,7 +285,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Guard.h"
+				>
+			</File>
+			<File
 				RelativePath=".\inetaddr.h"
+				>
+			</File>
+			<File
+				RelativePath=".\LFEventHandler.h"
+				>
+			</File>
+			<File
+				RelativePath=".\LFThreadPool.h"
+				>
+			</File>
+			<File
+				RelativePath=".\lock.h"
 				>
 			</File>
 			<File
@@ -321,7 +349,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\ThreadCondition.h"
+				>
+			</File>
+			<File
 				RelativePath=".\threadmanager.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ThreadMutex.h"
 				>
 			</File>
 		</Filter>
