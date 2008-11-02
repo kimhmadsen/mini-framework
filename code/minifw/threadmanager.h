@@ -6,7 +6,7 @@ class ThreadManager
 {
 public:
 	// GoF singleton patterns 
-	ThreadManager *Instance();
+	static ThreadManager *Instance();
 	// Spawn a thread 
 	void Spawn( void* (*entryPointFunction) (void *), void *arg = 0, 
 														long flags = 0, 
@@ -18,5 +18,5 @@ private:
 	ThreadManager(void);
 	~ThreadManager(void);
 
-	ThreadManager *instance;
+	static ThreadManager *instance;
 };

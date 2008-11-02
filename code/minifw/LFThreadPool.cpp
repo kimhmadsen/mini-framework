@@ -1,10 +1,12 @@
-#include "LFThreadPool.h"
+#include "StdAfx.h"
+#include "lfthreadpool.h"
 #include <iostream>
 
 LFThreadPool::LFThreadPool(Reactor *r)
 : reactor(r)
 { 
 	leaderThread = NO_CURRENT_LEADER;
+//	followersCondition
 }
 
 LFThreadPool::~LFThreadPool(void)
@@ -19,10 +21,10 @@ void LFThreadPool::JoinPool(TIMEVAL *timeout)
 		while(leaderThread != NO_CURRENT_LEADER)
 		{
 			//followersCondition.Release();
-			followersCondition.Acquire(15);
+			mutex.Acquire(150);
 		}
 
-		leaderThread = 1;
+		leaderThread = Thread::Self();
 		guard.Release();
 		reactor->HandleEvents();
 		guard.Acquire();			
@@ -37,12 +39,12 @@ void LFThreadPool::PromoteNewLeader()
 
 	leaderThread = NO_CURRENT_LEADER;
 
-	followersCondition.Release();  //perhaps not needed
+	mutex.Release();
 }
 
 void LFThreadPool::DeactivateHandle(HANDLE h, Event_Type et)
 {
-
+	
 }
 
 void LFThreadPool::ReactivateHandle(HANDLE h, Event_Type et)

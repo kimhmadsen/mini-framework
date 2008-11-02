@@ -32,7 +32,7 @@ public:
 			// create event handlers for the connection.
 			EVENT_HANDLER* leh = new EVENT_HANDLER( clientConnection, reactor );
 		}
-	};
+	;}
 	virtual HANDLE GetHandle(void)
 	{
 		return acceptor.GetHandle();
@@ -42,6 +42,7 @@ private:
 	SockAcceptor acceptor;
 	// Cached <Reactor>.
 	Reactor *reactor;
+	bool isActive;
 
 };
 

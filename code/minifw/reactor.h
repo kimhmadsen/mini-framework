@@ -16,6 +16,8 @@ public:
 	virtual void RegisterHandler(HANDLE h, EventHandler *eh, Event_Type et) = 0;
 	virtual void RemoveHandler(EventHandler *eh, Event_Type et) = 0;
 	virtual void RemoveHandler(HANDLE h, Event_Type et) const = 0;
+	virtual void DeactivateHandle(HANDLE h, Event_Type et) = 0;
+	virtual void ReactivateHandle(HANDLE h, Event_Type et) = 0;
 	
 	// Entry point into the reactive event loop
 	virtual void HandleEvents(TIMEVAL *timeout =0) = 0;
