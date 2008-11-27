@@ -14,9 +14,11 @@ class Patient
  public:
 	Patient(DbPatient*);
 
-	string          getName();
+/*	string          getName();
 	Sex             getSex();
 	int             getAge();
+*/
+	string 			getInfo();
 	SignalIterator*	getECG();
 	AnnotIterator*	getAnn();
 

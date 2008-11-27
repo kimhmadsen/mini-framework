@@ -13,14 +13,16 @@ public:
 	static PatientDb* Instance();
 	string GetPatientList();
 	Patient* GetPatient( string id );
-
 	vector<Patient*> _patientVector;
 
 protected:
 	PatientDb();
 
+
 private:
 	static PatientDb* _instance;
+
+
 
 };
 
