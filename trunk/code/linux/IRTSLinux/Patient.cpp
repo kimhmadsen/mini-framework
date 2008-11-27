@@ -11,35 +11,13 @@ using namespace std;
  */
 Patient::Patient(DbPatient* dbPatient)
 {
+	_patient = dbPatient;
 }
-
-/**
- * Get the name of the patient.
- * @return The name of the patient
- */
-string Patient::getName()
+string Patient::getInfo()
 {
-  return _patient->getName();
+	return _patient->getInformation();
 }
 
-/**
- * Get the sex of the patient
- * @return the sex of the patient
- */
-Sex Patient::getSex()
-{
-  return _patient->getSex();
-}
-
-
-/**
- * Get the age of the patient
- * @return the age of the patient
- */
-int Patient::getAge()
-{
-  return _patient->getAge();
-}
 
 
 /**

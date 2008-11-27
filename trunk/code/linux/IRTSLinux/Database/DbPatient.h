@@ -14,22 +14,20 @@ enum Sex {male, female};
 class DbPatient
 {
 public:
-	DbPatient(string record);
+	DbPatient(char* record);
 	virtual ~DbPatient();
 	SignalIterator* getSignals();
 	AnnotIterator*  getAnnotations();
-	string          getName();
+	string          getInformation();
+/*	string          getName();
 	Sex             getSex();
 	int             getAge();
-
+*/
 private:
-	DbSignals* _signals;
-	DbAnnotations* _annotations;
 	SignalIterator* _signalIterator;
 	AnnotIterator* _annotIterator;
 
-	WFDB_Sample _sample[2];
-	WFDB_Siginfo _sigInfo[2];
+	char* _record;
 };
 
 #endif /*DBPATIENT_H_*/

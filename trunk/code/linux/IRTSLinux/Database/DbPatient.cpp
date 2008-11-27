@@ -1,14 +1,34 @@
 #include "DbPatient.h"
+#include <wfdb/wfdb.h>
 
-DbPatient::DbPatient(string record)
+DbPatient::DbPatient(char* record)
 {
-	 if (isigopen(record, _sigInfo, 2) < 2) return 0;
-	 char* description;
-
+	_record = record;
+	DbSignals* signals = new DbSignals(_record);
+	DbAnnotations* annotations = new DbAnnotations(_record);
+	_signalIterator = new SignalIterator(signals);
+	_annotIterator = new AnnotIterator(annotations);
 
 }
 DbPatient::~DbPatient(){}
 
+string DbPatient::getInformation()
+{
+	string info = "";
+	char* infoPart = getinfo(_record);
+
+	if ((infoPart = getinfo(_record)))
+	{
+		do {
+
+	        info.append(infoPart);
+	    } while ((infoPart = getinfo(NULL)));
+
+	}
+	return info;
+}
+
+/*
 string DbPatient::getName()
 {
 	return "";
@@ -22,7 +42,7 @@ Sex DbPatient::getSex()
 {
 	return male;
 }
-
+*/
 SignalIterator* DbPatient::getSignals()
 {
 	return _signalIterator;

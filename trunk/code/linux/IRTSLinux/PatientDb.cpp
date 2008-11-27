@@ -7,7 +7,7 @@ PatientDb* PatientDb::_instance = 0;
 
 /**
  * Function for getting the PatientDb singleton.
- * 
+ *
  * @remark This function is not thread safe!
  * @return Reference the the singleton.
  */
@@ -23,32 +23,38 @@ PatientDb* PatientDb::Instance()
 
 PatientDb::PatientDb()
 {
+	DbPatient dbPatient("100s");
+	Patient patient(&dbPatient);
+	_patientVector.push_back(&patient);
 }
 
 /**
  * Get the patient list
- * @TODO: implement 
+ * @TODO: implement
  */
 string PatientDb::GetPatientList()
 {
 	int n_patients = _patientVector.size();
-	
-	if( n_patients > 0 ) 
+
+	if( n_patients > 0 )
 	{
-		return _patientVector[0]->getName();
+		return _patientVector[0]->getInfo();
 	}
 	return "NO patients in the Database";
 }
 
 /**
- * 
- * @TODO: implement 
+ *
+ * @TODO: implement
  */
 Patient* PatientDb::GetPatient( string id )
 {
 	if( _patientVector.size() > 0 )
-		return _patientVector[0];
-	else 
+	{
+		Patient* patientToReturn = _patientVector[0];
+		return patientToReturn;
+	}
+	else
 		return NULL;
 }
 
