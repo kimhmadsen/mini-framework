@@ -27,6 +27,10 @@ string DbPatient::getInformation()
 	}
 	return info;
 }
+double DbPatient::getSampleFreq()
+{
+	return sampfreq(_record);
+}
 
 /*
 string DbPatient::getName()

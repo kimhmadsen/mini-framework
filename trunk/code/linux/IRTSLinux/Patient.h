@@ -22,7 +22,7 @@ class Patient
 	SignalIterator*	getECG();
 	AnnotIterator*	getAnn();
 
-	int                  samplefreq;
+	double          samplefreq;
 
  private:
 	DbPatient* _patient;
