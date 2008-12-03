@@ -19,6 +19,7 @@ public:
 	SignalIterator* getSignals();
 	AnnotIterator*  getAnnotations();
 	string          getInformation();
+	double			getSampleFreq();
 /*	string          getName();
 	Sex             getSex();
 	int             getAge();

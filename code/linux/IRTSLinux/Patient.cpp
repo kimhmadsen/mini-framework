@@ -12,6 +12,7 @@ using namespace std;
 Patient::Patient(DbPatient* dbPatient)
 {
 	_patient = dbPatient;
+	samplefreq = _patient->getSampleFreq();
 }
 string Patient::getInfo()
 {
