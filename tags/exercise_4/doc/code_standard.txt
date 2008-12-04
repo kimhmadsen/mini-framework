@@ -1,0 +1,4 @@
+
+1 Implementation must be written in *.cpp files.
+
+2 UpperCamel case for function and classes. lowerCamelCase for variables. No underscores in any names.
