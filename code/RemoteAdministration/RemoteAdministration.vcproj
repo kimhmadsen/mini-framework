@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="PatientServer"
+	Name="RemoteAdministration"
 	ProjectGUID="{DB27731D-22EA-4A21-8674-E14D4E85C6EB}"
 	RootNamespace="PatientServer"
 	Keyword="Win32Proj"
