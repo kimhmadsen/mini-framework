@@ -1,4 +1,9 @@
 #pragma once
+
+/**
+Implements a wrapper for the Mutex as defined by POSA2 on page 57.
+
+*/
 class ThreadMutex
 {
 public:

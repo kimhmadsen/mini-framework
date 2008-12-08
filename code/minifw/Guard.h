@@ -1,6 +1,12 @@
 #pragma once
 #include "threadmutex.h"
 
+/**
+Implements The Scoped Locking C++ idiom which ensures that a lock is acquired 
+when control enters a scope and released automatically when control leaves the 
+scope, regardless of the return path from the scope.
+
+*/
 class Guard
 {
 public:

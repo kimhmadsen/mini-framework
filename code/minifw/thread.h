@@ -3,6 +3,10 @@
 typedef DWORD thread_t;
 #endif
 
+/**
+Implements wrapper facade class the the Thread provided by the OS
+
+*/
 class Thread
 {
 public:

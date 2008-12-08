@@ -5,6 +5,19 @@
 #include "thread.h"
 #define NO_CURRENT_LEADER 0 
 
+/**
+Implements the Thrad Pool class defiens by POSA2 page 453
+
+Responsibility:
+- Threads that take turns playing three roles: in the leader role they await 
+events, in the process events, in the follower role they queue up waiting to 
+become the leader.
+
+Collaborator:
+- HandleSet
+- Handle
+- EventHandler
+*/
 class LFThreadPool
 {
 public:

@@ -1,5 +1,16 @@
 #pragma once
 
+/**
+Implements the synchronous event demultiplexer defines by POSA2 on page 183
+
+Responsibility:
+- Can block waiting for indication events to occur on a handle set
+- Indicates an operation can be initiated on a handle without blocking
+
+Collaborator:
+- Handle
+- HandleSet
+*/
 class SynchEventDemux
 {
 public:

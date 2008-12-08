@@ -1,5 +1,9 @@
 #pragma once
 
+/**
+Implements the interface defined in POSA2 page 336
+
+*/
 class Lock
 {
 public:

@@ -2,6 +2,16 @@
 #include "eventhandler.h"
 #include "lfthreadpool.h"
 
+
+/**
+Implements a generic Leader/Followers Event Handler defined by POSA2 page 453
+
+Responsibility:
+- Defiens an interface for processing events that occur on a handle
+
+Collaborator:
+- Handle
+*/
 class LFEventHandler :
 	public EventHandler
 {
