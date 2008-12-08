@@ -4,6 +4,17 @@
 #include "sockacceptor.h"
 #include "reactor.h"
 
+/**
+Implements Acceptor from POSA2 page 290
+
+Responsibility:
+- Passively connects and initializes an associated Service Handler
+
+Collaborator:
+- ServiceHandler
+- Dispatcher
+- TransportEndPoint
+*/
 template <class SERVICE_HANDLER> class Acceptor :
 	public EventHandler
 {

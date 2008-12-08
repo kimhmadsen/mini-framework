@@ -1,7 +1,9 @@
 #pragma once
 #include "thread.h"
 
-// GoF Wrapper class for the thread API provided by the OS.
+/**
+GoF Wrapper class for the thread API provided by the OS.
+*/
 class ThreadManager
 {
 public:

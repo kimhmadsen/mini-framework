@@ -3,7 +3,17 @@
 #include "reactor.h"
 #include "sockconnector.h"
 
+/**
+Implements the Connector class from POSA2 page 290
 
+Responsibility:
+- Actively connects and initializes an associated Service Handler.
+
+Collaborator:
+- ServiceHandler
+- Dispatcher
+- TransportEndPoint
+*/
 template <class SERVICE_HANDLER>
 // The <SERVICE_HANDLER> is the type of concrete
 // service handler activated when a connection.

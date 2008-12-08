@@ -6,8 +6,19 @@
 #include <stdlib.h>
 
 /**
-Implements the Reactor interface using the function select.
+Implements the Reactor defined by POSA page 183, using the OS API function select.
+
+Responsibility:
+- Registers and removes event handlers and their associated handles.
+- Manages a handle set.
+- Runs the application's event loop
+
+Collaborator:
+- Handle set
+- Event Handlers
+- Synchronous Event Demultiplexer
 */
+
 class SelectReactor :
 	public Reactor
 {
