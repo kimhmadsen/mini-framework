@@ -39,7 +39,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	MiniFwInit(); 
 
 	// create connection acceptors
-	AcceptorTemplate<PatientInfoEventHandler> patientInfoAcceptor( patient_addr, SelectReactor::instance() );
+	AcceptorTemplate<ClientEventHandler> patientInfoAcceptor( patient_addr, SelectReactor::instance() );
 	std::cout << "Patient info acceptor listen on port " << patient_addr.GetPort() << "\n";
 
 	// do the server loop
