@@ -26,6 +26,7 @@ public:
 
 	struct EventTuple
 	{
+		bool isActive;
 		EventHandler *eventhandler;
 		Event_Type eventtype;
 	};

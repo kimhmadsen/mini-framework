@@ -29,6 +29,7 @@ void SelectReactor::RegisterHandler(EventHandler *eh, Event_Type et)
 	EventTuple *tempEventTupleVector = new EventTuple();
 	tempEventTupleVector->eventhandler = eh;
 	tempEventTupleVector->eventtype = et;
+	tempEventTupleVector->isActive = true;
 	if(!IsEventHandle(tempEventTupleVector))
 		listOfEvents.push_back(tempEventTupleVector);
 }
@@ -39,13 +40,28 @@ void SelectReactor::RegisterHandler(HANDLE h, EventHandler *eh, Event_Type et)
 
 void SelectReactor::DeactivateHandle(HANDLE h, Event_Type et)
 {
-	
+	for(unsigned int i = 0; i <listOfEvents.size(); i++)
+	{
+		if( listOfEvents.at(i)->eventhandler->GetHandle() == h && listOfEvents.at(i)->eventtype == et )
+		{
+			listOfEvents.at(i)->isActive = false;
+			break;
+		}
+	}
 }
 
 void SelectReactor::ReactivateHandle(HANDLE h, Event_Type et)
 {
-	
+	for(unsigned int i = 0; i <listOfEvents.size(); i++)
+	{
+		if( listOfEvents.at(i)->eventhandler->GetHandle() == h && listOfEvents.at(i)->eventtype == et )
+		{
+			listOfEvents.at(i)->isActive = true;
+			break;
+		}
+	}
 }
+
 void SelectReactor::RemoveHandler(EventHandler *eh, Event_Type et)
 {
 	EventTuple *tempEventTupleVector = new EventTuple();
@@ -137,11 +153,11 @@ void SelectReactor::ConvertFDsToSets(fd_set &readFDs, fd_set &writeFDs, fd_set &
 	FD_ZERO(&exceptFDs);
 	for (unsigned int i = 0; i < listOfEvents.size(); i++) 
 	{
-		if(listOfEvents.at(i)->eventtype == READ_EVENT)
+		if(listOfEvents.at(i)->eventtype == READ_EVENT && listOfEvents.at(i)->isActive == true )
 			FD_SET((SOCKET)listOfEvents.at(i)->eventhandler->GetHandle(), &readFDs);
-		else if  (listOfEvents.at(i)->eventtype == WRITE_EVENT)
+		else if  (listOfEvents.at(i)->eventtype == WRITE_EVENT && listOfEvents.at(i)->isActive == true )
 			FD_SET((SOCKET)listOfEvents.at(i)->eventhandler->GetHandle(), &writeFDs);
-		else if  (listOfEvents.at(i)->eventtype == TIMEOUT_EVENT)
+		else if  (listOfEvents.at(i)->eventtype == TIMEOUT_EVENT && listOfEvents.at(i)->isActive == true )
 			FD_SET((SOCKET)listOfEvents.at(i)->eventhandler->GetHandle(), &exceptFDs);
 	}
 
