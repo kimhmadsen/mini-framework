@@ -6,12 +6,19 @@ DbPatient::DbPatient(char* record)
 	_record = record;
 	DbSignals* signals = new DbSignals(_record);
 	DbAnnotations* annotations = new DbAnnotations(_record);
+	_ECGsize = signals->Size();
 	_signalIterator = new SignalIterator(signals);
 	_annotIterator = new AnnotIterator(annotations);
+	DbEdr* dbEdr = new DbEdr(_record);
+	_edrGenerator = new EdrGenerator(dbEdr);
 
 }
 DbPatient::~DbPatient(){}
 
+long DbPatient::getNumECGSamples()
+{
+	return _ECGsize;
+}
 string DbPatient::getInformation()
 {
 	string info = "";
@@ -31,7 +38,10 @@ double DbPatient::getSampleFreq()
 {
 	return sampfreq(_record);
 }
-
+EdrGenerator* DbPatient::getEdrGenerator()
+{
+	return _edrGenerator;
+}
 /*
 string DbPatient::getName()
 {

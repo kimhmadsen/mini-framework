@@ -6,6 +6,8 @@
 #include "PatientSignalIterator.h"
 #include "SignalValue.h"
 #include "Database/DbPatient.h"
+#include "EdrGenerator.h"
+
 using namespace std;
 
 
@@ -21,6 +23,8 @@ class Patient
 	string 			getInfo();
 	SignalIterator*	getECG();
 	AnnotIterator*	getAnn();
+	EdrGenerator*	getEdrGenerator();
+	long 			getNumECGSamples();
 
 	double          samplefreq;
 

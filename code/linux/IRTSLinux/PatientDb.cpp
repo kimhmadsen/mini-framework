@@ -23,9 +23,9 @@ PatientDb* PatientDb::Instance()
 
 PatientDb::PatientDb()
 {
-	DbPatient dbPatient("100s");
-	Patient patient(&dbPatient);
-	_patientVector.push_back(&patient);
+	DbPatient* dbPatient = new DbPatient("100s");
+	Patient* patient = new Patient(dbPatient);
+	_patientVector.push_back(patient);
 }
 
 /**
@@ -51,7 +51,7 @@ Patient* PatientDb::GetPatient( string id )
 {
 	if( _patientVector.size() > 0 )
 	{
-		Patient* patientToReturn = _patientVector[0];
+		Patient* patientToReturn = _patientVector.front();
 		return patientToReturn;
 	}
 	else

@@ -73,3 +73,13 @@ AnnotValue AnnotIterator::CurrentItem()
 {
 	return _annot->CurrentItem();
 }
+
+bool AnnotIterator::CurrentIsPulse()
+{
+	return _annot->CurrentIsPulse();
+}
+
+bool AnnotIterator::CurrentHasEdr()
+{
+	return _annot->CurrentHasEdr();
+}

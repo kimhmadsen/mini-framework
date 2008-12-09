@@ -11,20 +11,24 @@ class Observers;
 
 int main()
 {
-	cout<<"creating a DbPatient"<<endl;
+/*	cout<<"creating a DbPatient"<<endl;
 	DbPatient dbPatient("100s");
 	Patient patient(&dbPatient);
 	cout<<"info:\n" << patient.getInfo() << endl;
+*/
+	cout<<"creating PatientDB" <<endl;
+	Patient* patient2 = PatientDb::Instance()->GetPatient("0");
+	cout<<"info:\n" << patient2->getInfo() << endl;
 
-	PatientHandler* handler = new PatientHandler(&patient);
+/*	PatientHandler* handler = new PatientHandler(&patient);
 	LCDView view(handler);
 	handler->start();
+*/
+	//sleep(1000);
 
-	sleep(10);
+	//handler->stop();
 
-	handler->stop();
-
-	cout << "I'm stopped" << endl;
+	//cout << "I'm stopped" << endl;
 	//TODO: fix PatientDb !!!
 
 /*	cout<<"creating PatientDB" <<endl;
@@ -52,6 +56,7 @@ int main()
 
 	cout << "DONE!" << endl;
 */
+	while(true){}
 	return 0;
 
 }

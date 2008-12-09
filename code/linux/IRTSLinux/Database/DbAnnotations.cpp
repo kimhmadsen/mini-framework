@@ -20,8 +20,8 @@ void DbAnnotations::First()
 void DbAnnotations::Next()
 {
 	_done = (getann(0, &_annot) < 0);
-	while(strcmp(annstr(_annot.anntyp),"N")!= 0)
-		_done = (getann(0, &_annot) < 0);
+//	while(strcmp(annstr(_annot.anntyp),"N")!= 0)
+//		_done = (getann(0, &_annot) < 0);
 
 }
 bool DbAnnotations::IsDone()
@@ -32,6 +32,16 @@ AnnotValue DbAnnotations::CurrentItem()
 {
 	AnnotValue value;
 	value.sample = _annot.time;
-	value.value = 1;
+	value.value = _annot.num;
+	value.type = _annot.anntyp;
 	return value;
+}
+bool DbAnnotations::CurrentIsPulse()
+{
+	return strcmp(annstr(_annot.anntyp),"N")== 0;
+}
+
+bool DbAnnotations::CurrentHasEdr()
+{
+	return isqrs(_annot.anntyp);
 }
