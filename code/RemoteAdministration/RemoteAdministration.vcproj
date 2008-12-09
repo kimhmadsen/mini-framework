@@ -185,7 +185,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\PatientServer.cpp"
+				RelativePath=".\RemoteAdministration.cpp"
 				>
 			</File>
 			<File
