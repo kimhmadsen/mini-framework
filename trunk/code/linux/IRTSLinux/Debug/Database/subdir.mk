@@ -5,16 +5,19 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
 ../Database/DbAnnotations.cpp \
+../Database/DbEdr.cpp \
 ../Database/DbPatient.cpp \
 ../Database/DbSignals.cpp 
 
 CPP_DEPS += \
 ./Database/DbAnnotations.d \
+./Database/DbEdr.d \
 ./Database/DbPatient.d \
 ./Database/DbSignals.d 
 
 OBJS += \
 ./Database/DbAnnotations.o \
+./Database/DbEdr.o \
 ./Database/DbPatient.o \
 ./Database/DbSignals.o 
 

@@ -4,6 +4,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../EdrGenerator.cpp \
 ../LCDView.cpp \
 ../Patient.cpp \
 ../PatientDb.cpp \
@@ -13,6 +14,7 @@ CPP_SRCS += \
 ../main.cpp 
 
 CPP_DEPS += \
+./EdrGenerator.d \
 ./LCDView.d \
 ./Patient.d \
 ./PatientDb.d \
@@ -22,6 +24,7 @@ CPP_DEPS += \
 ./main.d 
 
 OBJS += \
+./EdrGenerator.o \
 ./LCDView.o \
 ./Patient.o \
 ./PatientDb.o \

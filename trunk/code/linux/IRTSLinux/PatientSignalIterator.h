@@ -38,6 +38,8 @@ public:
 	virtual void Next();
 	virtual bool IsDone();
 	virtual AnnotValue CurrentItem();
+	virtual bool CurrentIsPulse();
+	virtual bool CurrentHasEdr();
 private:
 	DbAnnotations* _annot;
 	AnnotValue _current;

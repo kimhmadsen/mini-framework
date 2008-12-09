@@ -5,7 +5,9 @@
 #include "DbSignals.h"
 #include "DbAnnotations.h"
 #include "../PatientSignalIterator.h"
+#include "../EdrGenerator.h"
 #include <wfdb/wfdb.h>
+#include "DbEdr.h"
 
 using namespace std;
 
@@ -20,13 +22,17 @@ public:
 	AnnotIterator*  getAnnotations();
 	string          getInformation();
 	double			getSampleFreq();
+	long			getNumECGSamples();
+	EdrGenerator*	getEdrGenerator();
 /*	string          getName();
 	Sex             getSex();
 	int             getAge();
 */
 private:
 	SignalIterator* _signalIterator;
-	AnnotIterator* _annotIterator;
+	AnnotIterator*  _annotIterator;
+	EdrGenerator*	_edrGenerator;
+	long			_ECGsize;
 
 	char* _record;
 };

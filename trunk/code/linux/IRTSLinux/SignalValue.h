@@ -3,17 +3,17 @@
 
 struct SignalValue
 {
-	float time;
 	float value;
 	float value2;
+	int sample;
 };
 
 struct AnnotValue
 {
-	float time;
 	float value;
 	int   sample;
-	
+	char  type;
+
 };
 
 

@@ -1,118 +1,141 @@
+/**
+ * @file
+ * Implements the LCDView class
+ */
 #include "LCDView.hpp"
 #include <iostream>
+#include <stdlib.h>
 
 LCDView::LCDView(PatientHandler *dm)
 {
-	_dm = dm;
-	_dm->Attach(this);
-	isEDR = false;
-	isECG = true;
-	isPULSE = false;
-	/**
-	 * ECG = arrays 0 - 5, where array 5 is the temporay filler.
-	 * EDR = arrays 6 - 11, where array 11 is the temporay filler.
-	 * PULSE = arrays 12 - 17, where array 17 is the temporay filler.
-	 */
-	//*_signals = new float[6*numOfSignaltypes];
-	
-	//if one elemement in a array initialised, the rest is initialised to default 0 in c++
-	for(int i = 0; i < 6*numOfSignaltypes; i++)
-		_signals[i][i] = 0;
-	fillcount[0] = 0;
+    _dm = dm;
+    _dm->Attach(this);
+    isEDR = true;
+    isECG = true;
+    isPULSE = true;
+
+    //if one elemement in a array initialised, the rest is initialised to default 0 in c++
+    for (int i = 0; i < rows; i++)
+        _signals[i][i] = 0;
+    for (int i = 0; i < 3; i++)
+        fillcount[i] = 0;
+    isActive = true;
 }
 
 LCDView::~LCDView()
 {
-	_dm->Detach(this);
+    _dm->Detach(this);
 }
 
 void LCDView::Update(Subject *_sbj, Signaltypes signaltypes)
 {
-	//std::cout << "HEY - UPDATE" << std::endl;
-	switch (signaltypes)
-	{
-	case EDR:
-		//_signals[11][fillcount[EDR]]=dm->getEDR();
-		(fillcount[EDR])++;
-		if(fillcount[EDR] == 99)
-		{
-			// do magic
-			delete [] _signals[0];
-			for(int i = 0; i < 5; i++)
-				*_signals[i] = *_signals[i+1];
-			fillcount[EDR] =0;
-			Draw();
-		}
-		break;
-	case ECG:
-		_signals[5][fillcount[ECG]] = _dm->getECG();
-		std::cout << "ECG VALUE - " << _signals[5][fillcount[ECG]];
-		(fillcount[ECG])++;
-		if(fillcount[ECG] == 99)
-		{
-			// do magic
-			//delete [] _signals[6];
-			for(int i = 0; i < 5; i++)
-				for(int d = 0; d < 100; d++)
-					_signals[i][d] = _signals[i+1][d];
-			fillcount[ECG] = 0;
-			Draw();
-		}
-		break;
-	case PULSE:
-		//_signals[17][fillcount[PULSE]] = dm->getPULSE();
-		(fillcount[PULSE])++;
-		if(fillcount[PULSE] == 99)
-		{
-			// do magic
-			//delete [] _signals[12];
-			for(int i = 12; i < 17; i++)
-				*_signals[i] = *_signals[i+1];
-			
-			//*_signals[17] = new float[100];
-			fillcount[PULSE] = 0;
-			Draw();
-		}	
-		break;
-	default:
-		break;
-	}
-		
+    //std::cout << "HEY - UPDATE" << std::endl;
+    switch (signaltypes)
+    {
+    case EDR:
+        _signals[1][fillcount[EDR]]=_dm->getEDR();
+        (fillcount[EDR])++;
+        if ((fillcount[EDR]) == 39)
+        {
+            // do magic
+            //delete [] _signals[0];
+            //Draw();
+            for (int i = 0; i < 40; i++)
+                _signals[0][i] = _signals[1][i];
+            (fillcount[EDR]) =0;
+            //Draw();
+        }
+        break;
+    case ECG:
+        _signals[3][fillcount[ECG]] = _dm->getECG();
+        //std::cout << "ECG VALUE - " << _signals[5][fillcount[ECG]];
+        (fillcount[ECG])++;
+        if (fillcount[ECG] == 39)
+        {
+            // do magic
+            //delete [] _signals[0];
+            Draw();
+            for (int i = 0; i < 40; i++)
+                _signals[2][i] = _signals[3][i];
+            (fillcount[ECG]) = 0;
+
+        }
+        break;
+    case PULSE:
+        pulse = (int)_dm->getPulse();
+        //Draw();
+        break;
+    default:
+        break;
+    }
+
 }
 
 void LCDView::Draw()
 {
-	for(int d = 0; d < 5; d++)
-		for(int i = 0; i< 100; i++)
-			std::cout << "ECG " << _signals[5][i] << std::endl; 
-}
+    if (isActive)
+    {
 
+        for (int i = 0; i < 30; i++)
+            std::cout << std::endl;
+        std::cout << "LCD VIEW" << std::endl;
+        std::cout << "PULSE: " << pulse << std::endl << std::endl;
+        std::cout << "EDR values: " << std::endl;
+        for (int d = 0; d < 2; d++)
+        {
+            int untill = 40;
+            for (int i = 0; i< untill; i++)
+            {
+                std::cout << _signals[d][i] << " , ";
+            }
+            untill = fillcount[EDR];
+
+        }
+
+        std::cout << std::endl << "ECG values: " << std::endl;
+        for (int d = 2; d < 4; d++)
+        {
+            int untill = 40;
+            for (int i = 0; i< untill; i++)
+            {
+                std::cout << _signals[d][i] << " , ";
+            }
+            untill = fillcount[ECG];
+
+        }
+    }
+}
 bool LCDView::IsType(Signaltypes signaltypes)
 {
-	switch (signaltypes)
-	{
-	case EDR:
-		return isEDR;
-	case ECG:
-		return isECG;
-	case PULSE:
-		return isPULSE;
-	default:
-		return false;
-	}
+    switch (signaltypes)
+    {
+    case EDR:
+        return isEDR;
+    case ECG:
+        return isECG;
+    case PULSE:
+        return isPULSE;
+    default:
+        return false;
+    }
 }
 
 void LCDView::SetType(Signaltypes signaltypes)
 {
-	switch (signaltypes)
-	{
-	case EDR:
-		IsType(EDR) ? isEDR = false : isEDR = true;
-	case ECG:
-		IsType(ECG) ? isECG = false : isECG = true;
-	case PULSE:
-		IsType(PULSE) ? isPULSE = false : isPULSE = true;
-	default:
-		break;
-	}
+    switch (signaltypes)
+    {
+    case EDR:
+        IsType(EDR) ? isEDR = false : isEDR = true;
+    case ECG:
+        IsType(ECG) ? isECG = false : isECG = true;
+    case PULSE:
+        IsType(PULSE) ? isPULSE = false : isPULSE = true;
+    default:
+        break;
+    }
+}
+
+void LCDView::SetActive(bool ac)
+{
+    isActive = ac;
 }

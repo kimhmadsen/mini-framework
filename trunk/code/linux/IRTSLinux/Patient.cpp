@@ -18,6 +18,10 @@ string Patient::getInfo()
 {
 	return _patient->getInformation();
 }
+long Patient::getNumECGSamples()
+{
+	return _patient->getNumECGSamples();
+}
 
 
 
@@ -39,3 +43,7 @@ AnnotIterator* Patient::getAnn()
 	return  _patient->getAnnotations();
 }
 
+EdrGenerator*	Patient::getEdrGenerator()
+{
+	return _patient->getEdrGenerator();
+}
