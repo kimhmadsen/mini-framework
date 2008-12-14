@@ -72,14 +72,15 @@ void RemoteClient::Run(void)
 				count = patientList.size();
 				break;
 			}
-			case 'P': // set current patie	nt
+			case 'P': // set current patient
 			{
 				string patientName;
 				std::cout << "\nRemoteClient: command P" << std::endl;
 				patientName = command.substr(2);
-				Patient* pat = PatientDb::Instance()->GetPatient(patientName );
+				char* name;
+				strcpy(name, patientName.c_str());
+				Patient* pat = PatientDb::Instance()->GetPatient(name );
 				patientHandler->setPatient( pat );
-				// patientHandler
 				break;
 			}
 			case 'S': // start or stop the simulation.
@@ -89,18 +90,18 @@ void RemoteClient::Run(void)
 				pos = command.find("start", 1);
 				if (pos != -1)
 				{
-					const char startedStr[] = "G started\n";
-					count = sizeof(startedStr);
+					//const char startedStr[] = "G started\n";
+					//count = sizeof(startedStr);
 					patientHandler->start();
-					strncpy(buf, startedStr, count);
+					//strncpy(buf, startedStr, count);
 				}
 				pos = command.find("stop", 1);
 				if (pos != -1) // is -1 the right to look for?
 				{
-					const char stoppedStr[] = "G stopped\n";
-					count = sizeof(stoppedStr);
+					//const char stoppedStr[] = "G stopped\n";
+					//count = sizeof(stoppedStr);
 					patientHandler->stop();
-					strncpy(buf, stoppedStr, count);
+					//strncpy(buf, stoppedStr, count);
 				}
 
 				break;
@@ -121,11 +122,10 @@ void RemoteClient::Run(void)
 
 void RemoteClient::Update(Subject *_sbj, Signaltypes signaltypes)
 {
-	char buf[512];
+	char buf[256];
+	memset(buf, 0, sizeof(buf));
 	int count;
 
-	remoteAdminStream.send_n(buf, count, 0);
-	//std::cout << "HEY - UPDATE" << std::endl;
 	switch (signaltypes)
 	{
 	case EDR:
@@ -135,11 +135,33 @@ void RemoteClient::Update(Subject *_sbj, Signaltypes signaltypes)
 	case PULSE:
 		break;
 	case STATE_CHANGE:
+	{
+		bool running = patientHandler->getState();
+		if(running)
+		{
+			const char startedStr[] = "G started\n";
+			count = sizeof(startedStr);
+			patientHandler->start();
+			strncpy(buf, startedStr, count);
+		}
+		else
+		{
+			const char stoppedStr[] = "G stopped\n";
+			count = sizeof(stoppedStr);
+			patientHandler->stop();
+			strncpy(buf, stoppedStr, count);
+		}
 		break;
+	}
 	case PATIENT_CHANGE:
+	{	string response = "P ";
+		response.append(patientHandler->getName());
+		count = response.length();
+		strncpy(buf, response.c_str(), count);
 		break;
+	}
 	default:
 		break;
 	}
-
+	remoteAdminStream.send_n(buf, count, 0);
 }

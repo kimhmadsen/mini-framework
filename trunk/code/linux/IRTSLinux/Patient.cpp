@@ -47,3 +47,17 @@ EdrGenerator*	Patient::getEdrGenerator()
 {
 	return _patient->getEdrGenerator();
 }
+
+string Patient::getName()
+{
+	return _patient->getName();
+}
+Sex Patient::getSex()
+{
+	return _patient->getSex();
+}
+
+int Patient::getAge()
+{
+	return _patient->getAge();
+}

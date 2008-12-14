@@ -1,5 +1,7 @@
 #include "DbPatient.h"
 #include <wfdb/wfdb.h>
+#include <sstream>
+
 
 DbPatient::DbPatient(char* record)
 {
@@ -11,6 +13,25 @@ DbPatient::DbPatient(char* record)
 	_annotIterator = new AnnotIterator(annotations);
 	DbEdr* dbEdr = new DbEdr(_record);
 	_edrGenerator = new EdrGenerator(dbEdr);
+
+
+	//Get age and sex
+	//cout << "record " << _record << endl;
+	string info = getinfo(_record);
+	//cout << "info: " << info << endl;
+	string buf; // Have a buffer string
+	stringstream ss(info); // Insert the string into a stream
+    vector<string> tokens; // Create vector to hold our words
+	while (ss >> buf)
+	{
+		//cout << "info strings: " << buf << endl;
+		tokens.push_back(buf);
+	}
+
+	_age = atoi(tokens[0].c_str());
+	_sex = tokens[1][0] == 'M'? male: female;
+
+
 
 }
 DbPatient::~DbPatient(){}
@@ -42,21 +63,21 @@ EdrGenerator* DbPatient::getEdrGenerator()
 {
 	return _edrGenerator;
 }
-/*
+
 string DbPatient::getName()
 {
-	return "";
+	return _record;
 }
 int DbPatient::getAge()
 {
-	return 1;
+	return _age;
 }
 
 Sex DbPatient::getSex()
 {
-	return male;
+	return _sex;
 }
-*/
+
 SignalIterator* DbPatient::getSignals()
 {
 	return _signalIterator;
