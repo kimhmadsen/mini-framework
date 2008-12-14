@@ -1,16 +1,39 @@
 #include <stdio.h>
 #include <iostream>
 #include <list>
+#include <arpa/inet.h>
+#include <sys/socket.h>
+#include <netdb.h>
 
 #include "PatientDb.h"
 #include "Patient.h"
 #include "PatientHandler.h"
 #include "LCDView.hpp"
+#include "RemoteClient.h"
+
+const short SERVER_PORT = 10000;
+
+RemoteClient* rc;
 
 class Observers;
 
-int main()
+int main(int argc, char* argv[])
 {
+	char *host;
+
+	if(argc > 1)
+	{
+			host = (char *)argv[1];
+	}
+	else
+	{
+			hostent* localHost = gethostbyname("localhost");
+			host = inet_ntoa(*(struct in_addr *)*localHost->h_addr_list);
+	}
+
+	rc = new RemoteClient( SERVER_PORT, host );
+
+
 /*	cout<<"creating a DbPatient"<<endl;
 	DbPatient dbPatient("100s");
 	Patient patient(&dbPatient);
