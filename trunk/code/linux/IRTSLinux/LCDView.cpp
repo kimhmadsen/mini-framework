@@ -126,10 +126,13 @@ void LCDView::SetType(Signaltypes signaltypes)
     {
     case EDR:
         IsType(EDR) ? isEDR = false : isEDR = true;
+        break;
     case ECG:
         IsType(ECG) ? isECG = false : isECG = true;
+        break;
     case PULSE:
         IsType(PULSE) ? isPULSE = false : isPULSE = true;
+        break;
     default:
         break;
     }
