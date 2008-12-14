@@ -1,10 +1,7 @@
-/*
- * PatientHandler.cpp
- *
- *  Created on: mar 31, 2008
- *      Author: MSO
+/**
+ * @file
+ * Implements the PatientHandler class
  */
-
 #include "PatientHandler.h"
 #include "PatientSignalIterator.h"
 #include "PatientDb.h"

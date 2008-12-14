@@ -1,3 +1,7 @@
+/**
+ * @file
+ * Implements the DbPatient class
+ */
 #include "DbPatient.h"
 #include <wfdb/wfdb.h>
 #include <sstream>

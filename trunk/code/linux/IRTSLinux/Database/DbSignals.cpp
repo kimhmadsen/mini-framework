@@ -1,3 +1,7 @@
+/**
+ * @file
+ * Implements the DbSignals class
+ */
 #include "DbSignals.h"
 
 DbSignals::DbSignals(char* record)

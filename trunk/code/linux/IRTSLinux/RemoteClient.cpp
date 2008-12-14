@@ -1,10 +1,7 @@
-/*
- * RemoteClient.cpp
- *
- *  Created on: 14-12-2008
- *      Author: kim
+/**
+ * @file
+ * Implements the RemoteClient class
  */
-
 #include <iostream>
 #include <string.h>
 #include "RemoteClient.h"

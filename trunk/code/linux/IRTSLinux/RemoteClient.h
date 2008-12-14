@@ -1,10 +1,7 @@
-/*
- * RemoteClient.h
- *
- *  Created on: 14-12-2008
- *      Author: kim
+/**
+ * @file
+ * Defines the RemoteClient class
  */
-
 #ifndef REMOTECLIENT_H_
 #define REMOTECLIENT_H_
 
@@ -13,6 +10,13 @@
 #include "PatientHandler.h"
 #include "Observer.hpp"
 
+/**
+ * The RemoteClient is connected to a RemoteAdministration for supervision and control.
+ *
+ * Collaboration:
+ * - PatientHandler
+ * - SockStream
+ */
 class RemoteClient: protected Observer
 {
 	short serverPort;

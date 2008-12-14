@@ -1,12 +1,6 @@
-/*
- * PatientHandler.h
- *
- *  Created on: mar 31, 2008
- *      Author: MSO
- */
-
-/*
- * Description:
+/**
+ * @file
+ * Defines the PatientHandler class
  */
 #ifndef PATIENTHANDLER_H
 #define PATIENTHANDLER_H
@@ -26,6 +20,13 @@
 /* quite a few more digits than we need :-) */
 #endif
 
+/**
+ * The patient handler is responsible for Simulate a patient in real-time.
+ *
+ * Collaboration:
+ * - Patient
+ *
+ */
 class PatientHandler : public Subject
 {
 public:

@@ -1,3 +1,7 @@
+/**
+ * @file
+ * Defines the PatientDb class
+ */
 #ifndef PATIENTDB_H_
 #define PATIENTDB_H_
 
@@ -7,6 +11,10 @@
 #include "Patient.h"
 using namespace std;
 
+/**
+ * Patient database which holds all the patients
+ *
+ */
 class PatientDb
 {
 public:

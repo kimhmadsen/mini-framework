@@ -1,4 +1,5 @@
-/*
+/**
+ * @file
  * DbEdr.cpp
  *
  *  Created on: 9-Dec-08

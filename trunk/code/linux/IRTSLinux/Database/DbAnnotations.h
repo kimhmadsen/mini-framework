@@ -1,3 +1,7 @@
+/**
+ * @file
+ * Implements the DbAnnotations class
+ */
 #ifndef DBANNOTATIONS_H_
 #define DBANNOTATIONS_H_
 
@@ -9,7 +13,9 @@
 
 using namespace std;
 
-
+/**
+ * Database Annotations
+ */
 class DbAnnotations
 {
 public:

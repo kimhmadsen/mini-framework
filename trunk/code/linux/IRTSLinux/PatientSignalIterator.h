@@ -1,10 +1,7 @@
-/*
- * PatientSignalIterator.h
- *
- *  Created on: mar 31, 2008
- *      Author: MSO
+/**
+ * @file
+ * Defines the SignalIterator and AnnotIterator classes
  */
-
 #ifndef PATIENTSIGNALITERATOR_H
 #define PATIENTSIGNALITERATOR_H
 
@@ -15,8 +12,10 @@
 
 using namespace std;
 
-
-
+/**
+ * Implements a Signal Iterator
+ *
+ */
 class SignalIterator
 {
 public:
@@ -30,6 +29,9 @@ private:
 	SignalValue _current;
 };
 
+/**
+ * Implements a Annotation Iterator
+ */
 class AnnotIterator
 {
 public:

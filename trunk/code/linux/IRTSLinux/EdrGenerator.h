@@ -1,4 +1,5 @@
-/*
+/**
+ * @file
  * Edr.h
  *
  *  Created on: 9-Dec-08
@@ -12,6 +13,10 @@
 
 using namespace std;
 
+/**
+ * Caluculates the EDR
+ *
+ */
 class EdrGenerator
 {
 public:

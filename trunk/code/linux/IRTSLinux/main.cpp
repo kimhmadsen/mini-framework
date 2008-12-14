@@ -1,3 +1,8 @@
+/**
+ * @file
+ * Implements the startup of the program
+ */
+
 #include <stdio.h>
 #include <iostream>
 #include <list>

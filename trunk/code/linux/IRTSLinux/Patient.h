@@ -1,3 +1,7 @@
+/**
+ * @file
+ * Defines the Patient class
+ */
 #ifndef PATIENT_H_
 #define PATIENT_H_
 
@@ -11,6 +15,10 @@
 using namespace std;
 
 
+/**
+ * Implements a simulated patient
+ *
+ */
 class Patient
 {
  public:

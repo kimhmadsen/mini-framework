@@ -1,8 +1,15 @@
+/**
+ * @file
+ * Defines the Observer class
+ */
 #ifndef Observer_HPP
 #define Observer_HPP
 
 class Subject;
 
+/**
+ * Interface/abstract class for classes implementing the Observer role in the Observer pattern.
+ */
 class Observer
 {
 
@@ -27,32 +34,31 @@ public:
 	}
 	;
 
-
 	virtual void Update(Subject* theModel, Signaltypes signaltype)= 0;
 	//virtual bool IsType(Signaltypes) = 0;
 
-	void SetType(Signaltypes signaltypes )
+	void SetType(Signaltypes signaltypes)
 	{
-	    switch (signaltypes)
-	    {
-	    case EDR:
-	    	isEDR = !isEDR;
-	        break;
-	    case ECG:
-	    	isECG = !isECG;
-	        break;
-	    case PULSE:
-	        isPULSE = !isPULSE;
-	        break;
-	    case STATE_CHANGE:
-	    	isSTATE_CHANGE = !isSTATE_CHANGE;
-	    	break;
-	    case PATIENT_CHANGE:
-	    	isPATIENT_CHANGE = !isPATIENT_CHANGE;
-	    	break;
-	    default:
-	        break;
-	    }
+		switch (signaltypes)
+		{
+		case EDR:
+			isEDR = !isEDR;
+			break;
+		case ECG:
+			isECG = !isECG;
+			break;
+		case PULSE:
+			isPULSE = !isPULSE;
+			break;
+		case STATE_CHANGE:
+			isSTATE_CHANGE = !isSTATE_CHANGE;
+			break;
+		case PATIENT_CHANGE:
+			isPATIENT_CHANGE = !isPATIENT_CHANGE;
+			break;
+		default:
+			break;
+		}
 
 	}
 

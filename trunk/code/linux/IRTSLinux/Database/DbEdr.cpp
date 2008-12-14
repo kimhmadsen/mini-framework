@@ -1,10 +1,9 @@
-/*
- * DbEdr.cpp
- *
- *  Created on: 9-Dec-08
- *      Author: maria
+/**
+ * @file
+ * Implements the PatientHandler class
+ * @date 2008-12-09
+ * @author maria
  */
-
 #include "DbEdr.h"
 
 DbEdr::DbEdr(char* record)
