@@ -1,4 +1,4 @@
-#include "PatientInfoEventHandler.h"
+#include "ClientEventHandler.h"
 
 
 using namespace std;
@@ -8,6 +8,7 @@ ClientEventHandler::ClientEventHandler( const SockStream &stream, Reactor *react
 	this->reactor = reactor;
 	status = false;
 	currentPatient = "";
+	isPatientListNew = false;
 	reactor->RegisterHandler( this, READ_EVENT );
 }
 
@@ -28,10 +29,10 @@ void ClientEventHandler::HandleEvent ( HANDLE handle, Event_Type event_type )
 		if( result > 0 )
 		{
 			input[result] = '\0';
-			switch (result[0])
+			switch (input[0])
 			{
 			case 'G':
-				;
+				SetPatientList(input,result);
 				break;
 
 			case 'P':
@@ -63,4 +64,58 @@ HANDLE ClientEventHandler::GetHandle()
 bool ClientEventHandler::IsRunning()
 {
 	return status;
+}
+
+void ClientEventHandler::SetPatientList(char *data, int count)
+{
+	patientList.clear();
+	std::string temp = "";
+	int offset = 2;
+	int counter = 0;
+	while(offset < count)
+	{
+		temp = "";
+		patientList.push_back(temp);
+		while(data[offset] != '\n')
+		{
+			patientList.back() += (data[offset]);
+			offset++;
+		}
+		offset++;
+
+	}
+
+	isPatientListNew = true;
+
+}
+
+std::vector <std::string> ClientEventHandler::GetPatientList()
+{
+	return patientList;
+}
+
+void ClientEventHandler::SetRunning(bool status)
+{
+	if(status)
+		peerStream.send("S start",7,0);
+	else
+	peerStream.send("S stop",6,0);
+}
+
+void ClientEventHandler::SelectPatient(std::string data)
+{
+	std::string temp ="P ";
+	temp.append(data);
+	peerStream.send(temp.c_str(),data.length()+2,0);
+}
+
+bool ClientEventHandler::IsNewPatientList()
+{
+	return isPatientListNew;
+}
+
+void ClientEventHandler::RequestPatientList()
+{
+	isPatientListNew = false;
+	peerStream.send("G",1,0);
 }

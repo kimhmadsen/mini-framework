@@ -21,6 +21,7 @@
 #include "selectreactor.h"
 #include "acceptortemplate.h"
 #include "patientinfoeventhandler.h"
+#include "ClientEventHandler.h"
 
 
 #define TRACE(x) 

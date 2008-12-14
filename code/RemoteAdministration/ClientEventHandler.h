@@ -6,7 +6,6 @@
 #include "eventhandler.h"
 #include "reactor.h"
 #include "sockacceptor.h"
-#include "PatientDBReader.h"
 
 class ClientEventHandler :
 	public EventHandler
@@ -19,14 +18,22 @@ public:
 	virtual HANDLE GetHandle();
 	bool IsRunning();
 	std::string GetCurrentPatient();
+	
+	std::vector <std::string> GetPatientList();
+	void SetRunning(bool);
+	void SelectPatient(std::string);
+	bool IsNewPatientList();
+	void RequestPatientList();
 private:
 	// Receives logging records from a connected client
+	void SetPatientList(char *data,int res);
 	SockStream peerStream;
 		// Cached <Reactor>.
 	Reactor *reactor;
-	PatientDBReader *dbReader;
 	bool status;
 	std::string currentPatient;
+	std::vector <std::string> patientList;
+	bool isPatientListNew;
 
 };
 
