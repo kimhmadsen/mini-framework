@@ -5,6 +5,8 @@ using namespace std;
 
 ClientEventHandler::ClientEventHandler( const SockStream &stream, Reactor *reactor): peerStream( stream )
 {
+	ClientList *cl = ClientList::Instance();
+	cl->Push(this);
 	this->reactor = reactor;
 	status = false;
 	currentPatient = "";
@@ -15,6 +17,8 @@ ClientEventHandler::ClientEventHandler( const SockStream &stream, Reactor *react
 
 ClientEventHandler::~ClientEventHandler(void)
 {
+	ClientList *cl = ClientList::Instance();
+	cl->Erease(this);
 }
 
 void ClientEventHandler::HandleEvent ( HANDLE handle, Event_Type event_type )

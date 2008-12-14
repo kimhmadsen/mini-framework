@@ -6,6 +6,7 @@
 #include "eventhandler.h"
 #include "reactor.h"
 #include "sockacceptor.h"
+#include "ClientList.h"
 
 class ClientEventHandler :
 	public EventHandler
