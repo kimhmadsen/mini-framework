@@ -1,3 +1,7 @@
+/**
+ * @file
+ * Defines the Subject class
+ */
 #ifndef Subject_HPP
 #define Subject_HPP
 
@@ -6,19 +10,31 @@
 //class Observer;
 #include "Observer.hpp"
 
-class Subject {
+/**
+ * Subject is an interface for classes playing the 'subject' role in the observer pattern.
+ *
+ */
+class Subject
+{
 
- protected:
-  //enum Signaltypes{ ECG, EDR, PULSE };
-  std::list<Observer *> *_observers;
+protected:
+	//enum Signaltypes{ ECG, EDR, PULSE };
+	std::list<Observer *> *_observers; ///< List with all observers
 
- public:
-  ~Subject(){}
-  virtual void Attach(Observer *);
-  virtual void Detach(Observer *);
-  virtual void Notify(Observer::Signaltypes signaltypes);
-  Subject(){
-	_observers = new std::list<Observer *>;
+public:
+	~Subject()
+	{
+	}
+	/**
+	 * Attach an observer to the subject
+	 * @param o Observer
+	 */
+	virtual void Attach(Observer *);
+	virtual void Detach(Observer *);
+	virtual void Notify(Observer::Signaltypes signaltypes);
+	Subject()
+	{
+		_observers = new std::list<Observer *>;
 	}
 };
 

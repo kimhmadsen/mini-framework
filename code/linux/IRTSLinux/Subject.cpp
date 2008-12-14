@@ -1,4 +1,7 @@
-
+/**
+ * @file
+ * Implements the Subject class
+ */
 #include "Subject.hpp"
 
 void Subject::Attach(Observer *o)

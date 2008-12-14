@@ -1,6 +1,6 @@
 /**
  * @file
- * Implements the LCDView class
+ * Defines the xx class
  */
 #ifndef LCDView_hpp
 #define LCDView_hpp

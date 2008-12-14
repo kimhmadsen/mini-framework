@@ -1,3 +1,7 @@
+/**
+ * @file
+ * Implements the DbPatient class
+ */
 #ifndef DBPATIENT_H_
 #define DBPATIENT_H_
 
@@ -13,6 +17,9 @@ using namespace std;
 
 enum Sex {male, female};
 
+/**
+ * Database Patient
+ */
 class DbPatient
 {
 public:

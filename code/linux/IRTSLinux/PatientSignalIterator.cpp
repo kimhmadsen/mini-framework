@@ -1,10 +1,7 @@
-/*
- * PatientSignalIterator.cpp
- *
- *  Created on: mar 31, 2008
- *      Author: MSO
+/**
+ * @file
+ * Implements the SignalIterator and AnnotIterator classes
  */
-
 #include "PatientSignalIterator.h"
 using namespace std;
 

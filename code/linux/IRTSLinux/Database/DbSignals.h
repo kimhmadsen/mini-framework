@@ -1,3 +1,7 @@
+/**
+ * @file
+ * Implements the DbSignals class
+ */
 #ifndef DBSIGNALS_H_
 #define DBSIGNALS_H_
 
@@ -7,6 +11,9 @@
 
 using namespace std;
 
+/**
+ * Database Signals
+ */
 class DbSignals
 {
 public:

@@ -1,3 +1,7 @@
+/**
+ * @file
+ * Implements the DbAnnotations class
+ */
 #include "DbAnnotations.h"
 
 DbAnnotations::DbAnnotations(char* record)

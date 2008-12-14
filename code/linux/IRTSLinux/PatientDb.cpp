@@ -1,3 +1,7 @@
+/**
+ * @file
+ * Implements the PatientDb class
+ */
 #include "PatientDb.h"
 #include <stdlib.h>
 #include <sstream>

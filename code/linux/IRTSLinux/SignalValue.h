@@ -1,6 +1,14 @@
+/**
+ * @file
+ * Implements the SignalValue and AnnotValue struct's
+ */
 #ifndef SIGNALVALUE_H_
 #define SIGNALVALUE_H_
 
+/**
+ * Structure for holding signal value.
+ *
+ */
 struct SignalValue
 {
 	float value;
@@ -8,6 +16,10 @@ struct SignalValue
 	int sample;
 };
 
+/**
+ * Structure for hold annotation values.
+ *
+ */
 struct AnnotValue
 {
 	float value;

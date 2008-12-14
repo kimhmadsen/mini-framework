@@ -1,10 +1,9 @@
-/*
- * DbEdr.h
- *
- *  Created on: 9-Dec-08
- *      Author: maria
+/**
+ * @file
+ * Implements the DbEdr class
+ * @date 2008-12-08
+ * @author maria
  */
-
 #ifndef DBEDR_H_
 #define DBEDR_H_
 
@@ -24,6 +23,9 @@ using namespace std;
 			/* quite a few more digits than we need :-) */
 #endif
 
+/**
+ * Database EDR
+ */
 class DbEdr
 {
 public:

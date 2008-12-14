@@ -1,6 +1,6 @@
 /**
- *
- *
+ * @file
+ * Implements the Patient class
  */
 #include "Patient.h"
 
