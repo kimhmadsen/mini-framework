@@ -3,6 +3,7 @@
 	<name>IRTSLinux</name>
 	<comment></comment>
 	<projects>
+		<project>minifw</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
