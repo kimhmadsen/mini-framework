@@ -42,54 +42,19 @@ int main(int argc, char* argv[])
 		host = inet_ntoa(*(struct in_addr *) *localHost->h_addr_list);
 	}
 
-	cout << "creating a DbPatient" << endl;
-	DbPatient dbPatient((char*)"100s");
-	Patient patient(&dbPatient);
-	cout << "info:\n" << patient.getInfo() << endl;
+	cout << "patient list: \n" << PatientDb::Instance()->GetPatientList()<< endl;
 
-	//	cout << "creating PatientDB" << endl;
-	//	Patient* patient2 = PatientDb::Instance()->GetPatient("0");
-	//	cout << "info:\n" << patient2->getInfo() << endl;
+	Patient* patient = PatientDb::Instance()->GetPatient("100s");
+	cout<< "selected patient:\n" << patient->getName() << patient->getInfo() << endl;
 
-	PatientHandler* handler = new PatientHandler(&patient);
 
+	PatientHandler* handler = new PatientHandler(patient);
 	LCDView view(handler);
-	pthread_create(&threadRemoteClient, NULL, RemoteClientThread,
-			(void*) handler);
+//	pthread_create(&threadRemoteClient, NULL, RemoteClientThread,
+//			(void*) handler);
 
 	handler->start();
-	//sleep(1000);
 
-	//handler->stop();
-
-	//cout << "I'm stopped" << endl;
-	//TODO: fix PatientDb !!!
-
-	/*	cout<<"creating PatientDB" <<endl;
-	 Patient* patient2 = PatientDb::Instance()->GetPatient("0");
-	 cout<<"info:\n" << patient2->getInfo() << endl;
-
-	 SignalIterator* signal = patient.getECG();
-	 AnnotIterator* annot = patient.getAnn();
-
-	 cout << "Signals" << endl << endl;
-	 while(!signal->IsDone())
-	 {
-	 SignalValue value = signal->CurrentItem();
-	 cout << value.time << "  " << value.value << "  " << value.value2 << endl;
-	 signal->Next();
-	 }
-
-	 cout << "Annotations" << endl << endl;
-	 while(!annot->IsDone())
-	 {
-	 AnnotValue value = annot->CurrentItem();
-	 cout << value.sample << "  " << value.value <<  endl;
-	 annot->Next();
-	 }
-
-	 cout << "DONE!" << endl;
-	 */
 	while (true)
 	{
 	}

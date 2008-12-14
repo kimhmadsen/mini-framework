@@ -14,12 +14,18 @@ LCDView::LCDView(PatientHandler *dm)
     isECG = true;
     isPULSE = true;
 
-    //if one elemement in a array initialised, the rest is initialised to default 0 in c++
+    pulse = 0;
+    //if one element in a array initialised, the rest is initialised to default 0 in c++
+    //actually.... it doesn't!
     for (int i = 0; i < rows; i++)
-        _signals[i][i] = 0;
+    {
+    	for(int j= 0; j<40; j++)
+    		_signals[i][j] = 0;
+    }
     for (int i = 0; i < 3; i++)
         fillcount[i] = 0;
     isActive = true;
+
 }
 
 LCDView::~LCDView()
@@ -35,12 +41,12 @@ void LCDView::Update(Subject *_sbj, Signaltypes signaltypes)
     case EDR:
         _signals[1][fillcount[EDR]]=_dm->getEDR();
         (fillcount[EDR])++;
-        if ((fillcount[EDR]) == 39)
+        if ((fillcount[EDR]) >= 10)
         {
             // do magic
             //delete [] _signals[0];
             //Draw();
-            for (int i = 0; i < 40; i++)
+            for (int i = 0; i < 10; i++)
                 _signals[0][i] = _signals[1][i];
             (fillcount[EDR]) =0;
             //Draw();
@@ -83,7 +89,7 @@ void LCDView::Draw()
         std::cout << "EDR values: " << std::endl;
         for (int d = 0; d < 2; d++)
         {
-            int untill = 40;
+            int untill = 10;
             for (int i = 0; i< untill; i++)
             {
                 std::cout << _signals[d][i] << " , ";

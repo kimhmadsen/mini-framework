@@ -23,10 +23,12 @@ static int nsig = 2;
 
 PatientHandler::PatientHandler(Patient* patient)
 {
-	_patient = patient;
+	setPatient(patient);
 	_lastECG = 0;
 	_lastEDR = 0;
 	_lastPulse = 0;
+
+	_running = false;
 
 	//creation of timer
 	_sig_spec.sigev_notify = SIGEV_SIGNAL;
@@ -47,9 +49,6 @@ PatientHandler::PatientHandler(Patient* patient)
 	if(sigaction(_sig_spec.sigev_signo, &action, NULL))
 		cout << "timer not connected";
 
-
-	//if (timer_connect (_timerid, (void *)PatientHandler::handler_wrapper, int(this))<0)
-	//	cout << "timer connect";
 }
 
 /*
@@ -73,11 +72,21 @@ void PatientHandler::start()
 
 	if (timer_settime (_timerid, 0, &_value, NULL)<0 )
 		cout << "timer settime";
+
+	_running = true;
+
+	Notify(Observer::STATE_CHANGE);
 }
 
 void PatientHandler::setPatient( Patient* patient )
 {
 	_patient = patient;
+	_iterator = _patient->getECG();
+	_pulseIterator = _patient->getAnn();
+	_edrGenerator = _patient->getEdrGenerator();
+
+	Notify(Observer::PATIENT_CHANGE);
+
 }
 
 void PatientHandler::stop()
@@ -90,6 +99,10 @@ void PatientHandler::stop()
 
 	if (timer_settime (_timerid, 0, &_value, NULL)<0 )
 			cout << "timer settime";
+
+	_running = false;
+
+	Notify(Observer::STATE_CHANGE);
 }
 
 /**
@@ -113,10 +126,6 @@ void PatientHandler::handler()
 	//struct timespec time_beginning;
 	//struct timespec time_end;
 
-	static SignalIterator* iterator = _patient->getECG();
-	static AnnotIterator* pulseIterator = _patient->getAnn();
-	static EdrGenerator* edrGenerator = _patient->getEdrGenerator();
-
 	SignalValue signalValue;
 	AnnotValue pulseValue;
 	static int counter = 0;
@@ -124,8 +133,8 @@ void PatientHandler::handler()
 
 	//clock_gettime(CLOCK_REALTIME, &time_beginning);
 
-	signalValue = iterator->CurrentItem();
-	pulseValue = pulseIterator->CurrentItem();
+	signalValue = _iterator->CurrentItem();
+	pulseValue = _pulseIterator->CurrentItem();
 
 
 	if(signalValue.sample == pulseValue.sample)
@@ -135,25 +144,25 @@ void PatientHandler::handler()
 		//Notify(Observer::EDR);
 
 		/*Beats per minute*/
-		if((pulseValue.sample - lastPulseTime)>0 && pulseIterator->CurrentIsPulse()) //if it is <0, we have just restarted the iterator
+		if((pulseValue.sample - lastPulseTime)>0 && _pulseIterator->CurrentIsPulse()) //if it is <0, we have just restarted the iterator
 		{
 			_lastPulse = ((pulseValue.sample - lastPulseTime)/(_patient->samplefreq))*60.0;
 			Notify(Observer::PULSE);
 		}
-		if(pulseIterator->CurrentHasEdr())
+		if(_pulseIterator->CurrentHasEdr())
 		{
-			_lastEDR = edrGenerator->GetEdr(pulseValue.sample);
+			_lastEDR = _edrGenerator->GetEdr(pulseValue.sample);
 			Notify(Observer::EDR);
 		}
 		lastPulseTime = pulseValue.sample;
-		pulseIterator->Next();
+		_pulseIterator->Next();
 		pulse = true;
 
 		/* the pulse record has more values than the signal record,
 		 * so we have to go to the start of the pulse when we go to the start of the signal
 		 */
 		if(pulseValue.sample >= _patient->getNumECGSamples())
-			pulseIterator->First();
+			_pulseIterator->First();
 	}
 	if(counter== 0) //putting out only 1 every 10 values
 	{
@@ -165,7 +174,7 @@ void PatientHandler::handler()
 	counter++;
 	if (counter == 10) counter = 0;
 
-	iterator->Next();
+	_iterator->Next();
 
 	//clock_gettime(CLOCK_REALTIME, &time_end);
 	//long nanos = (long)(time_end.tv_sec)*1E9 + time_end.tv_nsec -
@@ -203,127 +212,14 @@ float PatientHandler::getPulse(){
 	return _lastPulse;
 }
 
-/**
- * Method to calculate the baseline of the signal.
- * Used for calculating the edr value.
- * The calculation is wrong, but it doesn't crash now!
- * @param signal_number signal 0 or signal 1
- * @param t sample number (time)
- * @return the baseline of the signal
- */
-float PatientHandler::baseline(int signal_number, long t)
+string PatientHandler::getName()
 {
-	int c, i;
-	static long t0;
-	int blen = _patient->samplefreq; /*baseline length*/
-
-	if (signal_number < 0 || signal_number >= nsig) return 0; /* nsig = number of signals -> 1 o 2*/
-	if (t0 == 0L)
-		for (c = 0, bbuf[c][0] = sample(c, 0L) * (2*blen+1); c < nsig; c++)
-			for (i = 1; i < VBL; i++)
-				bbuf[c][i] = bbuf[c][0];
-	while (t0 < t)
-		for (c = 0; c < nsig; c++)
-			bbuf[c][++t0 & (VBL-1)] += sample(c, t+blen) - sample(c, abs(t-blen)); //I decided to put abs myself, I'm sure it's wrong!
-	return bbuf[signal_number][t & (VBL-1)]/blen;
-
-}
-/**
- * Method to calculate the x and y of the signal.
- * Used for calculating the edr value.
- * @param t0 sample number from
- * @param t1 sample number to
- * @return the x and y of the signal
- */
-void PatientHandler::getxy(long t0, long t1)
-{
-	for (x = y = 0.0; t0 <= t1; t0++) {
-		x += (sample(0, t0) - baseline(0, t0));
-		if (nsig > 1) y += (sample(1, t0) - baseline(1, t0));
-	}
-
+	return _patient->getName();
 }
 
-/**
- * Method to get a sample of a signal.
- * Used for calculating the edr value.
- * @param signal_number signal 0 or signal 1
- * @param sample sample number (time)
- * @return the value of the sample
- */
-/*
-float PatientHandler::sample(int signal_number, long sample)
+bool PatientHandler::getState()
 {
-	SignalValue signalValue = _patient->getECG()->at(sample);
-	switch(signal_number)
-	{
-		case 0:
-			return signalValue.value;
-		case 1:
-			return signalValue.value2;
-		default:
-			return 0;
-	}
+	return _running;
 }
-*/
 
-/**
- * Calculates the edr of the signal
- * @returns the edr value
- */
 
-/*
-float PatientHandler::edr()
-{
-	double d, dn, r, theta;
-	static int xc, yc, thc;
-	static double xd, yd, td, xdmax, ydmax, tdmax, xm, ym, tm;
-
-	if (x == 0 && y == 0) return (0);
-	switch (nsig) {
-	  case 1:
-	d = x - xm;
-	if (xc < 500) dn = d/++xc;
-	else if ((dn = d/xc) > xdmax) dn = xdmax;
-	else if (dn < -xdmax) dn = -xdmax;
-	xm += dn;
-	xd += fabs(dn) - xd/xc;
-	if (xd < 1.) xd = 1.;
-	xdmax = 3.*xd/xc;
-	r = d/xd;
-	break;
-	  case 2:
-	d = x - xm;
-	if (xc < 500) dn = d/++xc;
-	else if ((dn = d/xc) > xdmax) dn = xdmax;
-	else if (dn < -xdmax) dn = -xdmax;
-	xm += dn;
-	xd += fabs(dn) - xd/xc;
-	if (xd < 1.) xd = 1.;
-	xdmax = 3.*xd/xc;
-	d = y - ym;
-	if (yc < 500) dn = d/++yc;
-	else if ((dn = d/yc) > ydmax) dn = ydmax;
-	else if (dn < -ydmax) dn = -ydmax;
-	ym += dn;
-	yd += fabs(dn) - yd/yc;
-	if (yd < 1.) yd = 1.;
-	ydmax = 3.*yd/yc;
-	theta = atan2(x, y);
-	d = theta - tm;
-	if (d > PI) d -= 2.*PI;
-	else if (d < -PI) d += 2.*PI;
-	if (thc < 500) dn = d/++thc;
-	else if ((dn = d/thc) > tdmax) dn = tdmax;
-	else if (dn < -tdmax) dn = -tdmax;
-	if ((tm += dn) > PI) tm -= 2.*PI;
-	else if (tm < -PI) tm += 2.*PI;
-	td += fabs(dn) - td/thc;
-	if (td < 0.001) td = 0.001;
-	tdmax = 3.*td/thc;
-	r = d/td;
-	break;
-	}
-	return r*50.;
-}
-*/

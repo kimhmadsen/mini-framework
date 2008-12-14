@@ -37,31 +37,28 @@ public:
     float getECG();
     float getPulse();
     float getEDR();
+    string getName();
+    bool getState();
 
 private:
 	Patient* _patient;
+	bool _running;
 
 	static void handler_wrapper(int signo, siginfo_t *info, void *context);
     void handler();
-//    float edr();
-//    float sample(int signal_number, long sample_number);
-    void getxy(long t0, long t1);
-    float baseline(int signal_number, long t);
 	long _ticks;
-
-
-    //DAC dac;
-    //DigitalOutput digitalOutput;
 
     timer_t _timerid;
     struct itimerspec _value;
     struct sigevent _sig_spec;
-    struct sigaction _action;
     float _lastECG;
     float _lastPulse;
     float _lastEDR;
 
-    double x, y;
+    SignalIterator* _iterator;
+    AnnotIterator* _pulseIterator;
+    EdrGenerator* _edrGenerator;
+
 
 };
 

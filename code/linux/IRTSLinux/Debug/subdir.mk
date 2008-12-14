@@ -14,17 +14,6 @@ CPP_SRCS += \
 ../Subject.cpp \
 ../main.cpp 
 
-OBJS += \
-./EdrGenerator.o \
-./LCDView.o \
-./Patient.o \
-./PatientDb.o \
-./PatientHandler.o \
-./PatientSignalIterator.o \
-./RemoteClient.o \
-./Subject.o \
-./main.o 
-
 CPP_DEPS += \
 ./EdrGenerator.d \
 ./LCDView.d \
@@ -36,12 +25,23 @@ CPP_DEPS += \
 ./Subject.d \
 ./main.d 
 
+OBJS += \
+./EdrGenerator.o \
+./LCDView.o \
+./Patient.o \
+./PatientDb.o \
+./PatientHandler.o \
+./PatientSignalIterator.o \
+./RemoteClient.o \
+./Subject.o \
+./main.o 
+
 
 # Each subdirectory must supply rules for building sources it contributes
 %.o: ../%.cpp
 	@echo 'Building file: $<'
 	@echo 'Invoking: GCC C++ Compiler'
-	g++ -I"/home/kim/Dokumenter/mini-framework/code/linux/minifw" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o"$@" "$<"
+	g++ -I"/home/maria/tekniskIT/drts/svn/mini-framework/code/linux/minifw" -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -o"$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

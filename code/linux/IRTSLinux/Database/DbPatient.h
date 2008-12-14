@@ -24,15 +24,17 @@ public:
 	double			getSampleFreq();
 	long			getNumECGSamples();
 	EdrGenerator*	getEdrGenerator();
-/*	string          getName();
+	string          getName();
 	Sex             getSex();
 	int             getAge();
-*/
+
 private:
 	SignalIterator* _signalIterator;
 	AnnotIterator*  _annotIterator;
 	EdrGenerator*	_edrGenerator;
 	long			_ECGsize;
+	Sex				_sex;
+	int				_age;
 
 	char* _record;
 };
