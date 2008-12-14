@@ -10,16 +10,28 @@
 
 #include "sockstream.h"
 #include "sockconnector.h"
+#include "PatientHandler.h"
+#include "Observer.hpp"
 
-class RemoteClient
+class RemoteClient: protected Observer
 {
-	SockStream patientStream;
-	SOCK_Connector patientConnector;
+	short serverPort;
+	char* serverIp;
+	PatientHandler* patientHandler;
+	SockStream remoteAdminStream;
+	SOCK_Connector remoteAdminConnector;
 
 public:
-	RemoteClient( short serverPort, char* serverIp );
+	RemoteClient(short serverPort, char* serverIp,
+			PatientHandler* patientHandler);
 	virtual ~RemoteClient();
-	int Run(void);
+	// obsever functions
+	void Update(Subject* theModel, Signaltypes signaltype);
+
+
+	int Connect(void);
+	int Disconnect(void);
+	void Run(void);
 };
 
 #endif /* REMOTECLIENT_H_ */

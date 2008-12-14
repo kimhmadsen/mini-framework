@@ -6,72 +6,140 @@
  */
 
 #include <iostream>
+#include <string.h>
 #include "RemoteClient.h"
+#include "PatientDb.h"
 
-RemoteClient::RemoteClient(short serverPort, char* serverIp)
+using namespace std;
+
+RemoteClient::RemoteClient(short serverPort, char* serverIp,
+		PatientHandler* patientHandler)
 {
+	this->serverIp = serverIp;
+	this->serverPort = serverPort;
+	this->patientHandler = patientHandler;
 
-	InetAddr patientAddr(serverPort, serverIp);
-
-	patientConnector.connect(patientStream, patientAddr);
-	std::cout << "Patient value stream connected on port " << serverPort
-			<< " \n";
-
+	patientHandler->Attach(this);
+	this->isSTATE_CHANGE = true; // get notified about state changes.
+	this->isPATIENT_CHANGE = true; // get notified about patient change.
 }
 
 RemoteClient::~RemoteClient()
 {
-
+	patientHandler->Detach(this);
 }
 
-int RemoteClient::Run(void)
+int RemoteClient::Connect(void)
 {
+	InetAddr patientAddr(serverPort, serverIp);
 
-	//	int i = 0;
-	//	while (running)
-	//	{
-	//		char buf[256];
-	//		memset(buf, 0, sizeof buf);
-	//		int count;
-	//		cout << "request " << i << endl;
-	//		if (run.compare("run") == 0)
-	//		{
-	//			std::cout
-	//					<< "Type the cpr number of a patient to get the information: \n";
-	//			std::cin.getline(buf, sizeof buf);
-	//			count = std::cin.gcount();
-	//		}
-	//		else //testing...
-	//		{
-	//			char cpr[] = "090382-3542";
-	//			strcpy(buf, cpr);
-	//			count = strlen(buf);
-	//		}
-	//		patientStream.send_n(buf, count, 0);
-	//		char buf_in[256];
-	//		memset(buf_in, 0, sizeof buf_in);
-	//		count = patientStream.recv(buf_in, sizeof buf_in, 0);
-	//		std::cout << "\n" << buf_in << std::endl;
-	//
-	//		i++;
-	//
-	//		if(run.compare("run")!= 0 && i == numRemoteClient();berOfRequests) //run == "test1" or run == "test2"
-	//		running = false;
-	//
-	//		if (run.compare("test2") == 0 && running)
-	//		{
-	//			patientConnector.close(patientStream);
-	//			patientConnector.connect(patientStream, patientAddr);
-	//			std::cout << "Patient value stream connected on port "
-	//					<< PATIENT_PORT << " \n";
-	//
-	//			/*			SockStream patientStream;
-	//			 SOCK_Connector patientConnector;
-	//			 patientConnector.connect (patientStream, patientAddr);
-	//			 std::cout << "Patient value stream connected on port " << PATIENT_PORT << " \n";
-	//			 */
-	//		}
-	//	}
+	remoteAdminConnector.connect(remoteAdminStream, patientAddr);
+	std::cout << "Patient value stream connected on port " << serverPort
+			<< " \n";
 
 	return 0;
+}
+
+int RemoteClient::Disconnect(void)
+{
+	remoteAdminConnector.close(remoteAdminStream);
+	return 0;
+}
+
+void RemoteClient::Run(void)
+{
+
+	while (true)
+	{
+		string command;
+		char buf[256];
+		memset(buf, 0, sizeof(buf));
+		int count;
+
+		count = remoteAdminStream.recv(buf, sizeof(buf), 0);
+		if (count > 0)
+		{
+			command.assign(buf);
+
+			switch (command[0])
+			{
+			case 'G': // get patient list
+			{
+				string patientList;
+				std::cout << "\nRemoteClient: command G" << std::endl;
+				patientList = PatientDb::Instance()->GetPatientList();
+				patientList.copy(buf, sizeof(&buf[2]), 0);
+				count = patientList.size();
+				break;
+			}
+			case 'P': // set current patie	nt
+			{
+				string patientName;
+				std::cout << "\nRemoteClient: command P" << std::endl;
+				patientName = command.substr(2);
+				Patient* pat = PatientDb::Instance()->GetPatient(patientName );
+				patientHandler->setPatient( pat );
+				// patientHandler
+				break;
+			}
+			case 'S': // start or stop the simulation.
+			{
+				std::cout << "\nRemoteClient: command S" << std::endl;
+				int pos;
+				pos = command.find("start", 1);
+				if (pos != -1)
+				{
+					const char startedStr[] = "G started\n";
+					count = sizeof(startedStr);
+					patientHandler->start();
+					strncpy(buf, startedStr, count);
+				}
+				pos = command.find("stop", 1);
+				if (pos != -1) // is -1 the right to look for?
+				{
+					const char stoppedStr[] = "G stopped\n";
+					count = sizeof(stoppedStr);
+					patientHandler->stop();
+					strncpy(buf, stoppedStr, count);
+				}
+
+				break;
+			}
+			default:
+				std::cerr << "\n" << "RemoteClient: unknown command: " << buf
+						<< std::endl;
+				break;
+
+			}
+
+			remoteAdminStream.send_n(buf, count, 0);
+		}
+	}
+
+	return;
+}
+
+void RemoteClient::Update(Subject *_sbj, Signaltypes signaltypes)
+{
+	char buf[512];
+	int count;
+
+	remoteAdminStream.send_n(buf, count, 0);
+	//std::cout << "HEY - UPDATE" << std::endl;
+	switch (signaltypes)
+	{
+	case EDR:
+		break;
+	case ECG:
+		break;
+	case PULSE:
+		break;
+	case STATE_CHANGE:
+		break;
+	case PATIENT_CHANGE:
+		break;
+	default:
+		break;
+	}
+
 }

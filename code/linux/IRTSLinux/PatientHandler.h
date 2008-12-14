@@ -33,6 +33,7 @@ public:
 	~PatientHandler();
 	void stop(void);
 	void start(void);
+	void setPatient( Patient* patient );
     float getECG();
     float getPulse();
     float getEDR();

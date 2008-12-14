@@ -75,6 +75,11 @@ void PatientHandler::start()
 		cout << "timer settime";
 }
 
+void PatientHandler::setPatient( Patient* patient )
+{
+	_patient = patient;
+}
+
 void PatientHandler::stop()
 {
 	_value.it_value.tv_sec = 0;
