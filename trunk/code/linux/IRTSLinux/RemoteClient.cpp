@@ -162,7 +162,7 @@ void RemoteClient::Update(Subject *_sbj, Signaltypes signaltypes)
 {
 	char buf[256];
 	memset(buf, 0, sizeof(buf));
-	int count;
+	int count = 0;
 
 	switch (signaltypes)
 	{
