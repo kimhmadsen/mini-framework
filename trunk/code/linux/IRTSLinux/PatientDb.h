@@ -22,7 +22,6 @@ public:
 	static PatientDb* Instance();
 	string GetPatientList();
 	Patient* GetPatient( char* name );
-	vector<Patient*> _patientVector;
 	vector<char*> _patients;
 
 protected:
