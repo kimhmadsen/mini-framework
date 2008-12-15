@@ -12,7 +12,7 @@ class Guard
 public:
 
 	Guard(ThreadMutex &lock_)
-		:lock(lock), owner(false)
+		:lock(&lock_), owner(false)
 	{
 		lock->Acquire();
 		owner = true	;
