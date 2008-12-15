@@ -82,7 +82,7 @@ void LCDView::Draw()
     if (isActive)
     {
 
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < 5; i++)
             std::cout << std::endl;
         std::cout << "LCD VIEW" << std::endl;
         std::cout << "PULSE: " << pulse << std::endl << std::endl;

@@ -30,9 +30,9 @@ int RemoteClient::Connect(void)
 {
 	InetAddr patientAddr(serverPort, serverIp);
 
+	std::cout << "Connecting to IP "<< serverIp << " and port " << serverPort << endl;
 	remoteAdminConnector.connect(remoteAdminStream, patientAddr);
-	std::cout << "Patient value stream connected on port " << serverPort
-			<< " \n";
+	std::cout << "Patient value stream connected on port " << serverPort << endl;
 
 	return 0;
 }
@@ -57,7 +57,7 @@ void RemoteClient::Run(void)
 		if (count > 0)
 		{
 			command.assign(buf);
-
+			cout << "command received: "<< command << endl;
 			switch (command[0])
 			{
 			case 'G': // get patient list
@@ -111,6 +111,7 @@ void RemoteClient::Run(void)
 			}
 
 			remoteAdminStream.send_n(buf, count, 0);
+			sleep(1);
 		}
 	}
 
@@ -160,5 +161,11 @@ void RemoteClient::Update(Subject *_sbj, Signaltypes signaltypes)
 	default:
 		break;
 	}
-	remoteAdminStream.send_n(buf, count, 0);
+	if(count > 0)
+	{
+		remoteAdminStream.send_n(buf, count, 0);
+
+		cout << "sending to server: " << buf << endl;
+
+	}
 }

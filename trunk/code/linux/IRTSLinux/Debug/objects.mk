@@ -2,6 +2,6 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-USER_OBJS :=
-
 LIBS := -lwfdb -lminifw -lrt -lpthread
+
+USER_OBJS :=
