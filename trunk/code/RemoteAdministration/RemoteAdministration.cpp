@@ -2,16 +2,8 @@
 //
 
 /**
- * @mainpage
- * The server application shall handle the following events:
- * - an alarm event (carrying a priority field and a text string)
- * - a patient value event (carrying a type field and a value field)
- * - a log event (carrying a text string)
- *
- * 
- * Each time an alarm is received the application shall display the last 10 alarms on the screen in priority order with a time stamp.
- * The received patient values are displayed as they are received.
- * Received log events are displayed as the are received (in real life: should be stored on a log file).
+ * @page RemoteAdministration 
+ * The server can control and monitor a number for distributed PSIMU's
  *
  */
 
