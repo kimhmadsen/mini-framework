@@ -26,7 +26,7 @@ public:
 	static Reactor* instance();
 protected:
 	Reactor(void){}
-	~Reactor(void){}
+	virtual ~Reactor(void){}
 private:
 
 };

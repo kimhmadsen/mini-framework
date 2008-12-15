@@ -14,7 +14,7 @@ public:
 	{
 		this->reactor = reactor;
 		reactor->RegisterHandler( this, ACCEPT_EVENT );
-
+		this->ltp = ltp;
 	};
 	
 	~LFAcceptor<EVENT_HANDLER>(void)
@@ -26,9 +26,9 @@ public:
 	{
 
 		//deactivate the handle.
-		ltp->DeactivateHandle( handle, et );
+//		ltp->DeactivateHandle( handle, et );
 
-		ltp->PromoteNewLeader();
+//		ltp->PromoteNewLeader();
 
 		// Handle the event
 		//theHandler->HandleEvent(h, et );
@@ -45,7 +45,7 @@ public:
 			this->reactor->RegisterHandler( lfeh, READ_EVENT );
 		}
 		//reactivate the handle.
-		ltp->ReactivateHandle( handle, et );
+//		ltp->ReactivateHandle( handle, et );
 
 	}
 

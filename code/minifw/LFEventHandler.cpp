@@ -4,11 +4,12 @@
 LFEventHandler::LFEventHandler(EventHandler *eh, LFThreadPool *tp)
 : theHandler(eh), ltp(tp)
 {
-
+	SetHandle( eh->GetHandle() );
 }
 
 LFEventHandler::~LFEventHandler(void)
 {
+	delete this->theHandler;
 }
 
 void LFEventHandler::HandleEvent(HANDLE h, Event_Type et)

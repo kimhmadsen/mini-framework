@@ -41,7 +41,7 @@ void ClientEventHandler::HandleEvent ( HANDLE handle, Event_Type event_type )
 	switch( event_type )
 	{
 	case READ_EVENT:
-		char input[256];
+		char input[512];
 		int result;
 		result = peerStream.recv( input, sizeof(input), 0 );
 
@@ -58,12 +58,18 @@ void ClientEventHandler::HandleEvent ( HANDLE handle, Event_Type event_type )
 				currentPatient.assign(input+2,input+result);
 				break;
 			case 'S':
-				if(result == 7)
+				if( strncmp("S started", input, 7 )== 0 )
 					status = true;
-				else if(result = 6)
+				else
 					status = false;
 				break;
 			}
+		}
+		else
+		{
+			peerStream.close();
+			//reactor->RemoveHandler( this, CLOSE_EVENT );
+			throw( "Client disconnected\n" );
 		}
 		break;
 
@@ -134,8 +140,11 @@ void ClientEventHandler::SetRunning(bool desired)
 
 void ClientEventHandler::SelectPatient(std::string data)
 {
+	int whiteSpace;
 	std::string temp ="P ";
-	temp.append(data);
+	whiteSpace = data.find( " " );
+
+	temp.append(data.substr(0,whiteSpace));
 	peerStream.send(temp.c_str(),data.length()+2,0);
 
 	//currentPatient = data; //Just local testing

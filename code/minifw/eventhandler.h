@@ -29,9 +29,10 @@ class EventHandler
 {
 public:
 	EventHandler(void);
-	~EventHandler(void);
+	virtual ~EventHandler(void);
 	virtual void HandleEvent(HANDLE handle, Event_Type et ) = 0;
 	virtual HANDLE GetHandle(void);
+	virtual void SetHandle(HANDLE handle);
 private:
 	HANDLE handle;
 };
