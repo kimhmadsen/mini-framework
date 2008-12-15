@@ -32,10 +32,22 @@ void* RemoteClientThread(void* patientHandler)
 
 	return NULL;
 }
+void* LCDViewThread(void* patientHandler)
+{
+
+	LCDView view((PatientHandler*)patientHandler);
+
+	while(true)
+	{
+		pause();
+	}
+	return NULL;
+}
 
 int main(int argc, char* argv[])
 {
 	pthread_t threadRemoteClient;
+	pthread_t threadLCDView;
 
 	if (argc > 1)
 	{
@@ -54,15 +66,21 @@ int main(int argc, char* argv[])
 
 
 	PatientHandler* handler = new PatientHandler(patient);
-	LCDView view(handler);
-//	pthread_create(&threadRemoteClient, NULL, RemoteClientThread,
-//			(void*) handler);
+	//LCDView view(handler);
+	pthread_create(&threadLCDView, NULL, LCDViewThread,
+			(void*) handler);
 
+	pthread_create(&threadRemoteClient, NULL, RemoteClientThread,
+			(void*) handler);
+
+	cout << "I'm starting" << endl;;
 	handler->start();
+	cout << "I'm started";
+	sleep(1);
 
-	while (true)
-	{
-	}
+	handler->stop();
+	cout << "I'm stopped";
+	while(true){}
 	return 0;
 
 }
