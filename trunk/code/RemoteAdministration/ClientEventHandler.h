@@ -12,6 +12,7 @@ class ClientEventHandler :
 	public EventHandler
 {
 public:
+	ClientEventHandler(); //Just for local testing
 	ClientEventHandler( const SockStream &stream, Reactor *reactor);
 	~ClientEventHandler(void);
 
@@ -22,9 +23,11 @@ public:
 	
 	std::vector <std::string> GetPatientList();
 	void SetRunning(bool);
+	void SetRunning();
 	void SelectPatient(std::string);
 	bool IsNewPatientList();
 	void RequestPatientList();
+	std::vector <std::string> patientList; //public for local testing
 private:
 	// Receives logging records from a connected client
 	void SetPatientList(char *data,int res);
@@ -33,7 +36,7 @@ private:
 	Reactor *reactor;
 	bool status;
 	std::string currentPatient;
-	std::vector <std::string> patientList;
+//	std::vector <std::string> patientList;
 	bool isPatientListNew;
 
 };
