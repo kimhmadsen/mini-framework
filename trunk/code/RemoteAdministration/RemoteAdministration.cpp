@@ -58,10 +58,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	//cehw->SetRunning(true);
 	LFThreadPool lftp(SelectReactor::instance());
 
-	for(int i = 0; i < 31; ++i)
+	for(int i = 0; i < 5; ++i)
 		ThreadManager::Instance()->Spawn(worker_thread, &lftp);
 
-	lftp.JoinPool();
+	//lftp.JoinPool();
 
 	DoTheUI();
 	for(;;)
