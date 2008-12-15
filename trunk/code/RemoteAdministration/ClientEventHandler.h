@@ -9,7 +9,8 @@
 #include "ClientList.h"
 
 /**
- * Responsible for 
+Responsible for handling all event related to a client
+
  */
 class ClientEventHandler :
 	public EventHandler
