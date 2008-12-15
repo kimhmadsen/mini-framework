@@ -1,18 +1,30 @@
+
 /**
  * @file
  * Implements the DbAnnotations class
  */
 #include "DbAnnotations.h"
 
+/**
+ * Constructor for DbAnnotations
+ * @param record record name of the annotations file
+ */
 DbAnnotations::DbAnnotations(char* record)
 {
 	_record = record;
 }
+
+/**
+ * Default destructor for DbAnnotations
+ */
 DbAnnotations::~DbAnnotations()
 {
 
 }
 
+/**
+ * Sets the pointer into the first element of the annotations
+ */
 void DbAnnotations::First()
 {
 	WFDB_Anninfo a;

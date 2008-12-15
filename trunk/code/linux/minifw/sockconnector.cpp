@@ -9,7 +9,7 @@ SOCK_Connector::~SOCK_Connector(void)
 {
 }
 
-void SOCK_Connector::connect( SockStream &stream, InetAddr addr )
+int SOCK_Connector::connect( SockStream &stream, InetAddr addr )
 {
 	int status;
 
@@ -21,6 +21,7 @@ void SOCK_Connector::connect( SockStream &stream, InetAddr addr )
 		//printf("connect failed with error %d\n", WSAGetLastError());
         fprintf(stderr, "Connect failed.\n");
     }
+    return status;
 }
 void SOCK_Connector::close( SockStream &stream)
 {

@@ -8,6 +8,7 @@
 
 #include "Observer.hpp"
 #include "PatientHandler.h"
+#include "PatientDb.h"
 
 /**
 * @ingroup view
@@ -48,6 +49,8 @@ public:
     * set and cleat the active flag.
     */
     void SetActive(bool);
+
+    void Run(void);
 private:
     PatientHandler *_dm; ///< reference the pateint handler
     static const int rows = 4; ///< the number of rows
@@ -55,6 +58,7 @@ private:
     int pulse; ///< the current pulse
     int fillcount[3]; ///< the fill count
     bool isActive; ///< holds the active flag
+    void printMenu(void);
 };
 
 #endif

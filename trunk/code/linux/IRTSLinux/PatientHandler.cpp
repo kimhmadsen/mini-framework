@@ -1,3 +1,4 @@
+
 /**
  * @file
  * Implements the PatientHandler class
@@ -58,20 +59,12 @@ PatientHandler::~PatientHandler()
 
 void PatientHandler::start()
 {
-/*
-	_value.it_value.tv_sec = 0;
-	_value.it_value.tv_nsec = 1;
 
-	double interval = (double) 1E9 / (double) _patient->samplefreq;
-	_value.it_interval.tv_sec = (long) interval / (long) 1E9;
-	_value.it_interval.tv_nsec = (long) interval % (long) 1E9;
-
-	if (timer_settime(_timerid, 0, &_value, NULL) < 0)
-		cout << "timer settime";
-*/
 	_running = true;
-
+	//cout << "patientHandler running : " << _running << endl;
 	Notify(Observer::STATE_CHANGE);
+	//cout << "notified running : " << _running << endl;
+
 }
 
 void PatientHandler::setPatient(Patient* patient)
@@ -81,9 +74,11 @@ void PatientHandler::setPatient(Patient* patient)
 	_pulseIterator = _patient->getAnn();
 	_edrGenerator = _patient->getEdrGenerator();
 
+
 	//start timer
 	_value.it_value.tv_sec = 0;
 	_value.it_value.tv_nsec = 1;
+
 
 	double interval = (double) 1E9 / (double) _patient->samplefreq;
 	_value.it_interval.tv_sec = (long) interval / (long) 1E9;
@@ -99,16 +94,6 @@ void PatientHandler::setPatient(Patient* patient)
 
 void PatientHandler::stop()
 {
-/*
-	_value.it_value.tv_sec = 0;
-	_value.it_value.tv_nsec = 0;
-
-	_value.it_interval.tv_sec = 0;
-	_value.it_interval.tv_nsec = 0;
-
-	if (timer_settime(_timerid, 0, &_value, NULL) < 0)
-		cout << "timer settime";
-*/
 	_running = false;
 
 	Notify(Observer::STATE_CHANGE);
@@ -149,10 +134,6 @@ void PatientHandler::handler()
 
 		if (signalValue.sample == pulseValue.sample)
 		{
-			//_lastEDR = this->edr();
-
-			//Notify(Observer::EDR);
-
 			/*Beats per minute*/
 			if ((pulseValue.sample - lastPulseTime) > 0
 					&& _pulseIterator->CurrentIsPulse()) //if it is <0, we have just restarted the iterator
