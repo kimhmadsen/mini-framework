@@ -30,7 +30,15 @@ public:
 	 * @param o Observer
 	 */
 	virtual void Attach(Observer *);
+
+	/**
+	 * Attach an observer to the subject
+	 */
 	virtual void Detach(Observer *);
+
+	/**
+	 * Notifies the changes in the subject to the different observers
+	 */
 	virtual void Notify(Observer::Signaltypes signaltypes);
 	Subject()
 	{

@@ -1,3 +1,4 @@
+
 /**
  * @file
  * Implements the DbPatient class
@@ -6,7 +7,10 @@
 #include <wfdb/wfdb.h>
 #include <sstream>
 
-
+/**
+ * Constructor for DbPatient
+ * @param record record name of the database
+ */
 DbPatient::DbPatient(char* record)
 {
 	_record = record;
@@ -38,12 +42,25 @@ DbPatient::DbPatient(char* record)
 
 
 }
+
+/**
+ * Default destructor for DbPatient
+ */
 DbPatient::~DbPatient(){}
 
+/**
+ * Gets the number of samples in the signal file
+ * @return number of samples
+ */
 long DbPatient::getNumECGSamples()
 {
 	return _ECGsize;
 }
+
+/**
+ * Gets the information string from the database
+ * @return information string
+ */
 string DbPatient::getInformation()
 {
 	string info = "";
@@ -59,34 +76,66 @@ string DbPatient::getInformation()
 	}
 	return info;
 }
+
+/**
+ * Gets the sample frequency for the ECG signals
+ * @return sample frequency
+ */
 double DbPatient::getSampleFreq()
 {
 	return sampfreq(_record);
 }
+
+/**
+ * Gets and object to calculate EDR
+ * @return EdrGenerator
+ */
 EdrGenerator* DbPatient::getEdrGenerator()
 {
 	return _edrGenerator;
 }
 
+/**
+ * Gets the name (or patient record id) of the patient
+ * @return string name
+ */
 string DbPatient::getName()
 {
 	return _record;
 }
+
+/**
+ * Gets the age of the patient
+ * @return integer representing years. Returns -1 if the age is not known.
+ */
 int DbPatient::getAge()
 {
 	return _age;
 }
 
+/**
+ * Gets the sex of the patient
+ * @return enum Sex
+ */
 Sex DbPatient::getSex()
 {
 	return _sex;
 }
 
+/**
+ * Gets a pointer to the iterator for the signals
+ * @return SignalIterator
+ */
 SignalIterator* DbPatient::getSignals()
 {
 	return _signalIterator;
 }
 
+
+/**
+ * Gets a pointer to the iterator for the annotations
+ * @return AnnotIterator
+ */
 AnnotIterator*  DbPatient::getAnnotations()
 {
 	return _annotIterator;

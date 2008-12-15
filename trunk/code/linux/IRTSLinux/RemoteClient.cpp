@@ -1,3 +1,4 @@
+
 /**
  * @file
  * Implements the RemoteClient class
@@ -9,6 +10,12 @@
 
 using namespace std;
 
+/**
+ * Constructor for the RemoteClient
+ * @param serverPort port in the server
+ * @param serverIp IP of the server
+ * @param patientHandler pointer to the patient handler we want to attach to
+ */
 RemoteClient::RemoteClient(short serverPort, char* serverIp,
 		PatientHandler* patientHandler)
 {
@@ -21,11 +28,18 @@ RemoteClient::RemoteClient(short serverPort, char* serverIp,
 	this->isPATIENT_CHANGE = true; // get notified about patient change.
 }
 
+/**
+ * Destructor for RemoteClient
+ */
 RemoteClient::~RemoteClient()
 {
 	patientHandler->Detach(this);
 }
 
+/**
+ * Connects to the server
+ * @return status on the connect to the socket
+ */
 int RemoteClient::Connect(void)
 {
 	InetAddr patientAddr(serverPort, serverIp);
@@ -43,12 +57,18 @@ int RemoteClient::Connect(void)
 	return status;
 }
 
+/**
+ * Closes the connection with the server
+ */
 int RemoteClient::Disconnect(void)
 {
 	remoteAdminConnector.close(remoteAdminStream);
 	return 0;
 }
 
+/**
+ * Listens to the socket for new commands and reacts to them
+ */
 void RemoteClient::Run(void)
 {
 	cout << "RemoteClient running" << endl;
@@ -133,6 +153,11 @@ void RemoteClient::Run(void)
 	return;
 }
 
+/**
+* callback function part of the observer pattern. Called from the model when ever it changes.
+* @param _sbj reference to the patient handler
+* @param signaltype the signaltype which has changed.
+*/
 void RemoteClient::Update(Subject *_sbj, Signaltypes signaltypes)
 {
 	char buf[256];

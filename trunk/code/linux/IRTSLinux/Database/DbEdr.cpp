@@ -1,3 +1,4 @@
+
 /**
  * @file
  * Implements the PatientHandler class
@@ -6,6 +7,10 @@
  */
 #include "DbEdr.h"
 
+/**
+ * Constructor for DbEdr
+ * @param record record name of the annotations file
+ */
 DbEdr::DbEdr(char* record)
 {
 	_record = record;
@@ -13,11 +18,20 @@ DbEdr::DbEdr(char* record)
 	nsig = 2;
 	dt1 = 0L;
 }
+
+/**
+ * Default destructor for DbEdr
+ */
 DbEdr::~DbEdr()
 {
 
 }
 
+/**
+ * Calculates the EDR from a given sample number
+ * @param time sample number
+ * @return the EDR value
+ */
 int DbEdr::GetEdr(long time)
 {
     if (dt1 == 0L) dt1 = -(dt2 = strtim("0.04"));
@@ -25,6 +39,7 @@ int DbEdr::GetEdr(long time)
     return edr();
 
 }
+
 int DbEdr::baseline(int s, WFDB_Time t)
 {
 

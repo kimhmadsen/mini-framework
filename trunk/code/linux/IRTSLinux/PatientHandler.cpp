@@ -16,7 +16,6 @@ static int nsig = 2;
 /*
  * Default constructor
  */
-
 PatientHandler::PatientHandler(Patient* patient)
 {
 	_lastECG = 0;
@@ -57,6 +56,9 @@ PatientHandler::~PatientHandler()
 
 }
 
+/**
+ * Starts the patient handler
+ */
 void PatientHandler::start()
 {
 
@@ -67,6 +69,10 @@ void PatientHandler::start()
 
 }
 
+/**
+ * Sets the patient for the handler. Used for changing the patient "on the fly"
+ * @param patient New patient to be used
+ */
 void PatientHandler::setPatient(Patient* patient)
 {
 	_patient = patient;
@@ -92,6 +98,9 @@ void PatientHandler::setPatient(Patient* patient)
 
 }
 
+/**
+ * Stops the patient handler
+ */
 void PatientHandler::stop()
 {
 	_running = false;
@@ -101,8 +110,6 @@ void PatientHandler::stop()
 
 /**
  * Static wrapper for the handler of the timer
- * @param timerid Id of the timer
- * @param pointerToObject pointer to "this" (PatientHandler)
  */
 void PatientHandler::handler_wrapper(int signo, siginfo_t *info, void *notUsed)
 {
@@ -210,11 +217,19 @@ float PatientHandler::getPulse()
 	return _lastPulse;
 }
 
+/**
+ * Get the name of the current patient
+ * @return the name of the current patient
+ */
 string PatientHandler::getName()
 {
 	return _patient->getName();
 }
 
+/**
+ * Get the state of the handler
+ * @return true if the handler is running; false if it is stopped
+ */
 bool PatientHandler::getState()
 {
 	return _running;

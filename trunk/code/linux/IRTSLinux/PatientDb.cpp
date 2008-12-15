@@ -26,7 +26,9 @@ PatientDb* PatientDb::Instance()
 	return _instance;
 }
 
-
+/**
+ * Default constructor for PatientDb
+ */
 PatientDb::PatientDb()
 {
 	_patients.push_back("100s");
@@ -44,7 +46,7 @@ PatientDb::PatientDb()
 
 /**
  * Get the patient list
- * @TODO: implement
+ * @return a string with patient info in each line
  */
 string PatientDb::GetPatientList()
 {
@@ -78,8 +80,9 @@ string PatientDb::GetPatientList()
 }
 
 /**
- *
- *
+ * Gets a patient from the patients database
+ * @param name
+ * @return the patient object
  */
 Patient* PatientDb::GetPatient( char* name )
 {

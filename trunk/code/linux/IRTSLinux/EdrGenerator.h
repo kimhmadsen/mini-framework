@@ -1,3 +1,4 @@
+
 /**
  * @file
  * Edr.h
@@ -14,7 +15,7 @@
 using namespace std;
 
 /**
- * Caluculates the EDR
+ * Calculates the EDR
  *
  */
 class EdrGenerator
