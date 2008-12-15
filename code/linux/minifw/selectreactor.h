@@ -17,6 +17,9 @@ class SelectReactor :
 {
 public:
 
+	/**
+		Structure for holding tuples of eventer handler and eventtype.
+	*/
 	struct EventTuple
 	{
 		EventHandler *eventhandler;

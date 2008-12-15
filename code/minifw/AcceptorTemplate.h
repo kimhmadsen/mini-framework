@@ -4,6 +4,9 @@
 #include "sockacceptor.h"
 #include "reactor.h"
 
+/**
+ A standard acceptor templete.
+*/
 template <class EVENT_HANDLER> class AcceptorTemplate :
 	public EventHandler
 {

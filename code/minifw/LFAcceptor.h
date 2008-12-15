@@ -6,6 +6,9 @@
 #include "LFThreadPool.h"
 #include "LFEventHandler.h"
 
+/**
+ A standard templete for Leader Follower acceptors.
+*/
 template <class EVENT_HANDLER> class LFAcceptor  :
 	public EventHandler
 {

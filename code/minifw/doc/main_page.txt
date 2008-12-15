@@ -1,7 +1,7 @@
 // this is a include file for doxygen.
 
 /**
-\mainpage
+\page Mini-Framework
 
 The mini-framework library implements some of the patterns described in the the POSA2 book [1].\n
 The library is a mini pattern language that supports development of network real-time software.

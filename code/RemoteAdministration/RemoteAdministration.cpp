@@ -39,6 +39,9 @@ std::vector <std::string> patientList;
 void *worker_thread(void *);
 void DoTheUI();
 
+/**
+ The start point for the program.
+*/
 int _tmain(int argc, _TCHAR* argv[])
 {
 	std::cout << "Remote Administration starting power-up sequence.\n";
@@ -75,6 +78,9 @@ int _tmain(int argc, _TCHAR* argv[])
 	return 0;
 }
 
+/**
+Draws a line
+*/
 void DrawLine(){
 
 	for(int i =0; i < 5; i++)
@@ -85,6 +91,9 @@ void DrawLine(){
 
 }
 
+/**
+ Draw the heading on the UI.
+*/
 void DrawGeneralHeading(){
 
 	for(int i =0; i < 5; i++)
@@ -105,6 +114,10 @@ void DrawGeneralHeading(){
 		std::cout << "#";
 	std::cout << std::endl;
 }
+
+/**
+ Draws the patient list of patients
+*/
 void DrawPatients(){
 	
 	ClientList *cl = ClientList::Instance();
@@ -129,6 +142,9 @@ void DrawPatients(){
 	}
 }
 
+/**
+ Draw patient info.
+*/
 void DrawPatient(int patient){
 
 	
