@@ -16,7 +16,7 @@ class ClientEventHandler :
 {
 public:
 	ClientEventHandler(); //Just for local testing
-	ClientEventHandler( const SockStream &stream, Reactor *reactor);
+	ClientEventHandler( const SockStream &stream );
 	~ClientEventHandler(void);
 
 	virtual void HandleEvent ( HANDLE handle, Event_Type event_type );

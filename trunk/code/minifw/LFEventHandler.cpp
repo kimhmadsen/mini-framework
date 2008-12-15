@@ -13,7 +13,15 @@ LFEventHandler::~LFEventHandler(void)
 
 void LFEventHandler::HandleEvent(HANDLE h, Event_Type et)
 {
+	
 	//deactivate the handle.
+	ltp->DeactivateHandle( h, et );
+
 	ltp->PromoteNewLeader();
+
+	theHandler->HandleEvent(h, et );
+	
 	//reactivate the handle.
+	ltp->ReactivateHandle( h, et );
+
 }

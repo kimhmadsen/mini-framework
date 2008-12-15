@@ -21,7 +21,7 @@ public:
 
 	virtual void HandleEvent(HANDLE h, Event_Type et);
 
-private:
+protected:
 	EventHandler *theHandler;
 	LFThreadPool *ltp;
 };

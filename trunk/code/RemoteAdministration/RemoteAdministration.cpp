@@ -26,6 +26,8 @@
 #include "ClientList.h"
 #include "LFThreadPool.h"
 #include "threadmanager.h"
+#include "LFEventHandler.h"
+#include "LFAcceptor.h"
 #include <cstdlib>
 #include <conio.h>
 #include <windows.h>
@@ -43,7 +45,14 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	InetAddr client_addr( CLIENT_PORT );
 	MiniFwInit(); 
-	AcceptorTemplate<ClientEventHandler> ClientAcceptor( client_addr, SelectReactor::instance() );
+
+	LFThreadPool lftp(SelectReactor::instance());
+	for(int i = 0; i < 5; ++i)
+		ThreadManager::Instance()->Spawn(worker_thread, &lftp);
+
+	//AcceptorTemplate<ClientEventHandler> ClientAcceptor( client_addr, SelectReactor::instance() );
+	LFAcceptor<ClientEventHandler> acceptor( client_addr, SelectReactor::instance(), &lftp );
+	//LFEventHandler lfeAcceptor( &ClientAcceptor, &lftp );
 	std::cout << "Waiting for Client on port " << client_addr.GetPort() << "\n";
 
 	//ClientEventHandler *ceh = new ClientEventHandler();
@@ -56,10 +65,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	//ClientEventHandler *cehw = new ClientEventHandler();
 	//cehw->SelectPatient("HANS OLE");
 	//cehw->SetRunning(true);
-	LFThreadPool lftp(SelectReactor::instance());
+	
 
-	for(int i = 0; i < 5; ++i)
-		ThreadManager::Instance()->Spawn(worker_thread, &lftp);
 
 	//lftp.JoinPool();
 
