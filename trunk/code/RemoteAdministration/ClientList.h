@@ -4,8 +4,14 @@
 
 class ClientEventHandler;
 
-class ClientList
-	
+/**
+ * Implement a list with all the connected clients.
+ * 
+ * Collaboration:
+ * - GUI
+ * - ClientEventHandler
+ */
+class ClientList	
 {
 
 public:
