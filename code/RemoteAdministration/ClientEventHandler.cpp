@@ -3,6 +3,19 @@
 
 using namespace std;
 
+ClientEventHandler::ClientEventHandler()
+{
+
+	//Just for local testing
+	ClientList *cl = ClientList::Instance();
+	cl->Push(this);
+	this->reactor = reactor;
+	status = false;
+	currentPatient = "";
+	isPatientListNew = true; //should be false;
+	//reactor->RegisterHandler( this, READ_EVENT );
+}
+
 ClientEventHandler::ClientEventHandler( const SockStream &stream, Reactor *reactor): peerStream( stream )
 {
 	ClientList *cl = ClientList::Instance();
@@ -98,12 +111,23 @@ std::vector <std::string> ClientEventHandler::GetPatientList()
 	return patientList;
 }
 
-void ClientEventHandler::SetRunning(bool status)
+void ClientEventHandler::SetRunning()
 {
 	if(status)
+		peerStream.send("S stop",7,0);
+	else
+		peerStream.send("S start",6,0);
+	status = !status; //just for local testing
+}
+
+void ClientEventHandler::SetRunning(bool desired)
+{
+	if(desired)
 		peerStream.send("S start",7,0);
 	else
 	peerStream.send("S stop",6,0);
+
+	status = desired; //just local testing
 }
 
 void ClientEventHandler::SelectPatient(std::string data)
@@ -111,6 +135,8 @@ void ClientEventHandler::SelectPatient(std::string data)
 	std::string temp ="P ";
 	temp.append(data);
 	peerStream.send(temp.c_str(),data.length()+2,0);
+
+	currentPatient = data; //Just local testing
 }
 
 bool ClientEventHandler::IsNewPatientList()
@@ -120,6 +146,10 @@ bool ClientEventHandler::IsNewPatientList()
 
 void ClientEventHandler::RequestPatientList()
 {
-	isPatientListNew = false;
+	//isPatientListNew = false;
 	peerStream.send("G",1,0);
+}
+
+std::string ClientEventHandler::GetCurrentPatient(){
+	return currentPatient;
 }

@@ -19,6 +19,7 @@ public:
 	ClientEventHandler* Back();
 	ClientEventHandler* At(int i);
 	void Erease(ClientEventHandler *ceh);
+	int Size();
 
 private:
 	std::vector <ClientEventHandler *> clientList;

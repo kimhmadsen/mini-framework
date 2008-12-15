@@ -47,3 +47,7 @@ void ClientList::Erease(ClientEventHandler *ceh){
 		}
 		walker++;
 };
+
+int ClientList::Size(){
+	return clientList.size();
+}
