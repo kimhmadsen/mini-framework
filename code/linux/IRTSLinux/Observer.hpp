@@ -35,7 +35,6 @@ public:
 	;
 
 	virtual void Update(Subject* theModel, Signaltypes signaltype)= 0;
-	//virtual bool IsType(Signaltypes) = 0;
 
 	void SetType(Signaltypes signaltypes)
 	{

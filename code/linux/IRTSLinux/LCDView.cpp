@@ -1,3 +1,4 @@
+
 /**
  * @file
  * Implements the LCDView class
@@ -32,6 +33,7 @@ LCDView::~LCDView()
 {
 	_dm->Detach(this);
 }
+
 void LCDView::Run(void)
 {
 	cout << "LCDView running" << endl;
@@ -116,6 +118,10 @@ void LCDView::Run(void)
 
 	return;
 }
+
+/**
+ * Method that prints the options to the standard output
+ */
 void LCDView::printMenu()
 {
 	cout << "Simulator options: " << endl;

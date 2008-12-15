@@ -1,3 +1,4 @@
+
 /**
  * @file
  * Defines the xx class
@@ -46,10 +47,13 @@ public:
     */
     void Draw();
     /**
-    * set and cleat the active flag.
+    * set and clear the active flag.
     */
     void SetActive(bool);
 
+    /**
+     * Controls the UI
+     */
     void Run(void);
 private:
     PatientHandler *_dm; ///< reference the pateint handler
