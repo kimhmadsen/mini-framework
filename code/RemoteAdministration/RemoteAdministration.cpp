@@ -2,6 +2,7 @@
 //
 
 /**
+ * @mainpage
  * The server application shall handle the following events:
  * - an alarm event (carrying a priority field and a text string)
  * - a patient value event (carrying a type field and a value field)
@@ -33,7 +34,7 @@
 
 const short CLIENT_PORT = 10000;
 std::vector <std::string> patientList;
-//void *worker_thread(void *);
+void *worker_thread(void *);
 void DoTheUI();
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -45,23 +46,23 @@ int _tmain(int argc, _TCHAR* argv[])
 	AcceptorTemplate<ClientEventHandler> ClientAcceptor( client_addr, SelectReactor::instance() );
 	std::cout << "Waiting for Client on port " << client_addr.GetPort() << "\n";
 
-	ClientEventHandler *ceh = new ClientEventHandler();
-	ceh->SelectPatient("HANS WIGGO");
-	ceh->patientList.push_back("KYLE");
-	ceh->patientList.push_back("STAN");
-	ceh->patientList.push_back("CARTMAN");
-	ceh->patientList.push_back("BUTTERS");
+	//ClientEventHandler *ceh = new ClientEventHandler();
+	//ceh->SelectPatient("HANS WIGGO");
+	//ceh->patientList.push_back("KYLE");
+	//ceh->patientList.push_back("STAN");
+	//ceh->patientList.push_back("CARTMAN");
+	//ceh->patientList.push_back("BUTTERS");
 
-	ClientEventHandler *cehw = new ClientEventHandler();
-	cehw->SelectPatient("HANS OLE");
-	cehw->SetRunning(true);
-/*	LFThreadPool lftp(SelectReactor::instance());
+	//ClientEventHandler *cehw = new ClientEventHandler();
+	//cehw->SelectPatient("HANS OLE");
+	//cehw->SetRunning(true);
+	LFThreadPool lftp(SelectReactor::instance());
 
 	for(int i = 0; i < 31; ++i)
-		ThreadManager::Instance()->Spawn(woker_thread, &lftp);
+		ThreadManager::Instance()->Spawn(worker_thread, &lftp);
 
 	lftp.JoinPool();
-*/
+
 	DoTheUI();
 	for(;;)
 	{
@@ -302,11 +303,11 @@ void DoTheUI(){
 
 }
 
-/*void *worker_thread(void *arg)
+void *worker_thread(void *arg)
 {
 
 	LFThreadPool *threadpool = static_cast<LFThreadPool *> (arg);
 	threadpool->JoinPool();
 
 	return 0;
-}*/
+}

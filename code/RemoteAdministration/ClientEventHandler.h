@@ -8,6 +8,9 @@
 #include "sockacceptor.h"
 #include "ClientList.h"
 
+/**
+ * Responsible for 
+ */
 class ClientEventHandler :
 	public EventHandler
 {
