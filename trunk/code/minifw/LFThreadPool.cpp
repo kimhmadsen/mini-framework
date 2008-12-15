@@ -18,10 +18,13 @@ void LFThreadPool::JoinPool(TIMEVAL *timeout)
 	Guard guard(mutex);
 	for(;;)
 	{
-		while(leaderThread != NO_CURRENT_LEADER)
+		while(leaderThread != NO_CURRENT_LEADER && leaderThread != Thread::Self() )
 		{
-			//followersCondition.Release();
-			mutex.Acquire(150);
+			// NOT thread safe should have been made with a Conditionvariable. But windows does not support 
+			// condition variables. 
+			mutex.Release();
+			followersCondition.Acquire(150);
+			mutex.Acquire();
 		}
 
 		leaderThread = Thread::Self();
@@ -34,21 +37,21 @@ void LFThreadPool::JoinPool(TIMEVAL *timeout)
 void LFThreadPool::PromoteNewLeader()
 {
 	Guard guard(mutex);
-	if(leaderThread != 1)
-		std::cout << "CRAP"<< std::endl;
+	if(leaderThread != Thread::Self() )
+		std::cout << "PromoteNewLeader"<< std::endl;
 
 	leaderThread = NO_CURRENT_LEADER;
-
-	mutex.Release();
+	followersCondition.Release();
 }
 
 void LFThreadPool::DeactivateHandle(HANDLE h, Event_Type et)
 {
-	
+	//reactor = Reactor::instance();
+	reactor->DeactivateHandle(h, et );
 }
 
 void LFThreadPool::ReactivateHandle(HANDLE h, Event_Type et)
 {
-
+	reactor->ReactivateHandle( h, et );
 }
 

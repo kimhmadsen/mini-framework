@@ -14,3 +14,8 @@ HANDLE EventHandler::GetHandle(void)
 {
 	return handle;
 }
+
+void EventHandler::SetHandle(HANDLE handle)
+{
+	this->handle = handle;
+}

@@ -1,6 +1,8 @@
 #include "StdAfx.h"
+#include <iostream>
 #include "selectreactor.h"
 
+using namespace std;
 
 SelectReactor* SelectReactor::instance_ = 0;
 
@@ -109,12 +111,30 @@ void SelectReactor::HandleEvents(TIMEVAL *timeout)
 			HANDLE handle = handlerUpcoming->GetHandle();
 			if (FD_ISSET(handle, &readFDs) ) 
 			{
-				handlerUpcoming->HandleEvent(handle, READ_EVENT);
+				try
+				{
+					handlerUpcoming->HandleEvent(handle, READ_EVENT);
+				}
+				catch(...)
+				{
+					//std::cout << "Client disconnected" << std::endl;
+					this->RemoveHandler( handlerUpcoming, READ_EVENT  );
+					delete handlerUpcoming;
+				}
 				result--;
 			} 
 			else if (FD_ISSET(handle, &writeFDs) ) 
 			{
-				handlerUpcoming->HandleEvent(handle, WRITE_EVENT);
+				try
+				{
+					handlerUpcoming->HandleEvent(handle, WRITE_EVENT);
+				}
+				catch( ...)
+				{
+					//std::cout << "Client disconnected" << std::endl;
+					this->RemoveHandler( handlerUpcoming, WRITE_EVENT  );
+					delete handlerUpcoming;
+				}
 				result--;
 			} 
 			else if (FD_ISSET(handle, &exceptFDs) ) 

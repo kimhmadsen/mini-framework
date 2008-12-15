@@ -41,11 +41,15 @@ ClientEventHandler* ClientList::At(int i){
 void ClientList::Erease(ClientEventHandler *ceh){
 	std::vector<ClientEventHandler *>::iterator walker= clientList.begin();
 	for(unsigned int i = 0; i < clientList.size(); i++)
-		if(ceh == clientList.at(i)){
+	{
+		if(ceh == clientList.at(i))
+		{
 			clientList.erase(walker);
 			break;
 		}
+
 		walker++;
+	}
 };
 
 int ClientList::Size(){

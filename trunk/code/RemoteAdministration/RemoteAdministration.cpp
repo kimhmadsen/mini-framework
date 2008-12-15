@@ -1,4 +1,4 @@
-	// PatientServer.cpp : Defines the entry point for the console application.
+// PatientServer.cpp : Defines the entry point for the console application.
 //
 
 /**
@@ -47,25 +47,15 @@ int _tmain(int argc, _TCHAR* argv[])
 	MiniFwInit(); 
 
 	LFThreadPool lftp(SelectReactor::instance());
-	for(int i = 0; i < 5; ++i)
-		ThreadManager::Instance()->Spawn(worker_thread, &lftp);
 
 	//AcceptorTemplate<ClientEventHandler> ClientAcceptor( client_addr, SelectReactor::instance() );
 	LFAcceptor<ClientEventHandler> acceptor( client_addr, SelectReactor::instance(), &lftp );
 	//LFEventHandler lfeAcceptor( &ClientAcceptor, &lftp );
 	std::cout << "Waiting for Client on port " << client_addr.GetPort() << "\n";
 
-	//ClientEventHandler *ceh = new ClientEventHandler();
-	//ceh->SelectPatient("HANS WIGGO");
-	//ceh->patientList.push_back("KYLE");
-	//ceh->patientList.push_back("STAN");
-	//ceh->patientList.push_back("CARTMAN");
-	//ceh->patientList.push_back("BUTTERS");
-
-	//ClientEventHandler *cehw = new ClientEventHandler();
-	//cehw->SelectPatient("HANS OLE");
-	//cehw->SetRunning(true);
-	
+	// Add threads to the ThreadPool.	
+	for(int i = 0; i < 2; ++i)
+		ThreadManager::Instance()->Spawn(worker_thread, &lftp);
 
 
 	//lftp.JoinPool();
