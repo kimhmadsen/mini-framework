@@ -165,6 +165,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\AcceptorTemplate.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\connector.cpp"
 				>
 			</File>
@@ -196,6 +200,10 @@
 			</File>
 			<File
 				RelativePath=".\inetaddr.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\LFAcceptor.cpp"
 				>
 			</File>
 			<File
@@ -277,6 +285,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\AcceptorTemplate.h"
+				>
+			</File>
+			<File
 				RelativePath=".\connector.h"
 				>
 			</File>
@@ -290,6 +302,10 @@
 			</File>
 			<File
 				RelativePath=".\inetaddr.h"
+				>
+			</File>
+			<File
+				RelativePath=".\LFAcceptor.h"
 				>
 			</File>
 			<File

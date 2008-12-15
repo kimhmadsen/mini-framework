@@ -17,15 +17,15 @@ ClientEventHandler::ClientEventHandler()
 	reactor->RegisterHandler( this, READ_EVENT );
 }
 
-ClientEventHandler::ClientEventHandler( const SockStream &stream, Reactor *reactor): peerStream( stream )
+ClientEventHandler::ClientEventHandler( const SockStream &stream ): peerStream( stream )
 {
 	ClientList *cl = ClientList::Instance();
 	cl->Push(this);
-	this->reactor = reactor;
+//	this->reactor = reactor;
 	status = false;
 	currentPatient = "";
 	isPatientListNew = false;
-	reactor->RegisterHandler( this, READ_EVENT );
+//	reactor->RegisterHandler( this, READ_EVENT );
 }
 
 
@@ -37,6 +37,7 @@ ClientEventHandler::~ClientEventHandler(void)
 
 void ClientEventHandler::HandleEvent ( HANDLE handle, Event_Type event_type )
 {
+
 	switch( event_type )
 	{
 	case READ_EVENT:
@@ -117,7 +118,7 @@ void ClientEventHandler::SetRunning()
 	if(status)
 		peerStream.send("S stop",7,0);
 	else
-		peerStream.send("S start",6,0);
+		peerStream.send("S start",7,0);
 	//status = !status; //just for local testing
 }
 
