@@ -1,3 +1,4 @@
+
 /**
  * @file
  * Implements the startup of the program
@@ -27,8 +28,8 @@ void* RemoteClientThread(void* patientHandler)
 {
 
 	rc = new RemoteClient(SERVER_PORT, host, (PatientHandler*) patientHandler);
-	rc->Connect();
-	rc->Run();
+	if(rc->Connect() == 0)
+		rc->Run();
 
 	return NULL;
 }
@@ -37,10 +38,8 @@ void* LCDViewThread(void* patientHandler)
 
 	LCDView view((PatientHandler*)patientHandler);
 
-	while(true)
-	{
-		pause();
-	}
+	view.Run();
+
 	return NULL;
 }
 
@@ -66,20 +65,21 @@ int main(int argc, char* argv[])
 
 
 	PatientHandler* handler = new PatientHandler(patient);
-	//LCDView view(handler);
+
 	pthread_create(&threadLCDView, NULL, LCDViewThread,
 			(void*) handler);
 
 	pthread_create(&threadRemoteClient, NULL, RemoteClientThread,
 			(void*) handler);
 
+	sleep(1);
 	cout << "I'm starting" << endl;;
 	handler->start();
-	cout << "I'm started";
-	sleep(1);
+	cout << "I'm started" << endl;;
+	//sleep(1);
 
-	handler->stop();
-	cout << "I'm stopped";
+	//handler->stop();
+	//cout << "I'm stopped";
 	while(true){}
 	return 0;
 
