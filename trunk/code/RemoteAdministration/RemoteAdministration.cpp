@@ -13,7 +13,6 @@
 #include "reactor.h"
 #include "selectreactor.h"
 #include "acceptortemplate.h"
-#include "patientinfoeventhandler.h"
 #include "ClientEventHandler.h"
 #include "ClientList.h"
 #include "LFThreadPool.h"
