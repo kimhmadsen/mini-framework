@@ -1,0 +1,22 @@
+// this is a include file for doxygen.
+
+/**
+\page Mini-Framework
+
+The mini-framework library implements some of the patterns described in the the POSA2 book [1].\n
+The library is a mini pattern language that supports development of network real-time software.
+
+
+
+
+
+[1] Pattern-oriented software architecture, Patterns for concurrent and networked objects, \n
+volume 2, \n
+by Douglas Schmidt, Michael Stal, Hans Rohnert and Frank Buschmann.\n
+http://www.cs.wustl.edu/~schmidt/POSA/POSA2/
+
+
+
+
+
+*/

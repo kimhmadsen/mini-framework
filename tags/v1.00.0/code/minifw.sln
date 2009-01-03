@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual C++ Express 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "minifw", "minifw\minifw.vcproj", "{19D6E5B9-3E11-4AC9-978C-516994212ED1}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RemoteAdministration", "RemoteAdministration\RemoteAdministration.vcproj", "{DB27731D-22EA-4A21-8674-E14D4E85C6EB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19D6E5B9-3E11-4AC9-978C-516994212ED1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{19D6E5B9-3E11-4AC9-978C-516994212ED1}.Debug|Win32.Build.0 = Debug|Win32
+		{19D6E5B9-3E11-4AC9-978C-516994212ED1}.Release|Win32.ActiveCfg = Release|Win32
+		{19D6E5B9-3E11-4AC9-978C-516994212ED1}.Release|Win32.Build.0 = Release|Win32
+		{DB27731D-22EA-4A21-8674-E14D4E85C6EB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DB27731D-22EA-4A21-8674-E14D4E85C6EB}.Debug|Win32.Build.0 = Debug|Win32
+		{DB27731D-22EA-4A21-8674-E14D4E85C6EB}.Release|Win32.ActiveCfg = Release|Win32
+		{DB27731D-22EA-4A21-8674-E14D4E85C6EB}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
